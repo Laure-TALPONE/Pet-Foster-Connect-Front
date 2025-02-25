@@ -127,3 +127,38 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
+    border: none;
+    background-color: transparent;
+    user-select: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+input {
+    -webkit-appearance: none;
+    outline: none;
+    background: none;
+    border: none;
+}
+
+svg {
+    line-height: 0;
+}
