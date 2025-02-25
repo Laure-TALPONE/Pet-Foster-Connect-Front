@@ -5,16 +5,17 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
@@ -34,3 +35,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+## Inspirations sites web
+
+- Fondation Brigitte Bardot : https://www.fondationbrigittebardot.fr/
+- La SPA : https://www.la-spa.fr/
+- Pinterest
+- Behance
+- Association : https://www.associationstephanelamart.com/familles-accueil.html
+- Images libre de droit : https://pixabay.com/fr/photos/search/pets%20animals/ 
+
+## Benchmark
+
+- Google Lighthouse
+- WebPageTest  (webpagetest.org)
+- GTmetrix (gtmetrix.com)
+
+## Technos
+
+Front :
+    - React
+    - Framework Next 15
+    - Sass
+
+Back :
+    - NestJs
+    - Postgres

@@ -1,0 +1,121 @@
+export const associations = [
+    {
+        "id": 1,
+        "name": "Association Les Amis des Animaux",
+        "location": "Paris",
+        "contact": "contact@amisdesanimaux.fr",
+        "animals": [
+            { "id": 101, "name": "Rex", "species": "chien", "age": 4, "breed": "Berger Allemand", "status": "en attente" },
+            { "id": 102, "name": "Bella", "species": "chien", "age": 3, "breed": "Bulldog", "status": "en attente" },
+            { "id": 103, "name": "Max", "species": "chien", "age": 5, "breed": "Labrador", "status": "en attente" },
+            { "id": 104, "name": "Jack", "species": "chien", "age": 2, "breed": "Beagle", "status": "en attente" },
+            { "id": 105, "name": "Rocky", "species": "chien", "age": 6, "breed": "Golden Retriever", "status": "en attente" },
+            { "id": 106, "name": "Misty", "species": "chat", "age": 2, "breed": "Siamois", "status": "en attente" },
+            { "id": 107, "name": "Luna", "species": "chat", "age": 4, "breed": "Persan", "status": "en attente" },
+            { "id": 108, "name": "Shadow", "species": "chat", "age": 3, "breed": "Noir Européen", "status": "en attente" },
+            { "id": 109, "name": "Felix", "species": "chat", "age": 5, "breed": "Maine Coon", "status": "en attente" },
+            { "id": 110, "name": "Simba", "species": "chat", "age": 1, "breed": "Bengal", "status": "en attente" },
+            { "id": 111, "name": "Nugget", "species": "rongeur", "age": 1, "breed": "Hamster", "status": "en attente" },
+            { "id": 112, "name": "Biscuit", "species": "rongeur", "age": 2, "breed": "Cochon d'Inde", "status": "en attente" },
+            { "id": 113, "name": "Pikachu", "species": "rongeur", "age": 3, "breed": "Lapin", "status": "en attente" },
+            { "id": 114, "name": "Fluffy", "species": "rongeur", "age": 2, "breed": "Chinchilla", "status": "en attente" },
+            { "id": 115, "name": "Snowball", "species": "rongeur", "age": 1, "breed": "Lapin", "status": "en attente" },
+            { "id": 116, "name": "Coco", "species": "oiseau", "age": 3, "breed": "Perroquet", "status": "en attente" },
+            { "id": 117, "name": "Kiwi", "species": "oiseau", "age": 2, "breed": "Perruche", "status": "en attente" },
+            { "id": 118, "name": "Rio", "species": "oiseau", "age": 2, "breed": "Perroquet", "status": "en attente" },
+            { "id": 119, "name": "Sunny", "species": "oiseau", "age": 1, "breed": "Canari", "status": "en attente" },
+            { "id": 120, "name": "Blue", "species": "oiseau", "age": 3, "breed": "Perruche", "status": "en attente" }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Refuge Espoir Animal",
+        "location": "Lyon",
+        "contact": "contact@espoiranimal.fr",
+        "animals": [
+            { "id": 201, "name": "Buddy", "species": "chien", "age": 3, "breed": "Border Collie", "status": "en attente" },
+            { "id": 202, "name": "Django", "species": "chien", "age": 4, "breed": "Dobermann", "status": "en attente" },
+            { "id": 203, "name": "Milo", "species": "chien", "age": 2, "breed": "Husky", "status": "en attente" },
+            { "id": 204, "name": "Oreo", "species": "chien", "age": 5, "breed": "Dalmatien", "status": "en attente" },
+            { "id": 205, "name": "Toby", "species": "chien", "age": 3, "breed": "Cocker", "status": "en attente" },
+            { "id": 206, "name": "Whiskers", "species": "chat", "age": 4, "breed": "Chartreux", "status": "en attente" },
+            { "id": 207, "name": "Sasha", "species": "chat", "age": 2, "breed": "Abyssin", "status": "en attente" },
+            { "id": 208, "name": "Mango", "species": "chat", "age": 5, "breed": "British Shorthair", "status": "en attente" },
+            { "id": 209, "name": "Chester", "species": "chat", "age": 3, "breed": "Ragdoll", "status": "en attente" },
+            { "id": 210, "name": "Garfield", "species": "chat", "age": 6, "breed": "Exotic Shorthair", "status": "en attente" },
+            { "id": 211, "name": "Peanut", "species": "rongeur", "age": 2, "breed": "Hamster", "status": "en attente" },
+            { "id": 212, "name": "Toffee", "species": "rongeur", "age": 3, "breed": "Lapin", "status": "en attente" },
+            { "id": 213, "name": "Hazel", "species": "rongeur", "age": 1, "breed": "Cochon d'Inde", "status": "en attente" },
+            { "id": 214, "name": "Poppy", "species": "rongeur", "age": 2, "breed": "Chinchilla", "status": "en attente" },
+            { "id": 215, "name": "Pistachio", "species": "rongeur", "age": 1, "breed": "Lapin", "status": "en attente" },
+            { "id": 211, "name": "Tweety", "species": "oiseau", "age": 1, "breed": "Canari", "status": "en attente" },
+            { "id": 212, "name": "Sky", "species": "oiseau", "age": 2, "breed": "Perruche", "status": "en attente" },
+            { "id": 213, "name": "Lemon", "species": "oiseau", "age": 3, "breed": "Perruche", "status": "en attente" },
+            { "id": 214, "name": "Charlie", "species": "oiseau", "age": 2, "breed": "Perroquet", "status": "en attente" },
+            { "id": 215, "name": "Sunny", "species": "oiseau", "age": 4, "breed": "Perroquet", "status": "en attente" }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Sauvetage Animalier",
+        "location": "Bordeaux",
+        "contact": "contact@sauvetageanimalier.fr",
+        "animals": [
+            { "id": 301, "name": "Rusty", "species": "chien", "age": 4, "breed": "Chihuahua", "status": "en attente" },
+            { "id": 302, "name": "Ziggy", "species": "chien", "age": 3, "breed": "Cocker", "status": "en attente" },
+            { "id": 303, "name": "Ace", "species": "chien", "age": 5, "breed": "Pitbull", "status": "en attente" },
+            { "id": 304, "name": "Scout", "species": "chien", "age": 2, "breed": "Jack Russell Terrier", "status": "en attente" },
+            { "id": 305, "name": "Buster", "species": "chien", "age": 6, "breed": "Mastiff", "status": "en attente" },
+            { "id": 306, "name": "Misty", "species": "chat", "age": 2, "breed": "Sphynx", "status": "en attente" },
+            { "id": 307, "name": "Whiskers", "species": "chat", "age": 3, "breed": "Siberian", "status": "en attente" },
+            { "id": 308, "name": "Marble", "species": "chat", "age": 1, "breed": "Burmese", "status": "en attente" },
+            { "id": 309, "name": "Smokey", "species": "chat", "age": 4, "breed": "Ragdoll", "status": "en attente" },
+            { "id": 310, "name": "Chloe", "species": "chat", "age": 5, "breed": "Scottish Fold", "status": "en attente" },
+            { "id": 311, "name": "Bubbles", "species": "rongeur", "age": 1, "breed": "Gerbille", "status": "en attente" },
+            { "id": 312, "name": "Toby", "species": "rongeur", "age": 2, "breed": "Cochon d'Inde", "status": "en attente" },
+            { "id": 313, "name": "Hazel", "species": "rongeur", "age": 3, "breed": "Hamster", "status": "en attente" },
+            { "id": 314, "name": "Milo", "species": "rongeur", "age": 4, "breed": "Chinchilla", "status": "en attente" },
+            { "id": 315, "name": "Luna", "species": "rongeur", "age": 2, "breed": "Lapin Nain", "status": "en attente" },
+            { "id": 316, "name": "Echo", "species": "oiseau", "age": 3, "breed": "Ara", "status": "en attente" },
+            { "id": 317, "name": "Flare", "species": "oiseau", "age": 2, "breed": "Perruche", "status": "en attente" },
+            { "id": 318, "name": "Tango", "species": "oiseau", "age": 1, "breed": "Perroquet Eclectus", "status": "en attente" },
+            { "id": 319, "name": "Cleo", "species": "oiseau", "age": 4, "breed": "Cockatiel", "status": "en attente" },
+            { "id": 320, "name": "Storm", "species": "oiseau", "age": 2, "breed": "Calopsitte", "status": "en attente" }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Animaux en Détresse",
+        "location": "Toulouse",
+        "contact": "contact@animauxendetresse.fr",
+        "animals": [
+            { "id": 401, "name": "Milo", "species": "chien", "age": 3, "breed": "Chihuahua", "status": "en attente" },
+            { "id": 402, "name": "Luna", "species": "chien", "age": 4, "breed": "Akita Inu", "status": "en attente" },
+            { "id": 403, "name": "Buddy", "species": "chien", "age": 2, "breed": "Beagle", "status": "en attente" },
+            { "id": 404, "name": "Rocky", "species": "chien", "age": 5, "breed": "Golden Retriever", "status": "en attente" },
+            { "id": 405, "name": "Zeus", "species": "chien", "age": 6, "breed": "Rottweiler", "status": "en attente" },
+            { "id": 406, "name": "Bella", "species": "chat", "age": 2, "breed": "Siamois", "status": "en attente" },
+            { "id": 407, "name": "Nala", "species": "chat", "age": 3, "breed": "Maine Coon", "status": "en attente" },
+            { "id": 408, "name": "Oliver", "species": "chat", "age": 1, "breed": "Bengal", "status": "en attente" },
+            { "id": 409, "name": "Lily", "species": "chat", "age": 4, "breed": "British Shorthair", "status": "en attente" },
+            { "id": 410, "name": "Oscar", "species": "chat", "age": 5, "breed": "Persan", "status": "en attente" },
+            { "id": 411, "name": "Chester", "species": "rongeur", "age": 1, "breed": "Hamster", "status": "en attente" },
+            { "id": 412, "name": "Cinnamon", "species": "rongeur", "age": 3, "breed": "Cochon d'Inde", "status": "en attente" },
+            { "id": 413, "name": "Thumper", "species": "rongeur", "age": 2, "breed": "Lapin", "status": "en attente" },
+            { "id": 414, "name": "Pumpkin", "species": "rongeur", "age": 4, "breed": "Chinchilla", "status": "en attente" },
+            { "id": 415, "name": "Peanut", "species": "rongeur", "age": 3, "breed": "Hamster", "status": "en attente" },
+            { "id": 416, "name": "Pip", "species": "oiseau", "age": 1, "breed": "Perruche", "status": "en attente" },
+            { "id": 417, "name": "Sky", "species": "oiseau", "age": 2, "breed": "Canari", "status": "en attente" },
+            { "id": 418, "name": "Bliss", "species": "oiseau", "age": 3, "breed": "Perroquet", "status": "en attente" },
+            { "id": 419, "name": "Storm", "species": "oiseau", "age": 2, "breed": "Ara", "status": "en attente" },
+            { "id": 420, "name": "Willow", "species": "oiseau", "age": 4, "breed": "Perruche", "status": "en attente" }
+        ]
+    }
+]
+
+export const foster_families = [
+    { "id": 1, "name": "Famille Dupont", "location": "Paris", "preferences": ["chien", "chat"] },
+    { "id": 2, "name": "Famille Martin", "location": "Lyon", "preferences": ["rongeur", "oiseau"] },
+    { "id": 3, "name": "Famille Bernard", "location": "Bordeaux", "preferences": ["chien", "oiseau"] },
+    { "id": 4, "name": "Famille Leroy", "location": "Toulouse", "preferences": ["chat", "rongeur"] }
+]
