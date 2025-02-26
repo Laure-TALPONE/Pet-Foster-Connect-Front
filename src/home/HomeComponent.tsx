@@ -1,5 +1,6 @@
 'use client';
 import styles from './HomeComponent.module.scss';
+import AnimalsAdopted from './animals-adopted/AnimalsAdopted';
 import ArticleFoster from './article-foster/ArticleFoster';
 import ArticleInformation from './article-information/ArticleInformation';
 import BannerHomePage from './banner-home-page/BannerHomePage';
@@ -13,6 +14,7 @@ const HomeComponent = () => {
             <BannerHomePage />
             <SectionAssociation />
             <ArticleInformation />
+            <AnimalsAdopted />
          </div>
       </div>
    );

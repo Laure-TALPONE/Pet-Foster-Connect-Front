@@ -33,24 +33,3 @@
     color: var(--Blue-secondary);
     line-height: 24px;
 }
-
-.custom {
-    position: absolute;
-    bottom: -144px;
-    left: 0;
-    width: 100vw;
-    margin: 0 -100px;
-    overflow: hidden;
-    line-height: 0;
-}
-
-.custom svg {
-    position: relative;
-    display: block;
-    width: calc(134% + 1.3px);
-    height: 147px;
-
-    .shapeFill {
-        fill: #FFFFFF;
-    }
-}

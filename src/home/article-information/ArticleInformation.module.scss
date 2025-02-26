@@ -3,6 +3,7 @@
     margin: 0 -100px;
     display: flex;
     padding: 200px 100px;
+    position: relative;
 }
 
 .content {
@@ -48,4 +49,24 @@
 .picture {
     border-radius: 10px;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.custom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom svg {
+    position: relative;
+    display: block;
+    width: calc(134% + 1.3px);
+    height: 147px;
+
+    .shapeFill {
+        fill: #FFFFFF;
+    }
 }

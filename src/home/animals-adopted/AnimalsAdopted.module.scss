@@ -1,0 +1,53 @@
+.adopted {
+    display: flex;
+    padding: 80px 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 40px;
+    color: var(--Blue-secondary);
+}
+
+.paragraph {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    width: 73%;
+    color: var(--Blue-secondary);
+}
+
+.pictures {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 70px;
+}
+
+.animal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    .name {
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--Blue-secondary);
+    }
+}
