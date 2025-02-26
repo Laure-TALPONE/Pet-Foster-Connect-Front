@@ -1,0 +1,39 @@
+.article {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    width: 100%;
+}
+
+.text {
+    width: 584px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 40px;
+    color: var(--Blue-secondary);
+    line-height: 46px;
+}
+
+.details {
+    font-weight: 500;
+    line-height: 28px;
+
+    ul {
+        padding-left: 20px;
+
+        li {
+            list-style-type: disc;
+        }
+    }
+}
+
+.picture {
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+}
