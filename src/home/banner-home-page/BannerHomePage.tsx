@@ -21,12 +21,12 @@ const BannerHomePage = () => {
             </div>
             <div className={styles.item}>
                <PawPrint />
-               <span>95%</span>
+               <span>10 000+</span>
                <p>Animaux sauvés grâce à l’accueil temporaire chaque année.</p>
             </div>
             <div className={styles.item}>
                <PawPrint />
-               <span>95%</span>
+               <span>500+</span>
                <p>
                   Associations partenaires engagées pour la protection animale.
                </p>
