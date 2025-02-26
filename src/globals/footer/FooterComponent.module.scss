@@ -1,0 +1,14 @@
+.footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 70px 0;
+    background-color: var(--Blue-secondary);
+
+    p {
+        color: var(--Neutral-white);
+        font-family: 'Karla', sans-serif;
+        font-size: 16px;
+    }
+}
