@@ -8,6 +8,7 @@ import PictureBanner from './picture-banner/PictureBanner';
 import SectionAssociation from './section-association/SectionAssociation';
 import SectionFosterFamily from './section-foster-family/SectionFosterFamily';
 import SectionPartners from './section-partners/SectionPartners';
+import StepsAdoption from './steps-adoption/StepsAdoption';
 
 const HomeComponent = () => {
    return (
@@ -21,6 +22,7 @@ const HomeComponent = () => {
             <PictureBanner />
             <SectionFosterFamily />
             <SectionPartners />
+            <StepsAdoption />
          </div>
       </div>
    );

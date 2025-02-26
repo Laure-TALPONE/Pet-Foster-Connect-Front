@@ -1,0 +1,57 @@
+.main {
+    display: flex;
+    padding: 80px 0;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    width: 100%;
+
+    img {
+        border-radius: 10px;
+    }
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+
+    button {
+        align-self: flex-start;
+    }
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 40px;
+    color: var(--Blue-secondary);
+    line-height: 46px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .setpoint {
+        color: var(--Orange);
+        font-weight: 500;
+        font-size: 18px;
+
+        span {
+            font-size: 24px;
+            font-weight: 600;
+        }
+    }
+}
