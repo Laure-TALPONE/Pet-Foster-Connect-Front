@@ -4,6 +4,7 @@ import AnimalsAdopted from './animals-adopted/AnimalsAdopted';
 import ArticleFoster from './article-foster/ArticleFoster';
 import ArticleInformation from './article-information/ArticleInformation';
 import BannerHomePage from './banner-home-page/BannerHomePage';
+import PictureBanner from './picture-banner/PictureBanner';
 import SectionAssociation from './section-association/SectionAssociation';
 
 const HomeComponent = () => {
@@ -15,6 +16,7 @@ const HomeComponent = () => {
             <SectionAssociation />
             <ArticleInformation />
             <AnimalsAdopted />
+            <PictureBanner />
          </div>
       </div>
    );
