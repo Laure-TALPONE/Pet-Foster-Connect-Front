@@ -25,7 +25,7 @@ const SectionAssociation = () => {
                </p>
             </div>
             <button type="button" className="m-button">
-               Découvrir nos organisations
+               Découvrir nos associations
             </button>
          </div>
       </div>
