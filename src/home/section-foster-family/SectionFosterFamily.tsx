@@ -9,8 +9,8 @@ const SectionFosterFamily = () => {
             <Image
                src={'/images/RABBIT-VECTO.webp'}
                alt="rabbit"
-               width={97}
-               height={123}
+               width={100}
+               height={125}
             />
             <div className={styles.text}>
                <h2 className={styles.title}>

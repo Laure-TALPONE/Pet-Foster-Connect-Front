@@ -14,7 +14,7 @@ const AnimalsAdopted = () => {
             />
             <div className={styles.text}>
                <h2 className={styles.title}>
-                  Nos derniers recueillis en famille d’accueil
+                  Nos derniers animaux recueillis en famille d’accueil
                </h2>
                <p className={styles.paragraph}>
                   Grâce à l’engagement des familles d’accueil, de nombreux

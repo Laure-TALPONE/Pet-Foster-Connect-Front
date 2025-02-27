@@ -1,0 +1,13 @@
+@mixin desktop-title-l {
+    font-family: "Baloo Bhai 2", serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 46px;
+}
+
+@mixin text-l {
+    font-family: "Baloo Bhai 2", serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+}

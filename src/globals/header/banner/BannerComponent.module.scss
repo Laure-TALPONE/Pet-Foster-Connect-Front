@@ -1,3 +1,5 @@
+@import '../../../../styles/_bases/mixins';
+
 .banner {
     display: flex;
     justify-content: center;
@@ -26,8 +28,7 @@
 }
 
 .title {
-    font-weight: 600;
-    font-size: 40px;
+    @include desktop-title-l;
 }
 
 .subtitle {
@@ -44,8 +45,8 @@
     gap: 8px;
 
     p {
+        @include text-l;
         color: var(--Neutral-white);
-        font-weight: 600;
     }
 }
 
@@ -71,6 +72,7 @@
         padding: 8px 12px;
         gap: 12px;
         border-radius: 6px;
+        margin: 0 5px;
 
         &:hover {
             background: var(--Neutral-grey-100);

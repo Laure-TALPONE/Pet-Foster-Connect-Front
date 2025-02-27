@@ -9,8 +9,8 @@ const SectionAssociation = () => {
             <Image
                src={'/images/DOG-VECTO.webp'}
                alt="dog"
-               width={97}
-               height={123}
+               width={120}
+               height={130}
             />
             <div className={styles.text}>
                <h2 className={styles.title}>

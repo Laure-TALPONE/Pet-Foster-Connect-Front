@@ -25,6 +25,12 @@ const NavBar = () => {
                      </Link>
                   </li>
                   <li className={styles.item}>
+                     <Link href={'/pets'}>
+                        <Cat weight="bold" />
+                        <span>Nos animaux</span>
+                     </Link>
+                  </li>
+                  <li className={styles.item}>
                      <Link href={'/associations'}>
                         <HandHeart weight="bold" />
                         <span>Nos associations</span>
@@ -34,12 +40,6 @@ const NavBar = () => {
                      <Link href={'/foster-families'}>
                         <Users weight="bold" />
                         <span> Nos familles d'accueil</span>
-                     </Link>
-                  </li>
-                  <li className={styles.item}>
-                     <Link href={'/pets'}>
-                        <Cat weight="bold" />
-                        <span>Nos animaux</span>
                      </Link>
                   </li>
                </ul>

@@ -1,3 +1,5 @@
+@import '../../../styles/_bases/mixins';
+
 .partners {
     display: flex;
     width: calc(100% + 200px);
@@ -15,8 +17,7 @@
 }
 
 .title {
-    font-weight: 600;
-    font-size: 40px;
+    @include desktop-title-l;
     color: var(--Neutral-white);
 }
 

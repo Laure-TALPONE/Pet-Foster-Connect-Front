@@ -1,3 +1,5 @@
+@import '../../../styles/_bases/mixins';
+
 .adopted {
     display: flex;
     padding: 80px 0 100px 0;
@@ -19,15 +21,12 @@
 }
 
 .title {
-    font-weight: 600;
-    font-size: 40px;
+    @include desktop-title-l;
     color: var(--Blue-secondary);
 }
 
 .paragraph {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 28px;
+    @include text-l;
     width: 73%;
     color: var(--Blue-secondary);
 }

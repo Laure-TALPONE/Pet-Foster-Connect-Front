@@ -1,3 +1,5 @@
+@import '../../../styles/_bases/mixins';
+
 .banner {
     background-image: url('/images/animals-happy.webp');
     background-size: cover;
@@ -25,8 +27,7 @@
 }
 
 .title {
-    font-weight: 600;
-    font-size: 40px;
+    @include desktop-title-l;
     color: var(--Neutral-white);
     z-index: 2;
     text-align: center;

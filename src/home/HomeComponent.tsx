@@ -1,4 +1,5 @@
 'use client';
+import SectionPartners from '@/globals/section-partners/SectionPartners';
 import styles from './HomeComponent.module.scss';
 import AnimalsAdopted from './animals-adopted/AnimalsAdopted';
 import ArticleFoster from './article-foster/ArticleFoster';
@@ -7,7 +8,6 @@ import BannerHomePage from './banner-home-page/BannerHomePage';
 import PictureBanner from './picture-banner/PictureBanner';
 import SectionAssociation from './section-association/SectionAssociation';
 import SectionFosterFamily from './section-foster-family/SectionFosterFamily';
-import SectionPartners from './section-partners/SectionPartners';
 import StepsAdoption from './steps-adoption/StepsAdoption';
 
 const HomeComponent = () => {
