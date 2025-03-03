@@ -33,7 +33,7 @@ const AnimalsAdopted = () => {
             <div className={styles.pictures}>
                <div className={styles.animal}>
                   <Image
-                     src={'/images/Milo.webp'}
+                     src={'/images/home/Milo.webp'}
                      alt="adopted"
                      width={150}
                      height={150}
@@ -42,7 +42,7 @@ const AnimalsAdopted = () => {
                </div>
                <div className={styles.animal}>
                   <Image
-                     src={'/images/Nala.webp'}
+                     src={'/images/home/Nala.webp'}
                      alt="adopted"
                      width={150}
                      height={150}
@@ -51,7 +51,7 @@ const AnimalsAdopted = () => {
                </div>
                <div className={styles.animal}>
                   <Image
-                     src={'/images/Cannelle.webp'}
+                     src={'/images/home/Cannelle.webp'}
                      alt="adopted"
                      width={150}
                      height={150}
@@ -60,7 +60,7 @@ const AnimalsAdopted = () => {
                </div>
                <div className={styles.animal}>
                   <Image
-                     src={'/images/Rocky.webp'}
+                     src={'/images/home/Rocky.webp'}
                      alt="adopted"
                      width={150}
                      height={150}

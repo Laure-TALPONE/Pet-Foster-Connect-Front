@@ -2,13 +2,14 @@
 
 .article {
     background-color: rgba(229, 223, 204, 0.2);
-    margin: 0 -100px;
     display: flex;
-    padding: 200px 100px;
+    padding: 200px 0;
     position: relative;
+    width: 100vw;
 }
 
 .content {
+    margin: 0 20px;
     display: flex;
     align-items: center;
     justify-content: center;

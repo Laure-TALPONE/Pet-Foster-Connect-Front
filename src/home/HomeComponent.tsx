@@ -12,7 +12,7 @@ import StepsAdoption from './steps-adoption/StepsAdoption';
 
 const HomeComponent = () => {
    return (
-      <div className={styles.main}>
+      <div className="main">
          <div className={styles.content}>
             <ArticleFoster />
             <BannerHomePage />

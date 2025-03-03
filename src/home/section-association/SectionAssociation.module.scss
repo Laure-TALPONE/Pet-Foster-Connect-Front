@@ -2,8 +2,6 @@
 
 .asso {
     width: 100%;
-    margin-top: 150px;
-    padding-bottom: 100px;
     position: relative;
 }
 
@@ -24,6 +22,7 @@
 .title {
     @include desktop-title-l;
     color: var(--Blue-secondary);
+    text-align: center
 }
 
 .paragraph {
