@@ -1,7 +1,6 @@
 @import '../../../styles/_bases/mixins';
 
 .sectionFF {
-   // padding: 100px 0 50px 0;
    display: flex;
 }
 
@@ -23,13 +22,20 @@
 .title {
    @include desktop-title-l;
    color: var(--Blue-secondary);
-   width: 50%;
+
+   @include desktop {
+      max-width: 50%;
+   }
 }
 
 .paragraph {
    @include text-l;
    color: var(--Blue-secondary);
-   width: 73%;
+   width: 100%;
+
+   @include desktop {
+      max-width: 73%;
+   }
 
    span {
       font-weight: 600;
