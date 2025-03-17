@@ -27,15 +27,26 @@
 
 .paragraph {
     @include text-l;
-    width: 73%;
+    width: 100%;
     color: var(--Blue-secondary);
+
+    @include desktop {
+        max-width: 1024px;
+    }
 }
 
 .pictures {
     display: flex;
-    flex-direction: row;
+    // flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 70px;
+
+    @include desktop {
+        // flex-direction: row;
+        gap: 70px;
+    }
 }
 
 .animal {

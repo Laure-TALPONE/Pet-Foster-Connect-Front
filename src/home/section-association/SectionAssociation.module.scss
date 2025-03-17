@@ -32,6 +32,6 @@
     color: var(--Blue-secondary);
 
     @include desktop {
-        max-width: 61%;
+        max-width: 1024px;
     }
 }
