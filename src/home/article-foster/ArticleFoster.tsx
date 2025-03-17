@@ -37,13 +37,15 @@ const ArticleFoster = () => {
                Ensemble, offrons à chaque animal une seconde chance.
             </div>
          </div>
-         <Image
-            className={styles.picture}
-            src={'/images/pet-home.webp'}
-            alt="pets"
-            width={504}
-            height={393}
-         />
+         <div className={styles.picture}>
+            <Image
+               className={styles.picture}
+               src={'/images/pet-home.webp'}
+               alt="pets"
+               width={504}
+               height={393}
+            />
+         </div>
       </div>
    );
 };

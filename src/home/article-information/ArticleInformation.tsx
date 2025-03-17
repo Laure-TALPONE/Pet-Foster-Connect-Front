@@ -19,13 +19,14 @@ const ArticleInformation = () => {
             </svg>
          </div>
          <div className={styles.content}>
-            <Image
-               className={styles.picture}
-               src={'/images/kitty.webp'}
-               alt="pets"
-               width={504}
-               height={393}
-            />
+            <div className={styles.picture}>
+               <Image
+                  src={'/images/kitty.webp'}
+                  alt="pets"
+                  width={504}
+                  height={393}
+               />
+            </div>
             <div className={styles.text}>
                <h2 className={styles.title}>Offrons-leur une seconde chance</h2>
                <p className={styles.details}>
