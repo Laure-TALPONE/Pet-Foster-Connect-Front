@@ -45,7 +45,11 @@
     }
 
     button {
-        align-self: flex-start;
+        align-self: center;
+
+        @include desktop {
+            align-self: flex-start;
+        }
     }
 }
 
