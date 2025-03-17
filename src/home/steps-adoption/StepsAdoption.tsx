@@ -6,14 +6,14 @@ const StepsAdoption = () => {
    return (
       <div className={styles.main}>
          <div className={styles.content}>
-            {/* <div className={styles.picture}> */}
-            <Image
-               src={'/images/foster-family.webp'}
-               alt="adoption"
-               width={470}
-               height={382}
-            />
-            {/* </div> */}
+            <div className={styles.picture}>
+               <Image
+                  src={'/images/foster-family.webp'}
+                  alt="adoption"
+                  width={470}
+                  height={382}
+               />
+            </div>
             <div className={styles.infos}>
                <h2 className={styles.title}>
                   3 étapes pour accueillir un animal
