@@ -22,12 +22,16 @@
 .title {
     @include desktop-title-l;
     color: var(--Blue-secondary);
-    text-align: center
+    text-align: center;
 }
 
 .paragraph {
     @include text-l;
     text-align: center;
-    width: 75%;
+    width: 100%;
     color: var(--Blue-secondary);
+
+    @include desktop {
+        max-width: 61%;
+    }
 }
