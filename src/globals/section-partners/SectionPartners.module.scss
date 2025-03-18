@@ -5,24 +5,45 @@
     width: 100vw;
     align-self: center;
     background-color: var(--Blue-primary);
+    padding: 40px 0;
+
+    @include tablet {
+        padding: 80px 0;
+    }
 }
 
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 30px;
     width: 100%;
-    padding: 80px 80px;
+    padding: 0 40px;
+
+    @include tablet {
+        padding: 0 80px;
+    }
 }
 
 .title {
     @include desktop-title-l;
     color: var(--Neutral-white);
+    text-align: center;
 }
 
 .list {
+    max-width: 1024px;
+    width: 100%;
     display: flex;
+    justify-content: center;
     flex-direction: row;
-    gap: 80px;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    @include tablet {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
 }
