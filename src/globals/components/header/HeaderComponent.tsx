@@ -39,7 +39,7 @@ const HeaderComponent = () => {
                </Link>
             </li>
             <li className={styles.item}>
-               <Link href="/animals">
+               <Link href="/pets">
                   <Cat weight="bold" />
                   <span>Nos animaux</span>
                </Link>
