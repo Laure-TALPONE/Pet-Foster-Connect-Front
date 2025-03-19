@@ -1,24 +1,101 @@
 'use client';
+import Image from 'next/image';
 import styles from './HeaderComponent.module.scss';
-import BannerComponent from './banner/BannerComponent';
+import Link from 'next/link';
+import {
+   Cat,
+   HandHeart,
+   House,
+   List,
+   User,
+   Users,
+} from '@phosphor-icons/react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const HeaderComponent = () => {
-   return (
-      <div className={styles.header}>
-         <div className={styles.custom}>
-            <svg
-               data-name="Layer 1"
-               xmlns="http://www.w3.org/2000/svg"
-               viewBox="0 0 1200 120"
-               preserveAspectRatio="none"
-            >
-               <path
-                  d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                  className={styles.shapeFill}
-               ></path>
-            </svg>
+   const [isDesktop, setIsDesktop] = useState(false);
+   const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+   const handleOpenMenuBurger = useCallback(() => {
+      setMenuIsOpen(!menuIsOpen);
+   }, [menuIsOpen]);
+
+   useEffect(() => {
+      const handleResize = () => {
+         setIsDesktop(window.innerWidth >= 1024);
+      };
+      handleResize();
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+   }, []);
+
+   const renderNavItems = () => {
+      return (
+         <ul className={styles.nav}>
+            <li className={styles.item}>
+               <Link href="/home">
+                  <House weight="bold" />
+                  <span>Accueil</span>
+               </Link>
+            </li>
+            <li className={styles.item}>
+               <Link href="/pets">
+                  <Cat weight="bold" />
+                  <span>Nos animaux</span>
+               </Link>
+            </li>
+            <li className={styles.item}>
+               <Link href="/associations">
+                  <HandHeart weight="bold" />
+                  <span>Nos associations</span>
+               </Link>
+            </li>
+            <li className={styles.item}>
+               <Link href="/foster-families">
+                  <Users weight="bold" />
+                  <span>Nos familles d'accueil</span>
+               </Link>
+            </li>
+         </ul>
+      );
+   };
+
+   const renderNavBar = useMemo(() => {
+      if (isDesktop) return renderNavItems();
+
+      return (
+         <div className={styles.bugerMenu}>
+            <div className={styles.menuWrapper}>
+               <button type="button" onClick={handleOpenMenuBurger}>
+                  <List weight="bold" />
+               </button>
+               {menuIsOpen && (
+                  <div className={styles.menuOpen}>{renderNavItems()}</div>
+               )}
+            </div>
          </div>
-         <BannerComponent />
+      );
+   }, [isDesktop, handleOpenMenuBurger, menuIsOpen, renderNavItems]);
+
+   return (
+      <div className={styles.navbar}>
+         <div className={styles.content}>
+            <Link href={'/home'} className={styles.logo}>
+               <Image
+                  src={'/images/logo.webp'}
+                  alt="logo"
+                  width={120}
+                  height={120}
+               />
+            </Link>
+            <div className={styles.container}>
+               {renderNavBar}
+               <button type="button" className={styles.user}>
+                  <User weight="bold" />
+                  <span>Mon espace</span>
+               </button>
+            </div>
+         </div>
       </div>
    );
 };

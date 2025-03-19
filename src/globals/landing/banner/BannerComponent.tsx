@@ -79,16 +79,17 @@ const BannerComponent = () => {
          );
       }
    }, [departmentsDisplay, handleSelectItem]);
+
    return (
-      <div className={styles.banner}>
+      <section className={styles.banner}>
          <div className={styles.content}>
             <h1 className={styles.title}>
                Offrez un foyer temporaire, sauvez une vie :
             </h1>
-            <p className={styles.subtitle}>
+            <h2 className={styles.subtitle}>
                connectons familles d'accueil et associations pour le bien-être
                des animaux.
-            </p>
+            </h2>
             <div className={styles.search}>
                <p>Je souhaiterais accueillir un</p>
                <div
@@ -124,7 +125,7 @@ const BannerComponent = () => {
             width={97}
             height={123}
          />
-      </div>
+      </section>
    );
 };
 
