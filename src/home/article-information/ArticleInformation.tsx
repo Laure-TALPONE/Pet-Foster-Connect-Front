@@ -4,7 +4,7 @@ import styles from './ArticleInformation.module.scss';
 
 const ArticleInformation = () => {
    return (
-      <div className={styles.article}>
+      <section className={styles.article}>
          <div className={styles.custom}>
             <svg
                data-name="Layer 1"
@@ -51,7 +51,7 @@ const ArticleInformation = () => {
                </div>
             </div>
          </div>
-      </div>
+      </section>
    );
 };
 

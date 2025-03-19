@@ -3,7 +3,7 @@ import styles from './PictureBanner.module.scss';
 
 const PictureBanner = () => {
    return (
-      <div className={styles.banner}>
+      <section className={styles.banner}>
          <h2 className={styles.title}>
             Offrez un foyer temporaire, changez une vie.
          </h2>
@@ -20,7 +20,7 @@ const PictureBanner = () => {
                ></path>
             </svg>
          </div>
-      </div>
+      </section>
    );
 };
 

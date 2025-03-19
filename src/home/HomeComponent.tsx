@@ -12,7 +12,6 @@ import StepsAdoption from './steps-adoption/StepsAdoption';
 
 const HomeComponent = () => {
    return (
-      // <div className="main">
       <div className={styles.content}>
          <ArticleFoster />
          <BannerHomePage />
@@ -24,7 +23,6 @@ const HomeComponent = () => {
          <SectionPartners />
          <StepsAdoption />
       </div>
-      // </div>
    );
 };
 

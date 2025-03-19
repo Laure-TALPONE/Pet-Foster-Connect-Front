@@ -4,21 +4,23 @@ import styles from './ArticleFoster.module.scss';
 
 const ArticleFoster = () => {
    return (
-      <div className="container">
+      <section className="container">
          <div className={styles.article}>
             <div className={styles.text}>
                <h2 className={styles.title}>
                   Un foyer temporaire <br /> pour chaque animal
                </h2>
                <div className={styles.details}>
-                  Offrez un refuge temporaire aux animaux dans le besoin.
-                  <br />
-                  Notre plateforme facilite la mise en relation entre familles
-                  d'accueil et associations de protection animale pour assurer
-                  le bien-être des animaux en attente d’adoption.
-                  <br />
-                  Pourquoi nous rejoindre ?
-                  <br />
+                  <p>
+                     Offrez un refuge temporaire aux animaux dans le besoin.
+                     <br />
+                     Notre plateforme facilite la mise en relation entre
+                     familles d'accueil et associations de protection animale
+                     pour assurer le bien-être des animaux en attente
+                     d’adoption.
+                     <br />
+                     Pourquoi nous rejoindre ?
+                  </p>
                   <ul>
                      <li>
                         Accueillez un animal selon vos disponibilités et
@@ -37,7 +39,7 @@ const ArticleFoster = () => {
                         spécifiques.
                      </li>
                   </ul>
-                  Ensemble, offrons à chaque animal une seconde chance.
+                  <p>Ensemble, offrons à chaque animal une seconde chance.</p>
                </div>
             </div>
             <div className={styles.picture}>
@@ -50,7 +52,7 @@ const ArticleFoster = () => {
                />
             </div>
          </div>
-      </div>
+      </section>
    );
 };
 

@@ -4,49 +4,61 @@ import styles from './SectionPartners.module.scss';
 
 const SectionPartners = () => {
    return (
-      <div className={styles.partners}>
+      <section className={styles.partners}>
          <div className={styles.content}>
             <h2 className={styles.title}>Ils nous font confiance ...</h2>
-            <div className={styles.list}>
-               <Image
-                  src={'/images/spa-logo.webp'}
-                  alt="laspa-logo"
-                  width={80}
-                  height={80}
-               />
-               <Image
-                  src={'/images/spa-logo.webp'}
-                  alt="laspa-logo"
-                  width={80}
-                  height={80}
-               />
-               <Image
-                  src={'/images/spa-logo.webp'}
-                  alt="laspa-logo"
-                  width={80}
-                  height={80}
-               />
-               <Image
-                  src={'/images/spa-logo.webp'}
-                  alt="laspa-logo"
-                  width={80}
-                  height={80}
-               />
-               <Image
-                  src={'/images/spa-logo.webp'}
-                  alt="laspa-logo"
-                  width={80}
-                  height={80}
-               />
-               <Image
-                  src={'/images/spa-logo.webp'}
-                  alt="laspa-logo"
-                  width={80}
-                  height={80}
-               />
-            </div>
+            <ul className={styles.list}>
+               <li>
+                  <Image
+                     src={'/images/spa-logo.webp'}
+                     alt="logo SPA"
+                     width={80}
+                     height={80}
+                  />
+               </li>
+               <li>
+                  <Image
+                     src={'/images/spa-logo.webp'}
+                     alt="logo SPA"
+                     width={80}
+                     height={80}
+                  />
+               </li>
+               <li>
+                  <Image
+                     src={'/images/spa-logo.webp'}
+                     alt="logo SPA"
+                     width={80}
+                     height={80}
+                  />
+               </li>
+               <li>
+                  <Image
+                     src={'/images/spa-logo.webp'}
+                     alt="logo SPA"
+                     width={80}
+                     height={80}
+                  />
+               </li>
+               <li>
+                  <Image
+                     src={'/images/spa-logo.webp'}
+                     alt="logo SPA"
+                     width={80}
+                     height={80}
+                  />
+               </li>
+               <li>
+                  <Image
+                     src={'/images/spa-logo.webp'}
+                     alt="logo SPA"
+                     width={80}
+                     height={80}
+                  />
+               </li>
+            </ul>
          </div>
-      </div>
+      </section>
    );
 };
 

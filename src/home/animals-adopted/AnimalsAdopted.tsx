@@ -4,7 +4,7 @@ import styles from './AnimalsAdopted.module.scss';
 
 const AnimalsAdopted = () => {
    return (
-      <div className="container">
+      <section className="container">
          <div className={styles.adopted}>
             <div className={styles.content}>
                <Image
@@ -31,8 +31,8 @@ const AnimalsAdopted = () => {
                      réseau et participez à cette belle mission solidaire !
                   </p>
                </div>
-               <div className={styles.pictures}>
-                  <div className={styles.animal}>
+               <ul className={styles.pictures}>
+                  <li className={styles.animal}>
                      <Image
                         src={'/images/home/Milo.webp'}
                         alt="adopted"
@@ -40,8 +40,8 @@ const AnimalsAdopted = () => {
                         height={150}
                      />
                      <span className={styles.name}>Milo</span>
-                  </div>
-                  <div className={styles.animal}>
+                  </li>
+                  <li className={styles.animal}>
                      <Image
                         src={'/images/home/Nala.webp'}
                         alt="adopted"
@@ -49,8 +49,8 @@ const AnimalsAdopted = () => {
                         height={150}
                      />
                      <span className={styles.name}>Nala</span>
-                  </div>
-                  <div className={styles.animal}>
+                  </li>
+                  <li className={styles.animal}>
                      <Image
                         src={'/images/home/Cannelle.webp'}
                         alt="adopted"
@@ -58,8 +58,8 @@ const AnimalsAdopted = () => {
                         height={150}
                      />
                      <span className={styles.name}>Cannelle</span>
-                  </div>
-                  <div className={styles.animal}>
+                  </li>
+                  <li className={styles.animal}>
                      <Image
                         src={'/images/home/Rocky.webp'}
                         alt="adopted"
@@ -67,11 +67,11 @@ const AnimalsAdopted = () => {
                         height={150}
                      />
                      <span className={styles.name}>Rocky</span>
-                  </div>
-               </div>
+                  </li>
+               </ul>
             </div>
          </div>
-      </div>
+      </section>
    );
 };
 

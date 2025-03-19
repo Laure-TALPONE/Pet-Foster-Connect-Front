@@ -4,7 +4,7 @@ import styles from './SectionFosterFamily.module.scss';
 
 const SectionFosterFamily = () => {
    return (
-      <div className="container">
+      <section className="container">
          <div className={styles.sectionFF}>
             <div className={styles.content}>
                <Image
@@ -42,7 +42,7 @@ const SectionFosterFamily = () => {
                </button>
             </div>
          </div>
-      </div>
+      </section>
    );
 };
 

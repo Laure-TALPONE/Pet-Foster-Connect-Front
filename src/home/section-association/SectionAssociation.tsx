@@ -4,7 +4,7 @@ import styles from './SectionAssociation.module.scss';
 
 const SectionAssociation = () => {
    return (
-      <div className="container">
+      <section className="container">
          <div className={styles.asso}>
             <div className={styles.content}>
                <Image
@@ -30,7 +30,7 @@ const SectionAssociation = () => {
                </button>
             </div>
          </div>
-      </div>
+      </section>
    );
 };
 
