@@ -1,5 +1,5 @@
 'use client';
-import SectionPartners from '@/globals/section-partners/SectionPartners';
+import SectionPartners from '@/globals/components/section-partners/SectionPartners';
 import styles from './HomeComponent.module.scss';
 import AnimalsAdopted from './animals-adopted/AnimalsAdopted';
 import ArticleFoster from './article-foster/ArticleFoster';

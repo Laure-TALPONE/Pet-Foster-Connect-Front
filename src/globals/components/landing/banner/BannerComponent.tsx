@@ -2,9 +2,10 @@
 import Image from 'next/image';
 import styles from './BannerComponent.module.scss';
 import { CaretDown } from '@phosphor-icons/react';
-import { animals } from '@/constants/animals';
-import { departments } from '@/constants/departments';
+import { animals } from '@/globals/constants/animals';
+import { departments } from '@/globals/constants/departments';
 import { useCallback, useMemo, useState } from 'react';
+import useOutsideClick from '@/globals/hooks/useOutsideClick';
 
 const BannerComponent = () => {
    const [animalsDisplay, setAnimalsDisplay] = useState(false);
@@ -33,6 +34,9 @@ const BannerComponent = () => {
          setLocaleValue(item);
       }
    }, []);
+
+   const refDropdown1 = useOutsideClick(() => setAnimalsDisplay(false));
+   const refDropdown2 = useOutsideClick(() => setDepartmentsDisplay(false));
 
    const renderDropdownAnimals = useMemo(() => {
       if (!animalsDisplay) return;
@@ -95,6 +99,7 @@ const BannerComponent = () => {
                <div
                   className="m-select"
                   onClick={() => handleOpenDropdown('animals')}
+                  ref={refDropdown1}
                >
                   <input type="text" readOnly value={animalValue} />
                   <span className="m-select__suffix">
@@ -106,6 +111,7 @@ const BannerComponent = () => {
                <div
                   className="m-select"
                   onClick={() => handleOpenDropdown('departments')}
+                  ref={refDropdown2}
                >
                   <input type="text" readOnly value={localeValue} />
                   <span className="m-select__suffix">
