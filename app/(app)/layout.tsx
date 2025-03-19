@@ -1,6 +1,6 @@
 import FooterComponent from '@/globals/footer/FooterComponent';
+import LandingComponent from '@/globals/landing/LandingComponent';
 import HeaderComponent from '@/globals/header/HeaderComponent';
-import NavBar from '@/globals/nav-bar/NavBar';
 import '../../styles/_bases/_main.scss';
 
 export default function AppRootLayout({
@@ -10,8 +10,8 @@ export default function AppRootLayout({
 }) {
    return (
       <div className="layout">
-         <NavBar />
          <HeaderComponent />
+         <LandingComponent />
          <div>{children}</div>
          <FooterComponent />
       </div>
