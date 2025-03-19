@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    width: 100vw;
+    width: 100%;
     align-self: center;
     height: 500px;
     justify-content: center;
@@ -31,7 +31,7 @@
     color: var(--Neutral-white);
     z-index: 2;
     text-align: center;
-    padding: 0 10px;
+    padding: 0 20px;
 }
 
 .custom {

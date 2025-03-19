@@ -5,14 +5,25 @@
     justify-content: center;
     align-items: center;
     z-index: 3;
-    height: 300px;
-    width: 900px;
-    border-radius: 10px;
+    // height: 300px;
+    max-width: 1024px;
+    width: 100%;
+    // border-radius: 10px;
     background-color: var(--Blue-secondary);
     position: absolute;
     bottom: -20%;
     left: 50%;
     transform: translateX(-50%);
+    padding: 40px;
+
+    @include tablet {
+        border-radius: 10px;
+        padding: 80px 0;
+    }
+
+    // @include desktop {
+    //     height: 300px;
+    // }
 }
 
 .content {
@@ -29,11 +40,13 @@
 
 .title {
     @include desktop-title-l;
+    text-align: center;
 }
 
 .subtitle {
     font-weight: 600;
     font-size: 25px;
+    text-align: center;
 }
 
 .search {
@@ -43,10 +56,15 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    flex-direction: column;
 
     p {
         @include text-l;
         color: var(--Neutral-white);
+    }
+
+    @include tablet {
+        flex-direction: row;
     }
 }
 

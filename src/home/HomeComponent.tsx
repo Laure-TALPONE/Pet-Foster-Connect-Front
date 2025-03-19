@@ -12,19 +12,19 @@ import StepsAdoption from './steps-adoption/StepsAdoption';
 
 const HomeComponent = () => {
    return (
-      <div className="main">
-         <div className={styles.content}>
-            <ArticleFoster />
-            <BannerHomePage />
-            <SectionAssociation />
-            <ArticleInformation />
-            <AnimalsAdopted />
-            <PictureBanner />
-            <SectionFosterFamily />
-            <SectionPartners />
-            <StepsAdoption />
-         </div>
+      // <div className="main">
+      <div className={styles.content}>
+         <ArticleFoster />
+         <BannerHomePage />
+         <SectionAssociation />
+         <ArticleInformation />
+         <AnimalsAdopted />
+         <PictureBanner />
+         <SectionFosterFamily />
+         <SectionPartners />
+         <StepsAdoption />
       </div>
+      // </div>
    );
 };
 

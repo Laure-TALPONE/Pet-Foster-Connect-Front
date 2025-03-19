@@ -2,6 +2,7 @@
 
 .sectionFF {
    display: flex;
+   justify-content: center;
 }
 
 .content {
@@ -23,9 +24,9 @@
    @include desktop-title-l;
    color: var(--Blue-secondary);
 
-   @include desktop {
-      max-width: 50%;
-   }
+   // @include desktop {
+   //    max-width: 50%;
+   // }
 }
 
 .paragraph {
@@ -33,9 +34,9 @@
    color: var(--Blue-secondary);
    width: 100%;
 
-   @include desktop {
-      max-width: 73%;
-   }
+   // @include desktop {
+   //    max-width: 73%;
+   // }
 
    span {
       font-weight: 600;

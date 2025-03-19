@@ -5,7 +5,7 @@
     display: flex;
     padding: 150px 0 100px 0;
     position: relative;
-    width: 100vw;
+    width: 100%;
 
     @include desktop {
         padding: 200px 0;
@@ -13,7 +13,6 @@
 }
 
 .content {
-    margin: 0 20px;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;

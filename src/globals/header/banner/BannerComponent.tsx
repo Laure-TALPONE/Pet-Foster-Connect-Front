@@ -82,9 +82,9 @@ const BannerComponent = () => {
    return (
       <div className={styles.banner}>
          <div className={styles.content}>
-            <h2 className={styles.title}>
+            <h1 className={styles.title}>
                Offrez un foyer temporaire, sauvez une vie :
-            </h2>
+            </h1>
             <p className={styles.subtitle}>
                connectons familles d'accueil et associations pour le bien-être
                des animaux.
