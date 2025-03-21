@@ -9,7 +9,7 @@ const StepsAdoption = () => {
             <div className={styles.content}>
                <div className={styles.picture}>
                   <Image
-                     src={'/images/foster-family.webp'}
+                     src={'/images/home/foster-family.webp'}
                      alt="adoption"
                      width={470}
                      height={382}

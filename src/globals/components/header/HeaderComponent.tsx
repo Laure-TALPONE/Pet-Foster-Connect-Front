@@ -82,7 +82,7 @@ const HeaderComponent = () => {
          <div className={styles.content}>
             <Link href={'/home'} className={styles.logo}>
                <Image
-                  src={'/images/logo.webp'}
+                  src={'/images/globals/logo.webp'}
                   alt="logo"
                   width={120}
                   height={120}

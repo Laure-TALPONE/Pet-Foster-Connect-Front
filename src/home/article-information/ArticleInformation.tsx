@@ -22,7 +22,7 @@ const ArticleInformation = () => {
             <div className={styles.content}>
                <div className={styles.picture}>
                   <Image
-                     src={'/images/kitty.webp'}
+                     src={'/images/home/kitty.webp'}
                      alt="pets"
                      width={504}
                      height={393}

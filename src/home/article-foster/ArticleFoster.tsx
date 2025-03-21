@@ -45,7 +45,7 @@ const ArticleFoster = () => {
             <div className={styles.picture}>
                <Image
                   className={styles.picture}
-                  src={'/images/pet-home.webp'}
+                  src={'/images/home/pet-home.webp'}
                   alt="pets"
                   width={504}
                   height={393}
