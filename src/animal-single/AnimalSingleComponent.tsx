@@ -95,6 +95,34 @@ const AnimalSingleComponent = () => {
                   />
                </div>
             </section>
+
+            <section className={styles.assoInformations}>
+               <div className={styles.infos}>
+                  <h2 className={styles.title}>
+                     L’association Pattes Solidaires
+                  </h2>
+                  <p className={styles.text}>
+                     L’association Pattes Solidaires œuvre depuis 2015 pour la
+                     protection et le bien-être des animaux en détresse.
+                     Spécialisée dans le sauvetage, le placement en famille
+                     d’accueil et l’adoption responsable, elle collabore avec un
+                     large réseau de bénévoles et de foyers d’accueil pour
+                     offrir une seconde chance aux animaux abandonnés ou
+                     maltraités.
+                  </p>
+                  <button type="button" className={styles.viewPage}>
+                     Voir la page de l’association
+                  </button>
+               </div>
+               <div className={styles.adopte}>
+                  <h2 className={styles.title}>
+                     Souhaitez-vous l’accueillir ?
+                  </h2>
+                  <button type="button" className="m-button">
+                     Faire une demande
+                  </button>
+               </div>
+            </section>
          </div>
       </section>
    );
