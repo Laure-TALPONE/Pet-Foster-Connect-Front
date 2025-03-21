@@ -60,6 +60,41 @@ const AnimalSingleComponent = () => {
                   height={123}
                />
             </section>
+
+            <section className={styles.pictures}>
+               <div className={styles.picture}>
+                  <Image
+                     src={'/images/animal-page/Milo1.webp'}
+                     alt="pet-picture"
+                     width={788}
+                     height={459}
+                  />
+               </div>
+               <div className={styles.picture}>
+                  <Image
+                     src={'/images/animal-page/Milo2.webp'}
+                     alt="pet-picture"
+                     width={788}
+                     height={459}
+                  />
+               </div>
+               <div className={styles.picture}>
+                  <Image
+                     src={'/images/animal-page/Milo3.webp'}
+                     alt="pet-picture"
+                     width={788}
+                     height={459}
+                  />
+               </div>
+               <div className={styles.picture}>
+                  <Image
+                     src={'/images/animal-page/Milo1.webp'}
+                     alt="pet-picture"
+                     width={788}
+                     height={459}
+                  />
+               </div>
+            </section>
          </div>
       </section>
    );

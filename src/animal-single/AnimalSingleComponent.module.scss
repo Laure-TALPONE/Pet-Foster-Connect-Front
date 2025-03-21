@@ -97,12 +97,11 @@
         row-gap: 8px;
         column-gap: 70px;
         flex-wrap: wrap;
-        // justify-content: space-between;
 
         @include tablet {
             flex-direction: row;
             justify-content: center;
-            column-gap: 120px;
+            column-gap: 170px;
         }
 
         .left,
@@ -115,6 +114,24 @@
                 color: var(--Neutral-white);
                 @include text-l
             }
+        }
+    }
+}
+
+.pictures {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
+
+    .picture {
+        display: flex;
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
         }
     }
 }
