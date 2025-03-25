@@ -9,7 +9,7 @@ const AnimalSingleComponent = () => {
       responsive: [
          {
             breakpoint: 9999,
-            settings: 'unslick',
+            settings: { unslick: true },
          },
          {
             breakpoint: 1024,
