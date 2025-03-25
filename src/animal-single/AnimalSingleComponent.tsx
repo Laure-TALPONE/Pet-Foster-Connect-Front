@@ -2,8 +2,40 @@
 
 import Image from 'next/image';
 import styles from './AnimalSingleComponent.module.scss';
+import Slider from 'react-slick';
 
 const AnimalSingleComponent = () => {
+   const settings = {
+      responsive: [
+         {
+            breakpoint: 9999,
+            settings: 'unslick',
+         },
+         {
+            breakpoint: 1024,
+            settings: {
+               dots: true,
+               arrows: false,
+               infinite: false,
+               speed: 500,
+               slidesToShow: 2,
+               slidesToScroll: 2,
+            },
+         },
+         {
+            breakpoint: 768,
+            settings: {
+               dots: true,
+               arrows: false,
+               infinite: false,
+               speed: 500,
+               slidesToShow: 1,
+               slidesToScroll: 1,
+            },
+         },
+      ],
+   };
+
    return (
       <section className="container">
          <div className={styles.animalPage}>
@@ -61,39 +93,41 @@ const AnimalSingleComponent = () => {
                />
             </section>
 
-            <section className={styles.pictures}>
-               <div className={styles.picture}>
-                  <Image
-                     src={'/images/animal-page/Milo1.webp'}
-                     alt="pet-picture"
-                     width={788}
-                     height={459}
-                  />
-               </div>
-               <div className={styles.picture}>
-                  <Image
-                     src={'/images/animal-page/Milo2.webp'}
-                     alt="pet-picture"
-                     width={788}
-                     height={459}
-                  />
-               </div>
-               <div className={styles.picture}>
-                  <Image
-                     src={'/images/animal-page/Milo3.webp'}
-                     alt="pet-picture"
-                     width={788}
-                     height={459}
-                  />
-               </div>
-               <div className={styles.picture}>
-                  <Image
-                     src={'/images/animal-page/Milo1.webp'}
-                     alt="pet-picture"
-                     width={788}
-                     height={459}
-                  />
-               </div>
+            <section className={styles.slider}>
+               <Slider {...settings}>
+                  <div className={styles.picture}>
+                     <Image
+                        src={'/images/animal-page/Milo1.webp'}
+                        alt="pet-picture"
+                        width={425}
+                        height={248}
+                     />
+                  </div>
+                  <div className={styles.picture}>
+                     <Image
+                        src={'/images/animal-page/Milo2.webp'}
+                        alt="pet-picture"
+                        width={425}
+                        height={248}
+                     />
+                  </div>
+                  <div className={styles.picture}>
+                     <Image
+                        src={'/images/animal-page/Milo3.webp'}
+                        alt="pet-picture"
+                        width={425}
+                        height={248}
+                     />
+                  </div>
+                  <div className={styles.picture}>
+                     <Image
+                        src={'/images/animal-page/Milo1.webp'}
+                        alt="pet-picture"
+                        width={425}
+                        height={248}
+                     />
+                  </div>
+               </Slider>
             </section>
 
             <section className={styles.assoInformations}>

@@ -34,16 +34,16 @@
         @include text-l;
         color: var(--Blue-secondary);
     }
-}
 
-.picture {
-    max-width: 504px;
-    max-height: 393px;
-    flex-shrink: 0;
+    .picture {
+        max-width: 504px;
+        max-height: 393px;
+        flex-shrink: 0;
 
-    img {
-        width: 100%;
-        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
 }
 
@@ -122,12 +122,14 @@
     }
 }
 
-.pictures {
-    display: flex;
-    flex-wrap: wrap;
+.slider {
+    display: block;
     width: 100%;
-    gap: 20px;
     justify-content: center;
+
+    @include desktop {
+        display: flex;
+    }
 
     .picture {
         display: flex;
@@ -135,7 +137,18 @@
 
         img {
             width: 100%;
+        }
+
+        @include desktop {
+            max-width: 504px;
+            max-height: 393px;
             height: 100%;
+            width: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 }
