@@ -1,0 +1,85 @@
+@import '../../../styles/_bases/mixins';
+
+.informations {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--Light);
+    padding: 40px;
+    gap: 10px;
+    border-radius: 10px;
+
+    @include desktop {
+        padding: 70px;
+    }
+
+    @include tablet {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+
+        > :nth-child(1),
+        > :nth-child(2),
+        > :nth-child(3),
+        > :nth-child(4),
+        > :nth-child(5),
+        > :nth-child(6),
+        > :nth-child(7),
+        > :nth-child(8) {
+            grid-column: span 1;
+        }
+
+
+        > :nth-child(4) {
+            grid-column: 1 / span 2;
+        }
+
+        > :nth-child(5) {
+            grid-column: 3 / span 1;
+        }
+    }
+}
+
+.select {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    display: flex;
+    padding: 8px 0;
+    flex-direction: column;
+    gap: 4px;
+    border-radius: 8px;
+    border: 1px solid #D3D3D2;
+    background: var(--Neutral-white);
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    z-index: -1;
+    animation: fadeDown 0.5s cubic-bezier(.075, .82, .165, 1) forwards;
+
+    li {
+        cursor: pointer;
+        display: flex;
+        padding: 8px 12px;
+        gap: 12px;
+        border-radius: 6px;
+        margin: 0 5px;
+
+        &:hover {
+            background: var(--Neutral-grey-100);
+        }
+    }
+}
+
+@keyframes fadeDown {
+    0% {
+        z-index: -1;
+        opacity: 0;
+        top: calc(100% + 0px);
+    }
+
+    100% {
+        z-index: 1;
+        opacity: 1;
+        top: calc(100% + 8px);
+    }
+}
