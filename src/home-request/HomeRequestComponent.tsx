@@ -12,6 +12,7 @@ import { BeaconSvg } from '../../public/svg/Beacon';
 const HomeRequestComponent = () => {
    const { register, setValue, handleSubmit, watch } = useForm();
    const [civilityDisplay, setCivilityDisplay] = useState(false);
+   const [civilityValue, setCivilityValue] = useState('');
 
    const refCivility = useOutsideClick(() => setCivilityDisplay(false));
 
@@ -19,7 +20,9 @@ const HomeRequestComponent = () => {
       setCivilityDisplay(!civilityDisplay);
    };
 
-   const handleSelectItem = useCallback(() => {}, []);
+   const handleSelectItem = useCallback((civility: string) => {
+      setCivilityValue(civility);
+   }, []);
 
    const renderSelectCivility = useMemo(() => {
       if (!civilityDisplay) return;
@@ -29,7 +32,7 @@ const HomeRequestComponent = () => {
             <ul className={styles.select}>
                {civilities.map((civility: string, index: number) => {
                   return (
-                     <li key={index} onClick={handleSelectItem}>
+                     <li key={index} onClick={() => handleSelectItem(civility)}>
                         {civility}
                      </li>
                   );
@@ -50,7 +53,12 @@ const HomeRequestComponent = () => {
                      onClick={handleOpenDropdown}
                      ref={refCivility}
                   >
-                     <input type="text" readOnly placeholder="Civilité" />
+                     <input
+                        type="text"
+                        readOnly
+                        placeholder="Civilité"
+                        value={civilityValue}
+                     />
                      <span className="m-select__suffix">
                         <CaretDown weight="bold" />
                      </span>
@@ -66,6 +74,9 @@ const HomeRequestComponent = () => {
                      <input type="text" placeholder="E-mail*" />
                   </div>
                   <div className="m-input">
+                     <input type="text" placeholder="Téléphone*" />
+                  </div>
+                  <div className="m-input">
                      <input type="text" placeholder="Numéro et nom de voie*" />
                   </div>
                   <div className="m-input">
@@ -73,9 +84,6 @@ const HomeRequestComponent = () => {
                   </div>
                   <div className="m-input">
                      <input type="text" placeholder="Ville*" />
-                  </div>
-                  <div className="m-input">
-                     <input type="text" placeholder="Téléphone*" />
                   </div>
                </section>
 
@@ -109,7 +117,7 @@ const HomeRequestComponent = () => {
                         <p>
                            Parlez-nous de votre personnalité et de votre style
                            de vie en sélectionnant les options qui vous
-                           décrivent le mieux
+                           décrivent le mieux :
                         </p>
                         <ul className={styles.choices}>
                            <li>
@@ -175,7 +183,9 @@ const HomeRequestComponent = () => {
 
                <section className={styles.motivations}>
                   <h3>Vos motivations*</h3>
-                  <p>Pourquoi souhaitez-vous accueillir Milo ?</p>
+                  <p>
+                     Pourquoi souhaitez-vous accueillir <span>Milo</span> ?
+                  </p>
                   <div className={`m-input ${styles.textarea}`}>
                      <textarea></textarea>
                   </div>
@@ -208,7 +218,7 @@ const HomeRequestComponent = () => {
                   </p>
                </section>
 
-               <button type="button" className="m-button">
+               <button type="submit" className="m-button">
                   Faire ma demande
                </button>
             </form>

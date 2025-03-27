@@ -7,19 +7,18 @@
     align-items: center;
     gap: 8px;
     border-radius: 8px;
-    border: 1px solid var(--Neutral-Grey-300, #d3d3d2);
-    background: var(--Neutral-White-1000, #fff);
+    border: 1px solid #d3d3d2;
+    background: var(--Neutral-white);
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
 
     input {
         width: 100%;
         height: 100%;
         cursor: pointer;
-        font-size: 14px;
-        // color: var(--Neutral-Grey-1000);
+        color: var(--Blue-secondary);
+        @include text-l;
 
         &::placeholder {
-            // color: var(--Neutral-Grey-500);
             font-size: 14px;
             font-weight: 400;
             line-height: 24px;
@@ -42,11 +41,11 @@
     }
 
     &__error {
-        border-color: var(--Semantic-Orange-700);
+        border-color: red;
     }
 
     &__error-message {
-        color: var(--Semantic-Orange-700);
+        color: red;
         font-size: 12px;
         margin-top: 4px;
         display: block;
