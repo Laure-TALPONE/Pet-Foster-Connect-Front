@@ -1,15 +1,14 @@
 .m-select {
     position: relative;
     display: flex;
-    height: 40px;
-    // width: 100%;
+    min-height: 40px;
     width: auto;
-    padding: 4px;
+    padding: 8px;
     align-items: center;
     gap: 8px;
-    border-radius: 10px;
-    border: 1px solid #d3d3d2;
-    background: var(--Neutral-white);
+    border-radius: 8px;
+    border: 1px solid var(--Neutral-Grey-300, #d3d3d2);
+    background: var(--Neutral-White-1000, #fff);
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
 
     input {

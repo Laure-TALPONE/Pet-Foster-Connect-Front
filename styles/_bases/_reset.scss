@@ -159,6 +159,13 @@ input {
     border: none;
 }
 
+textarea {
+    all: unset;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+
 svg {
     line-height: 0;
 }

@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import styles from './AnimalSingleComponent.module.scss';
 import Slider from 'react-slick';
+import Link from 'next/link';
 
 const AnimalSingleComponent = () => {
    const settings = {
@@ -152,9 +153,9 @@ const AnimalSingleComponent = () => {
                   <h2 className={styles.title}>
                      Souhaitez-vous l’accueillir ?
                   </h2>
-                  <button type="button" className="m-button">
+                  <Link href={'/animals/1/home-request'} className="m-button">
                      Faire une demande
-                  </button>
+                  </Link>
                </div>
             </section>
          </div>
