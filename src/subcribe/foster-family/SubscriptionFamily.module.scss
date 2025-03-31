@@ -1,0 +1,149 @@
+@import '../../../styles/_bases/mixins';
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding: 150px 0;
+
+    @include desktop {
+        gap: 150px
+    }
+
+    h2 {
+        @include desktop-title-l;
+        color: var(--Blue-secondary);
+    }
+}
+
+.informations {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+
+    @include desktop {
+        flex-direction: row;
+        gap: 100px;
+    }
+
+    .infos {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .text {
+        @include text-l;
+        color: var(--Blue-secondary);
+    }
+}
+
+.picture {
+    display: flex;
+    max-width: 504px;
+    max-height: 393px;
+    flex-shrink: 0;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+
+    button {
+        align-self: center;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    @include desktop {
+        gap: 50px;
+    }
+}
+
+.inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @include tablet {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+
+        > :nth-child(1),
+        > :nth-child(2),
+        > :nth-child(3),
+        > :nth-child(4),
+        > :nth-child(5),
+        > :nth-child(6),
+        > :nth-child(7),
+        > :nth-child(8) {
+            grid-column: span 1;
+        }
+
+
+        >:nth-child(8) {
+            grid-column: 1 / span 2;
+        }
+    }
+
+    @include desktop {
+        width: 70%;
+    }
+}
+
+.register {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background: var(--Blue-secondary);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+
+    @include desktop {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: inherit;
+        width: 90%;
+        align-self: center;
+        padding: 80px;
+    }
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        @include desktop {
+            gap: 5px;
+        }
+
+        h2 {
+            color: var(--Light);
+        }
+
+        p {
+            @include text-l;
+            color: var(--Neutral-white);
+        }
+    }
+
+    button {
+        align-self: center;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+}
