@@ -24,9 +24,13 @@ const LandingComponent = ({ buttons }: Props) => {
                </h1>
                {buttons && (
                   <div className={styles.buttons}>
-                     <Link href={'#'}>Inscription en Famille d’accueil</Link>
+                     <Link href={'/inscription/famille-daccueil'}>
+                        Inscription en Famille d’accueil
+                     </Link>
                      <span>ou</span>
-                     <Link href={'#'}>Inscription Association</Link>
+                     <Link href={'/inscription/association'}>
+                        Inscription Association
+                     </Link>
                   </div>
                )}
             </div>
