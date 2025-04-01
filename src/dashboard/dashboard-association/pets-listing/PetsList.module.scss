@@ -1,0 +1,64 @@
+@import '../../../../styles/_bases/mixins';
+
+.petsList {
+    border: solid 1px var(--Blue-secondary);
+    border-radius: 5px;
+    padding: 20px;
+
+    @include desktop {
+        padding: 30px;
+    }
+}
+
+.content,
+.search,
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.search {
+    @include desktop {
+        flex-direction: row;
+    }
+
+    button {
+        align-self: flex-start;
+        font-size: 14px;
+        padding: 15px 10px;
+        flex-shrink: 0;
+    }
+}
+
+.petInfos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--Light-secondary);
+    padding: 10px 15px;
+    border-radius: 10px;
+    flex-wrap: wrap;
+
+    img {
+        border-radius: 100%;
+    }
+
+    p {
+        @include text-l;
+        font-weight: 600;
+        color: var(--Blue-secondary);
+    }
+
+    span {
+        font-weight: 500;
+        left: 30px;
+        top: -14px;
+        background: var(--Orange);
+        color: var(--Neutral-white);
+        padding: 8px;
+        border-radius: 10px;
+        white-space: nowrap;
+    }
+}
