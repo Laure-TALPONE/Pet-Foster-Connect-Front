@@ -1,0 +1,57 @@
+@import "../../../../styles/_bases/mixins";
+
+.landing {
+    width: 100%;
+    height: 500px;
+    background-color: var(--Blue-secondary);
+    border-bottom-right-radius: 70px;
+    border-bottom-left-radius: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 60px;
+
+    @include desktop {
+        flex-direction: row;
+        gap: 150px;
+    }
+}
+
+.name {
+    color: var(--Light);
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+
+    @include desktop {
+        font-size: 60px;
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+
+    @include desktop {
+        width: inherit;
+        height: inherit;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
