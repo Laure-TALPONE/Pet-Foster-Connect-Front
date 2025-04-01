@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import styles from './DashboardContent.module.scss';
+import PetsList from '../pets-listing/PetsList';
 
 const DashboardContent = () => {
    const [buttonSelected, setButtonSelected] = useState<string>('pets');
@@ -12,7 +13,7 @@ const DashboardContent = () => {
 
    const renderContent = useMemo(() => {
       if (buttonSelected === 'pets') {
-         return <p>Liste de nos animaux</p>;
+         return <PetsList />;
       }
 
       if (buttonSelected === 'requests') {
@@ -22,7 +23,7 @@ const DashboardContent = () => {
 
    return (
       <section className="container">
-         <div className={styles.top}>
+         <section className={styles.top}>
             <h2 className={styles.title}>Tableau de Bord</h2>
             <div className={styles.toggle}>
                <button
@@ -42,7 +43,7 @@ const DashboardContent = () => {
                   Les demandes
                </button>
             </div>
-         </div>
+         </section>
          {renderContent}
       </section>
    );

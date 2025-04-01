@@ -11,4 +11,13 @@
     &:hover {
         transform: scale(1.1);
     }
+
+    &--square {
+        padding: 8px 12px;
+        border: solid 2px var(--Blue-secondary);
+        border-radius: 5px;
+        width: auto;
+        columns: var(--Blue-secondary);
+        font-weight: 500;
+    }
 }
