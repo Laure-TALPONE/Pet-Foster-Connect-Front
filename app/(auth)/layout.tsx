@@ -11,7 +11,7 @@ export default function AppRootLayout({
    return (
       <div className="layout">
          <HeaderComponent />
-         <LandingComponent banner />
+         <LandingComponent buttons />
          <div>{children}</div>
          <FooterComponent />
       </div>
