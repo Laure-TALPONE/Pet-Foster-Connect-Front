@@ -1,0 +1,51 @@
+@import '../../../../styles/_bases/mixins';
+
+.top {
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+    padding: 90px 0;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--Blue-secondary);
+
+    @include desktop {
+        font-size: 50px;
+    }
+}
+
+.toggle {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    gap: 40px;
+
+    button {
+        @include desktop-title-m;
+        color: var(--Blue-secondary);
+
+        @include desktop {
+            font-size: 25px;
+        }
+    }
+
+    .selected {
+        color: var(--Orange);
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            background: var(--Orange);
+            height: 2px;
+            left: 0;
+            bottom: -3px;
+        }
+    }
+}
