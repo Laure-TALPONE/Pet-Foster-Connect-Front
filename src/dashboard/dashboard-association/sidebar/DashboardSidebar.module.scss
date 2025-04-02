@@ -1,0 +1,59 @@
+@import "../../../../styles/_bases/mixins";
+
+.main {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: 30px;
+    width: 25%;
+}
+
+.infosAsso {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+
+    .name {
+        @include desktop-title-m;
+        color: var(--Blue-secondary);
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.sidebar {
+    .sidebarList {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-left: 20px;
+
+        li {
+            a {
+                @include text-l;
+                font-weight: 600;
+                color: var(--Blue-secondary);
+                text-transform: uppercase;
+                display: inline-flex;
+                gap: 8px;
+
+                svg {
+                    font-size: 25px;
+                }
+            }
+        }
+    }
+}

@@ -1,12 +1,12 @@
 'use client';
 
-import { BeaconSvg } from '../../../public/svg/Beacon';
+import { Siren } from '@phosphor-icons/react';
 import styles from './SectionAdoption.module.scss';
 
 const SectionAdoption = () => {
    return (
       <section className={styles.adoption}>
-         <BeaconSvg />
+         <Siren />
          <p>
             Adopter un animal via Pet Foster Connect, c’est bien plus qu’offrir
             un foyer : c’est transformer une vie, la leur et la vôtre. Chaque

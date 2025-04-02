@@ -1,14 +1,16 @@
 'use client';
 
+import DashboardSidebar from './sidebar/DashboardSidebar';
 import DashboardContent from './dashboard-content/DashboardContent';
 import styles from './DashboardAssociation.module.scss';
-import LandingAssociation from './landing-association/LandingAssociation';
 
 const DashboardAssociation = () => {
    return (
-      <section className={styles.dashboard}>
-         <LandingAssociation />
-         <DashboardContent />
+      <section className="container">
+         <div className={styles.dashboard}>
+            <DashboardSidebar />
+            <DashboardContent />
+         </div>
       </section>
    );
 };
