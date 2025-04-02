@@ -26,14 +26,26 @@ body {
     width: 100%;
 }
 
-.main {
-    display: flex;
-    justify-content: center;
-}
+// .main {
+//     display: flex;
+//     justify-content: center;
+// }
 
 .container {
     width: 100%;
     max-width: 1200px;
     padding: 0 20px;
     margin: 0 auto;
+}
+
+.dashboard {
+    display: flex;
+    padding: 200px 0 50px 0;
+    gap: 40px;
+    height: 100vh;
+
+    >div:last-child {
+        flex-grow: 1;
+        height: 100%;
+    }
 }

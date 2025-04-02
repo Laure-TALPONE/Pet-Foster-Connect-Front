@@ -1,5 +1,5 @@
-import DashboardAssociation from '@/dashboard/dashboard-association/DashboardAssociation';
+import { redirect } from 'next/navigation';
 
 export default function DashboardPage() {
-   return <DashboardAssociation />;
+   redirect('/dashboard/nos-animaux');
 }

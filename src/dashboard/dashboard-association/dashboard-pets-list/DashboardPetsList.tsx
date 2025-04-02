@@ -1,11 +1,11 @@
 'use client';
 
+import styles from './DashboardPetsList.module.scss';
 import { useMemo } from 'react';
-import styles from './PetsList.module.scss';
 import { associations } from '@/globals/constants/data';
 import Image from 'next/image';
 
-const PetsList = () => {
+const DashboardPetsList = () => {
    const renderListPets = useMemo(() => {
       return associations[0].animals.map((pet: any, index: number) => {
          return (
@@ -44,4 +44,4 @@ const PetsList = () => {
    );
 };
 
-export default PetsList;
+export default DashboardPetsList;
