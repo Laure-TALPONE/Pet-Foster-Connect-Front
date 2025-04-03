@@ -63,15 +63,13 @@
     gap: 20px;
 
     .infos {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        gap: 30px;
-    }
+        gap: 20px;
 
-    .name {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        @include tablet {
+            gap: 30px;
+        }
     }
 
     .picture {
@@ -84,7 +82,7 @@
         border-radius: 100%;
         padding: 15px;
 
-        @media screen and (min-width: 600px) {
+        @include tablet {
             max-width: 80px;
             max-height: 80px;
         }
@@ -96,18 +94,27 @@
     }
 
     .infosRequest {
-        display: inline-flex;
+        display: flex;
+        flex-wrap: wrap;
         background: var(--Light);
         padding: 10px 15px;
         border-radius: 10px;
-        gap: 30px;
-        width: 50%;
+        column-gap: 30px;
+        row-gap: 5px;
+        width: 100%;
+
+        @include tablet {
+            width: 50%;
+        }
     }
 
     p {
         @include text-l;
         font-weight: 600;
         color: var(--Blue-secondary);
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 3px;
     }
 
     button {

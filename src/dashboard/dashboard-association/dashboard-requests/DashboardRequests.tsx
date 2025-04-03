@@ -30,10 +30,10 @@ const DashboardRequests = () => {
                </div>
                <div className={styles.infosRequest}>
                   <p>
-                     <span>Nom : </span> <span>Bobby</span>
+                     <span>Nom :</span> <span>Bobby</span>
                   </p>
                   <p>
-                     <span>Espèce : </span> <span>Chien</span>
+                     <span>Espèce :</span> <span>Chien</span>
                   </p>
                </div>
                <button type="button" className="m-button">
