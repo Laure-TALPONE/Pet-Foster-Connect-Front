@@ -12,7 +12,6 @@
 }
 
 .content,
-.search,
 .list {
     display: flex;
     flex-direction: column;
@@ -49,12 +48,11 @@
 }
 
 .search {
-    @include desktop {
-        flex-direction: row;
-    }
+    display: flex;
+    gap: 20px;
+    align-items: center;
 
     button {
-        align-self: flex-start;
         font-size: 14px;
         padding: 15px 10px;
         flex-shrink: 0;
@@ -63,23 +61,39 @@
 
 .petInfos {
     margin-right: 10px;
-    align-items: center;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 50px 1fr 60px 30px auto;
     gap: 10px;
+    align-items: center;
     background: var(--Light-secondary);
     padding: 10px 15px;
     border-radius: 10px;
 
+    @media screen and (min-width: 600px) {
+        grid-template-columns: 100px 1fr 1fr 1fr auto;
+    }
+
     .name {
-        max-width: 150px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
 
-    img {
-        border-radius: 100%;
+    .picture {
+        display: flex;
+        max-width: 50px;
+        max-height: 50px;
+
+        @media screen and (min-width: 600px) {
+            max-width: 80px;
+            max-height: 80px;
+        }
+
+        img {
+            border-radius: 100%;
+            width: 100%;
+            height: 100%
+        }
     }
 
     p {
@@ -90,8 +104,6 @@
 
     span {
         font-weight: 500;
-        left: 30px;
-        top: -14px;
         background: var(--Orange);
         color: var(--Neutral-white);
         padding: 8px;
@@ -100,7 +112,32 @@
         width: fit-content;
     }
 
+    .status {
+        @extend span;
+        align-self: center;
+    }
+
     button {
         width: fit-content;
+    }
+}
+
+.add {
+    padding: 8px !important;
+    display: flex;
+    align-items: center;
+    border: solid 1px var(--Blue-secondary);
+
+    svg {
+        font-size: 20px;
+    }
+}
+
+.edit {
+    display: flex;
+    align-items: center;
+
+    svg {
+        font-size: 20px;
     }
 }
