@@ -76,19 +76,19 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        max-width: 50px;
-        max-height: 50px;
+        width: 50px;
+        height: 50px;
         background: var(--Blue-secondary);
         border-radius: 100%;
         padding: 15px;
 
         @include tablet {
-            max-width: 80px;
-            max-height: 80px;
+            width: 80px;
+            height: 80px;
         }
 
         svg {
-            font-size: 30px;
+            font-size: 40px;
             color: var(--Neutral-white);
         }
     }
