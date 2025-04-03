@@ -16,7 +16,7 @@ const DashboardPetsList = () => {
                   width={60}
                   height={60}
                />
-               <p>{pet.name}</p>
+               <p className={styles.name}>{pet.name}</p>
                <p>{pet.species}</p>
                <span>{pet.status}</span>
                <button type="button" className="m-button--square">

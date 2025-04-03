@@ -63,14 +63,20 @@
 
 .petInfos {
     margin-right: 10px;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     background: var(--Light-secondary);
     padding: 10px 15px;
     border-radius: 10px;
-    flex-wrap: wrap;
+
+    .name {
+        max-width: 150px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 
     img {
         border-radius: 100%;
@@ -91,5 +97,10 @@
         padding: 8px;
         border-radius: 10px;
         white-space: nowrap;
+        width: fit-content;
+    }
+
+    button {
+        width: fit-content;
     }
 }
