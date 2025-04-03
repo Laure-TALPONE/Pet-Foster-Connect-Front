@@ -12,7 +12,7 @@ export default function AppRootLayout({
          <HeaderComponent />
          <div className="container">
             <section className="dashboard">
-               {/* <DashboardSidebar /> */}
+               <DashboardSidebar />
                <div>{children}</div>
             </section>
          </div>
