@@ -1,13 +1,23 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './DashboardRequests.module.scss';
 import Image from 'next/image';
 import { User } from '@phosphor-icons/react';
 import { foster_families } from '@/globals/constants/data';
+import ModalComponent from '@/globals/components/modal/ModalComponent';
 
 const DashboardRequests = () => {
-   const [isDesktop, setIsDesktop] = useState(false);
+   const [isDesktop, setIsDesktop] = useState<boolean>(false);
+   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+
+   const handleOpenModal = useCallback(() => {
+      setModalIsOpen(true);
+   }, []);
+
+   const handleCloseModal = useCallback(() => {
+      setModalIsOpen(false);
+   }, []);
 
    useEffect(() => {
       const handleResize = () => {
@@ -36,13 +46,23 @@ const DashboardRequests = () => {
                      <span>Espèce :</span> <span>Chien</span>
                   </p>
                </div>
-               <button type="button" className="m-button">
+               <button
+                  type="button"
+                  className="m-button"
+                  onClick={handleOpenModal}
+               >
                   Voir la demande
                </button>
             </li>
          );
       });
-   }, [foster_families, isDesktop]);
+   }, [foster_families, isDesktop, handleOpenModal]);
+
+   const renderModal = useMemo(() => {
+      if (modalIsOpen) {
+         return <ModalComponent onClose={handleCloseModal} />;
+      }
+   }, [modalIsOpen]);
 
    return (
       <section className={styles.request}>
@@ -54,6 +74,7 @@ const DashboardRequests = () => {
             </section>
             <ul className={styles.list}>{renderListPets}</ul>
          </div>
+         {renderModal}
       </section>
    );
 };

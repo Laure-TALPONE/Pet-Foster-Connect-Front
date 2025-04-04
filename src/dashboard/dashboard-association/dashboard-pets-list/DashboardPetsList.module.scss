@@ -38,11 +38,12 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background: var(--Blue-secondary);
+        background: #2f2f2f3b;
         border-radius: 10px;
 
         &:hover {
             cursor: pointer;
+            background: var(--Blue-secondary);
         }
     }
 }
