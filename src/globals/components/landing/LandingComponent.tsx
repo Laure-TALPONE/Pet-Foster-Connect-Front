@@ -1,9 +1,9 @@
 'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 import styles from './LandingComponent.module.scss';
 import BannerComponent from './banner/BannerComponent';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 type Props = {
    banner?: boolean;
@@ -12,7 +12,7 @@ type Props = {
 
 const LandingComponent = ({ buttons }: Props) => {
    const pathName = usePathname();
-   const bannerDisplay = pathName === '/home' || pathName === '/animals';
+   const bannerDisplay = pathName === '/home' || pathName === '/animals' || pathName === '/associations';
 
    const renderBanner = useMemo(() => {
       if (!bannerDisplay) {

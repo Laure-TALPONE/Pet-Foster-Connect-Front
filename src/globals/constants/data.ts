@@ -3,6 +3,7 @@ export const associations = [
         "id": 1,
         "name": "Association Les Amis des Animaux",
         "location": "Paris",
+        "postalcode": "75000",
         "contact": "contact@amisdesanimaux.fr",
         "animals": [
             { "id": 101, "name": "Rex", "species": "chien", "age": 4, "breed": "Berger Allemand", "status": "en attente" },
@@ -31,6 +32,7 @@ export const associations = [
         "id": 2,
         "name": "Refuge Espoir Animal",
         "location": "Lyon",
+        "postalcode": "69000",
         "contact": "contact@espoiranimal.fr",
         "animals": [
             { "id": 201, "name": "Buddy", "species": "chien", "age": 3, "breed": "Border Collie", "status": "en attente" },
@@ -59,6 +61,7 @@ export const associations = [
         "id": 3,
         "name": "Sauvetage Animalier",
         "location": "Bordeaux",
+        "postalcode": "33000",
         "contact": "contact@sauvetageanimalier.fr",
         "animals": [
             { "id": 301, "name": "Rusty", "species": "chien", "age": 4, "breed": "Chihuahua", "status": "en attente" },
@@ -87,6 +90,7 @@ export const associations = [
         "id": 4,
         "name": "Animaux en Détresse",
         "location": "Toulouse",
+        "postalcode": "31000",
         "contact": "contact@animauxendetresse.fr",
         "animals": [
             { "id": 401, "name": "Milo", "species": "chien", "age": 3, "breed": "Chihuahua", "status": "en attente" },
