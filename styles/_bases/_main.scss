@@ -40,12 +40,18 @@ body {
 
 .dashboard {
     display: flex;
-    padding: 200px 0 50px 0;
+    flex-direction: column;
+    padding: 200px 0;
     gap: 40px;
     height: 100vh;
 
     >div:last-child {
         flex-grow: 1;
         height: 100%;
+    }
+
+    @include desktop {
+        flex-direction: row;
+        padding: 200px 0 50px 0;
     }
 }
