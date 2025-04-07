@@ -28,6 +28,7 @@
     "@types/react-slick": "^0.23.13",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
+    "eslint-config-prettier": "^10.1.1",
     "prettier": "^3.4.2",
     "sass": "^1.85.0",
     "typescript": "^5"
