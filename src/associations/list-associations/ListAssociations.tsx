@@ -18,7 +18,7 @@ const ListAssociations = () => {
       return association.map((asso: any, index: number) => {
          return (
             <li key={index} className={styles.item}>
-               <Link href={'/association/1'}>
+               <Link href={'/associations/1'}>
                   <CardAssociation asso={asso} />
                </Link>
             </li>

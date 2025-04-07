@@ -1,6 +1,5 @@
 import AssociationsComponent from '@/associations/AssociationsComponent';
 
-
-export default function AssocaitionsPage() {
+export default function AssociationsPage() {
    return <AssociationsComponent />;
 }
