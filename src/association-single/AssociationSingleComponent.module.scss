@@ -1,0 +1,150 @@
+@import '../../styles/_bases/mixins';
+
+.associationPage {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 80px;
+   padding: 150px 0;
+}
+
+.presentation {
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+   align-items: center;
+
+   @include desktop {
+      flex-direction: row;
+      gap: 70px;
+   }
+
+   .text {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+   }
+
+   .title {
+      @include desktop-title-l;
+      color: var(--Blue-secondary);
+   }
+
+   .info {
+      @include text-l;
+      color: var(--Blue-secondary);
+   }
+
+   .picture {
+      display: flex;
+      max-width: 504px;
+      max-height: 393px;
+      flex-shrink: 0;
+
+      img {
+         width: 100%;
+         object-fit: contain;
+      }
+   }
+}
+
+.informations {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 30px;
+   justify-content: space-between;
+
+   @include desktop {
+      flex-direction: row;
+      gap: 70px;
+   }
+
+   .details {
+      position: relative;
+      background: var(--Blue-secondary);
+      border-radius: 10px;
+      padding: 30px;
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      justify-content: center;
+
+      @include desktop {
+         padding: 50px;
+      }
+
+      span {
+         font-weight: 500;
+         position: absolute;
+         left: 30px;
+         top: -14px;
+         background: var(--Orange);
+         color: var(--Neutral-white);
+         padding: 8px;
+         border-radius: 10px;
+      }
+   }
+
+   .content {
+      width: 100%;
+      display: flex;
+      row-gap: 8px;
+      column-gap: 70px;
+      flex-wrap: wrap;
+
+      @include tablet {
+         flex-direction: row;
+         column-gap: 170px;
+      }
+
+      .left {
+         display: flex;
+         flex-direction: column;
+         gap: 8px;
+
+         li {
+            color: var(--Neutral-white);
+            @include text-l;
+         }
+      }
+   }
+}
+
+.listingAnimals {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 30px;
+   justify-content: space-between;
+   text-align: center;
+
+   .title {
+      @include desktop-title-l;
+      color: var(--Blue-secondary);
+   }
+
+   .info {
+      @include text-l;
+      color: var(--Blue-secondary);
+   }
+
+   .list {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 20px;
+      place-items: center;
+
+      .item {
+         width: 100%;
+         max-width: 340px;
+
+         a {
+            width: 100%;
+         }
+      }
+   }
+}
