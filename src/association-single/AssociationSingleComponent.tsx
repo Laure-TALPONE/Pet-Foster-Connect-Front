@@ -6,45 +6,14 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import styles from './AssociationSingleComponent.module.scss';
 
-const AnimalSingleComponent = () => {
-   const settings = {
-      responsive: [
-         {
-            breakpoint: 9999,
-            settings: 'unslick',
-         },
-         {
-            breakpoint: 1024,
-            settings: {
-               dots: true,
-               arrows: false,
-               infinite: false,
-               speed: 500,
-               slidesToShow: 2,
-               slidesToScroll: 2,
-            },
-         },
-         {
-            breakpoint: 768,
-            settings: {
-               dots: true,
-               arrows: false,
-               infinite: false,
-               speed: 500,
-               slidesToShow: 1,
-               slidesToScroll: 1,
-            },
-         },
-      ],
-   };
-
+const AssociationSingleComponent = () => {
    const [organizations, setOrganizations] = useState(associations);
 
    const animals = useMemo(() => {
       const firstAssociation = organizations[0];
       return firstAssociation ? firstAssociation.animals : [];
-    }, [organizations]);
-    
+   }, [organizations]);
+
    const renderAnimalsList = useMemo(() => {
       return animals.map((pet: any, index: number) => {
          return (
@@ -82,9 +51,9 @@ const AnimalSingleComponent = () => {
                <div className={styles.picture}>
                   <Image
                      src={'/images/logo-association.webp'}
-                     alt="pet-picture"
-                     width={788}
-                     height={459}
+                     alt="association-logo"
+                     width={504}
+                     height={393}
                   />
                </div>
             </section>
@@ -118,11 +87,11 @@ const AnimalSingleComponent = () => {
                   est une nouvelle chance de leur offrir une vie pleine de
                   bonheur.
                </p>
-                <ul className={styles.list}>{renderAnimalsList}</ul>
+               <ul className={styles.list}>{renderAnimalsList}</ul>
             </section>
          </div>
       </section>
    );
 };
 
-export default AnimalSingleComponent;
+export default AssociationSingleComponent;

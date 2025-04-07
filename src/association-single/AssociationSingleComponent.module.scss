@@ -6,6 +6,10 @@
    align-items: center;
    gap: 80px;
    padding: 150px 0;
+
+   @include desktop {
+      gap: 100px;
+   }
 }
 
 .presentation {
@@ -37,13 +41,15 @@
 
    .picture {
       display: flex;
+      align-items: center;
       max-width: 504px;
       max-height: 393px;
       flex-shrink: 0;
+      overflow: hidden;
 
       img {
          width: 100%;
-         object-fit: contain;
+         height: 100%;
       }
    }
 }

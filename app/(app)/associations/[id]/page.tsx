@@ -1,5 +1,5 @@
 import AssocationSingleComponent from '@/association-single/AssociationSingleComponent';
 
-export default function AnimalsSinglePage() {
+export default function AssociationSinglePage() {
    return <AssocationSingleComponent />;
 }
