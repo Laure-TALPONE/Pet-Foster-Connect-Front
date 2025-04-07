@@ -53,17 +53,23 @@ const ModalComponent = ({ onClose }: Props) => {
                   <div className={styles.lifestyle}>
                      <div className={styles.item}>
                         <p>Je possède un animal :</p>
-                        <span>Chien</span>
-                        <span>Chat</span>
+                        <div className={styles.list}>
+                           <span>Chien</span>
+                           <span>Chat</span>
+                        </div>
                      </div>
                      <div className={styles.item}>
                         <p>Avez vous des enfants :</p>
-                        <span>Oui</span>
+                        <div className={styles.list}>
+                           <span>Oui</span>
+                        </div>
                      </div>
                      <div className={styles.item}>
                         <p>Votre Famille :</p>
-                        <span>Aventureux</span>
-                        <span>Urbain</span>
+                        <div className={styles.list}>
+                           <span>Aventureux</span>
+                           <span>Urbain</span>
+                        </div>
                      </div>
                   </div>
                </section>
