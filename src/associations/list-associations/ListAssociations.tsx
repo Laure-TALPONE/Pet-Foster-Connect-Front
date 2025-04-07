@@ -2,31 +2,31 @@
 import { associations } from '@/globals/constants/data';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import CardAnimal from '../card-association/CardAssociation';
+import CardAssociation from '../card-association/CardAssociation';
 import styles from './ListAssociations.module.scss';
 
-const ListAnimals = () => {
+const ListAssociations = () => {
    const [organizations, setOrganizations] = useState(associations);
 
-   const animals = useMemo(() => {
+   const association = useMemo(() => {
       return organizations.flatMap((asso: any) => {
-         return asso.animals;
+         return asso;
       });
    }, []);
 
-   const renderAnimalsList = useMemo(() => {
-      return animals.map((pet: any, index: number) => {
+   const renderAssociationList = useMemo(() => {
+      return association.map((asso: any, index: number) => {
          return (
             <li key={index} className={styles.item}>
-               <Link href={'/animals/1'}>
-                  <CardAnimal pet={pet} />
+               <Link href={'/association/1'}>
+                  <CardAssociation asso={asso} />
                </Link>
             </li>
          );
       });
    }, []);
 
-   return <ul className={styles.list}>{renderAnimalsList}</ul>;
+   return <ul className={styles.list}>{renderAssociationList}</ul>;
 };
 
-export default ListAnimals;
+export default ListAssociations;

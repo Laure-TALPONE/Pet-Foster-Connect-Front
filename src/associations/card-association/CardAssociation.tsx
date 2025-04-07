@@ -1,23 +1,12 @@
 'use client';
-import { GenderFemale, GenderMale } from '@phosphor-icons/react';
 import Image from 'next/image';
-import { useMemo } from 'react';
 import styles from './CardAssociation.module.scss';
 
 type Props = {
-   pet: any;
+   asso: any;
 };
 
-const CardAnimal = ({ pet }: Props) => {
-   const renderGenger = useMemo(() => {
-      if (pet?.gender) {
-         return <GenderMale weight="bold" />;
-      }
-
-      if (!pet?.gender) {
-         return <GenderFemale weight="bold" />;
-      }
-   }, [pet]);
+const CardAssociation = ({ asso }: Props) => {
 
    return (
       <div className={styles.card}>
@@ -39,4 +28,4 @@ const CardAnimal = ({ pet }: Props) => {
    );
 };
 
-export default CardAnimal;
+export default CardAssociation;
