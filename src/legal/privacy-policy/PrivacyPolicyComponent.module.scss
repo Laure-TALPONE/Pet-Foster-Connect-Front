@@ -1,0 +1,31 @@
+@import '../../../styles/_bases/mixins';
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 100%;
+    gap: 50px;
+    padding: 100px 0;
+}
+
+.title {
+    @include desktop-title-l;
+    color: var(--Blue-secondary);
+    text-align: center;
+}
+
+.sectiontitle {
+    @include desktop-title-m;
+    color: var(--Orange);
+}
+
+.importantElement {
+    color: var(--Blue-secondary);
+    font-weight: 800;
+}
+
+.link {
+    color: var(--Orange);
+    font-weight: 800;
+}
