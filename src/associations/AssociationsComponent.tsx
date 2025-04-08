@@ -5,7 +5,7 @@ import ListAssociations from './list-associations/ListAssociations';
 const AssociationsComponent = () => {
    return (
       <section className="container">
-         <div className={styles.animals}>
+         <div className={styles.association}>
             <div className={styles.top}>
                <h2 className={styles.title}>
                   Découvrez les associations de protection animale proches de

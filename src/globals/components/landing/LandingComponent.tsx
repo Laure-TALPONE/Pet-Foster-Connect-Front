@@ -12,7 +12,11 @@ type Props = {
 
 const LandingComponent = ({ buttons }: Props) => {
    const pathName = usePathname();
-   const bannerDisplay = pathName === '/home' || pathName === '/animals' || pathName === '/associations';
+   const bannerDisplay =
+      pathName === '/home' ||
+      pathName === '/animals' ||
+      pathName === '/associations' ||
+      pathName === '/foster-families';
 
    const renderBanner = useMemo(() => {
       if (!bannerDisplay) {

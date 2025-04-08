@@ -1,0 +1,157 @@
+@import '../../styles/_bases/mixins';
+
+.familyPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    padding: 150px 0;
+
+    @include desktop {
+        gap: 100px;
+    }
+}
+
+.presentation {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+
+    @include desktop {
+        flex-direction: row;
+        gap: 70px;
+    }
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .title {
+        @include desktop-title-l;
+        color: var(--Blue-secondary);
+    }
+
+    .subtitle {
+        @include desktop-title-m;
+        font-size: 20px;
+        color: var(--Orange);
+    }
+
+    .info {
+        @include text-l;
+        color: var(--Blue-secondary);
+    }
+
+    .picture {
+        display: flex;
+        align-items: center;
+        max-width: 504px;
+        max-height: 393px;
+        flex-shrink: 0;
+        overflow: hidden;
+        border-radius: 10px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.informations {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    justify-content: space-between;
+
+    @include desktop {
+        flex-direction: row;
+        gap: 70px;
+    }
+
+    .details {
+        position: relative;
+        background: var(--Blue-secondary);
+        border-radius: 10px;
+        padding: 30px;
+        width: 100%;
+        max-width: 800px;
+        display: flex;
+        justify-content: center;
+
+        @include desktop {
+            padding: 50px;
+        }
+
+        span {
+            font-weight: 500;
+            position: absolute;
+            left: 30px;
+            top: -14px;
+            background: var(--Orange);
+            color: var(--Neutral-white);
+            padding: 8px;
+            border-radius: 10px;
+        }
+    }
+
+    .content {
+        width: 100%;
+        display: flex;
+        row-gap: 8px;
+        column-gap: 70px;
+        flex-wrap: wrap;
+
+        @include tablet {
+            flex-direction: row;
+            column-gap: 170px;
+        }
+
+        p {
+            @include text-l;
+            color: var(--Neutral-white);
+        }
+    }
+}
+
+.listingAnimals {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    justify-content: space-between;
+    text-align: center;
+
+    .title {
+        @include desktop-title-l;
+        color: var(--Blue-secondary);
+    }
+
+    .info {
+        @include text-l;
+        color: var(--Blue-secondary);
+    }
+
+    .list {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 20px;
+        place-items: center;
+
+        .item {
+            width: 100%;
+            max-width: 340px;
+
+            a {
+                width: 100%;
+            }
+        }
+    }
+}
