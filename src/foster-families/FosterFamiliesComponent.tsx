@@ -1,0 +1,28 @@
+'use client';
+
+import styles from './FosterFamiliesComponent.module.scss';
+import ListFosterFamilies from './list-families/ListFosterFamilies';
+
+const FosterFamiliesComponent = () => {
+   return (
+      <section className="container">
+         <div className={styles.families}>
+            <div className={styles.top}>
+               <h2 className={styles.title}>
+                  Nos familles d’accueil, des héros du quotidien
+               </h2>
+               <p className={styles.text}>
+                  Derrière chaque animal sauvé se cache souvent une famille
+                  d’accueil au grand cœur. Ces bénévoles offrent temporairement
+                  un foyer chaleureux à nos protégés, en attendant leur adoption
+                  définitive. Découvrez ici les familles engagées à nos côtés :
+                  sans elles, rien ne serait possible.
+               </p>
+            </div>
+            <ListFosterFamilies />
+         </div>
+      </section>
+   );
+};
+
+export default FosterFamiliesComponent;
