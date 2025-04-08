@@ -51,6 +51,10 @@
         display: block;
     }
 
+    &__background {
+        background-color: var(--Light);
+    }
+
     &__label {
         margin-top: 20px;
     }

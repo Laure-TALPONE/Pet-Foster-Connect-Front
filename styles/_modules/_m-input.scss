@@ -39,6 +39,21 @@
         }
     }
 
+    &__suffix {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        right: 0px;
+        margin-right: 8px;
+        cursor: pointer;
+
+        svg {
+            width: 20px;
+            height: 20px;
+            color: #8a8a89;
+        }
+    }
+
     &__error {
         border-color: red;
     }
