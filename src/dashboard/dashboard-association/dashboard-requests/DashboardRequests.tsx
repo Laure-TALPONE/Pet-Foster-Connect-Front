@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { User } from '@phosphor-icons/react';
 import { foster_families } from '@/globals/constants/data';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
+import ModalHomeRequest from '../modal-home-request/ModalHomeRequest';
 
 const DashboardRequests = () => {
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
@@ -60,7 +61,12 @@ const DashboardRequests = () => {
 
    const renderModal = useMemo(() => {
       if (modalIsOpen) {
-         return <ModalComponent onClose={handleCloseModal} />;
+         return (
+            <ModalComponent
+               onClose={handleCloseModal}
+               children={<ModalHomeRequest />}
+            />
+         );
       }
    }, [modalIsOpen]);
 

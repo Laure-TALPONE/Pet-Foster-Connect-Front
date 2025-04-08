@@ -50,4 +50,17 @@
         margin-top: 4px;
         display: block;
     }
+
+    &__label {
+        margin-top: 20px;
+    }
+
+    label {
+        font-size: 18px;
+        color: var(--Blue-secondary);
+        font-weight: 500;
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+    }
 }

@@ -1,0 +1,52 @@
+@import '../../../../styles/_bases/mixins';
+
+.petForm {
+
+    .title {
+        @include desktop-title-l;
+        font-size: 25px;
+        color: var(--Blue-secondary);
+
+        @include tablet {
+            font-size: 30px;
+        }
+    }
+
+    form,
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .form {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        @include tablet {
+            >:nth-child(1) {
+                width: 100%;
+            }
+
+            >:nth-child(2),
+            >:nth-child(3),
+            >:nth-child(4),
+            >:nth-child(5),
+            >:nth-child(6),
+            >:nth-child(7),
+            >:nth-child(8),
+            >:nth-child(9) {
+                width: calc(50% - 10px);
+            }
+        }
+    }
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    white-space: nowrap;
+}

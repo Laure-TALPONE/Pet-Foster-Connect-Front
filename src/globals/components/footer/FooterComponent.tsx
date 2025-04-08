@@ -6,8 +6,8 @@ const FooterComponent = () => {
    return (
       <div className={styles.footer}>
          <p>
-            <Link href={''}>Mentions légales</Link> | Pet Foster Connect  ©
-            2025
+            <Link href={'/mentions-legales'}>Mentions légales</Link> | Pet
+            Foster Connect  © 2025
          </p>
       </div>
    );

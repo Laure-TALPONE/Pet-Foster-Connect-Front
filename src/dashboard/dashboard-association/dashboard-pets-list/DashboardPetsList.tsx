@@ -1,13 +1,16 @@
 'use client';
 
 import styles from './DashboardPetsList.module.scss';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { associations } from '@/globals/constants/data';
 import Image from 'next/image';
 import { PencilSimple, Plus } from '@phosphor-icons/react';
+import ModalComponent from '@/globals/components/modal/ModalComponent';
+import ModalPetForm from '../modal-pet-form/ModalPetForm';
 
 const DashboardPetsList = () => {
-   const [isDesktop, setIsDesktop] = useState(false);
+   const [isDesktop, setIsDesktop] = useState<boolean>(false);
+   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
    useEffect(() => {
       const handleResize = () => {
@@ -16,6 +19,14 @@ const DashboardPetsList = () => {
       handleResize();
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
+   }, []);
+
+   const handleOpenModal = useCallback(() => {
+      setModalIsOpen(true);
+   }, []);
+
+   const handleCloseModal = useCallback(() => {
+      setModalIsOpen(false);
    }, []);
 
    const renderListPets = useMemo(() => {
@@ -51,6 +62,37 @@ const DashboardPetsList = () => {
       });
    }, [associations, isDesktop]);
 
+   const renderButtons = useMemo(() => {
+      if (!isDesktop) {
+         return (
+            <button
+               type="button"
+               className="m-button"
+               onClick={handleOpenModal}
+            >
+               Ajouter
+            </button>
+         );
+      }
+
+      return (
+         <button type="button" className="m-button" onClick={handleOpenModal}>
+            Ajouter un nouvel animal
+         </button>
+      );
+   }, [isDesktop, handleOpenModal]);
+
+   const renderModal = useMemo(() => {
+      if (modalIsOpen) {
+         return (
+            <ModalComponent
+               onClose={handleCloseModal}
+               children={<ModalPetForm />}
+            />
+         );
+      }
+   }, [modalIsOpen]);
+
    return (
       <section className={styles.petsList}>
          <div className={styles.content}>
@@ -58,18 +100,11 @@ const DashboardPetsList = () => {
                <div className="m-input m-input__background">
                   <input type="text" placeholder="Rechercher un animal" />
                </div>
-               {isDesktop ? (
-                  <button type="button" className="m-button">
-                     Ajouter un nouvel animal
-                  </button>
-               ) : (
-                  <button type="button" className="m-button">
-                     Ajouter
-                  </button>
-               )}
+               {renderButtons}
             </section>
             <ul className={styles.list}>{renderListPets}</ul>
          </div>
+         {renderModal}
       </section>
    );
 };
