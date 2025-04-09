@@ -32,6 +32,22 @@ const SubcriptionAssociation = () => {
       [passwordVisible, confirmVisible]
    );
 
+   const onSubmit = (data: any) => {
+      const newData = {
+         email: data.email,
+         password: data.password,
+         name: data.name,
+         address: data.address,
+         city: data.city,
+         postcode: data.postcode,
+         phone: data.phone,
+         description: data.description,
+         rna_code: data.rna_code,
+      };
+
+      console.log(newData, 'ici les datas');
+   };
+
    return (
       <section className="container">
          <div className={styles.content}>
@@ -62,19 +78,24 @@ const SubcriptionAssociation = () => {
                </div>
             </section>
 
-            <section className={styles.form}>
+            <form className={styles.form}>
                <h2>
                   Inscrivez votre association ici pour accéder à un réseau de
                   familles d’accueil
                </h2>
                <div className={styles.inputs}>
                   <div className="m-input m-input__background">
-                     <input type="text" placeholder="E-mail de connexion" />
+                     <input
+                        type="text"
+                        placeholder="E-mail de connexion"
+                        {...register('email')}
+                     />
                   </div>
                   <div className="m-input m-input__background">
                      <input
                         type={passwordVisible ? 'text' : 'password'}
                         placeholder="Mot de passe"
+                        {...register('password')}
                      />
                      <button
                         type="button"
@@ -106,19 +127,46 @@ const SubcriptionAssociation = () => {
                      </button>
                   </div>
                   <div className="m-input m-input__background">
-                     <input type="text" placeholder="Nom de l'association" />
+                     <input
+                        type="text"
+                        placeholder="Nom de l'association"
+                        {...register('name')}
+                     />
                   </div>
                   <div className="m-input m-input__background">
-                     <input type="text" placeholder="Adresse" />
+                     <input
+                        type="text"
+                        placeholder="Adresse"
+                        {...register('address')}
+                     />
                   </div>
                   <div className="m-input m-input__background">
-                     <input type="text" placeholder="Code postal" />
+                     <input
+                        type="text"
+                        placeholder="Code postal"
+                        {...register('postcode')}
+                     />
                   </div>
                   <div className="m-input m-input__background">
-                     <input type="text" placeholder="Ville" />
+                     <input
+                        type="text"
+                        placeholder="Ville"
+                        {...register('city')}
+                     />
                   </div>
                   <div className="m-input m-input__background">
-                     <input type="text" placeholder="Téléphone" />
+                     <input
+                        type="text"
+                        placeholder="Téléphone"
+                        {...register('phone')}
+                     />
+                  </div>
+                  <div className="m-input m-input__background">
+                     <input
+                        type="text"
+                        placeholder="Code RNA Ex: W123456789"
+                        {...register('rna_code')}
+                     />
                   </div>
                   <div className="m-input m-input__background">
                      <input
@@ -131,13 +179,20 @@ const SubcriptionAssociation = () => {
                      </button>
                   </div>
                   <div className="m-input m-input__background">
-                     <textarea placeholder="Description" />
+                     <textarea
+                        placeholder="Description"
+                        {...register('description')}
+                     />
                   </div>
                </div>
-               <button type="button" className="m-button">
+               <button
+                  type="button"
+                  className="m-button"
+                  onClick={handleSubmit(onSubmit)}
+               >
                   Valider l’inscription
                </button>
-            </section>
+            </form>
 
             <section className={styles.register}>
                <div className={styles.left}>

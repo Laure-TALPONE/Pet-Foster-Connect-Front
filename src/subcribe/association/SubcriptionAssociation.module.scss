@@ -99,8 +99,8 @@
 
         > :nth-child(1),
         :nth-child(4),
-        :nth-child(9),
-        :nth-child(10) {
+        :nth-child(10),
+        :nth-child(11) {
             grid-column: 1 / span 2;
         }
 
@@ -108,7 +108,7 @@
             margin-top: 30px;
         }
 
-        >:nth-child(9) {
+        >:nth-child(10) {
             cursor: pointer;
 
             input {
