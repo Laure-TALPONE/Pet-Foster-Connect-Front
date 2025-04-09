@@ -34,7 +34,7 @@ const SubcriptionAssociation = () => {
       [passwordVisible, confirmVisible]
    );
 
-   const onSubmit = (data: any) => {
+   const onSubmit = async (data: any) => {
       const newData = {
          user: {
             email: data.email,
@@ -48,12 +48,33 @@ const SubcriptionAssociation = () => {
             phone: data.phone,
             description: data.description,
             rna_code: data.rna_code,
+            logo: 'https://www.la-spa.fr/app/app/uploads/2021/09/MicrosoftTeams-image-63.png',
             certification_file: data.certification_file?.[0],
             registration_date: '2025-04-01',
          },
       };
 
       console.log(newData, 'ici les datas');
+
+      try {
+         const response = await fetch('/api/auth/register/association', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newData),
+         });
+
+         const result = await response.json();
+
+         if (!response.ok) {
+            throw new Error(result.message || 'Une erreur est survenue.');
+         }
+
+         console.log('Inscription réussie :', result);
+      } catch (error) {
+         console.error('Erreur API :', error);
+      }
    };
 
    const handleUploadFile = (e: any) => {
