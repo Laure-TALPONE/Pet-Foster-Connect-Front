@@ -2,22 +2,12 @@
 
 import Image from 'next/image';
 import styles from './SubcriptionAssociation.module.scss';
-import {
-   DownloadSimple,
-   Eye,
-   EyeClosed,
-   FileArrowDown,
-   UploadSimple,
-} from '@phosphor-icons/react';
+import { Eye, EyeClosed, FileArrowDown } from '@phosphor-icons/react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useCallback, useMemo, useState } from 'react';
 
 const SubcriptionAssociation = () => {
-   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-   const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
-   const [fileUpload, setFileUpload] = useState();
-
    const {
       register,
       setValue,
@@ -25,6 +15,11 @@ const SubcriptionAssociation = () => {
       watch,
       formState: { errors },
    } = useForm();
+   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+   const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
+   const watchFileUpload = watch('certification_file');
+   const watchPassword = watch('password');
+   const watchConfirm = watch('confirm');
 
    const handleDisplayPassword = useCallback(
       (item: string) => {
@@ -42,7 +37,7 @@ const SubcriptionAssociation = () => {
    const onSubmit = (data: any) => {
       const newData = {
          email: data.email,
-         password: data.password,
+         password: watchPassword === watchConfirm && data.password,
          name: data.name,
          address: data.address,
          city: data.city,
@@ -56,9 +51,17 @@ const SubcriptionAssociation = () => {
    };
 
    const handleUploadFile = (e: any) => {
-      const file = e.target.value;
-      setFileUpload(file);
+      const file = e.target.files[0];
       console.log(file);
+      if (file) {
+         const reader = new FileReader();
+         reader.onloadend = () => {
+            const base64File = reader.result as string;
+            setValue('certification_file', base64File);
+            // console.log('File in base64:', base64File);
+         };
+         reader.readAsDataURL(file);
+      }
    };
 
    return (
@@ -101,14 +104,14 @@ const SubcriptionAssociation = () => {
                      <input
                         type="text"
                         placeholder="E-mail de connexion"
-                        {...register('email')}
+                        {...(register('email'), { required: true })}
                      />
                   </div>
                   <div className="m-input m-input__background">
                      <input
                         type={passwordVisible ? 'text' : 'password'}
                         placeholder="Mot de passe"
-                        {...register('password')}
+                        {...(register('password'), { required: true })}
                      />
                      <button
                         type="button"
@@ -126,6 +129,7 @@ const SubcriptionAssociation = () => {
                      <input
                         type={confirmVisible ? 'text' : 'password'}
                         placeholder="Confirmer le mot de passe"
+                        {...register('confirm')}
                      />
                      <button
                         type="button"
@@ -143,42 +147,42 @@ const SubcriptionAssociation = () => {
                      <input
                         type="text"
                         placeholder="Nom de l'association"
-                        {...register('name')}
+                        {...(register('name'), { required: true })}
                      />
                   </div>
                   <div className="m-input m-input__background">
                      <input
                         type="text"
                         placeholder="Adresse"
-                        {...register('address')}
+                        {...(register('address'), { required: true })}
                      />
                   </div>
                   <div className="m-input m-input__background">
                      <input
                         type="text"
                         placeholder="Code postal"
-                        {...register('postcode')}
+                        {...(register('postcode'), { required: true })}
                      />
                   </div>
                   <div className="m-input m-input__background">
                      <input
                         type="text"
                         placeholder="Ville"
-                        {...register('city')}
+                        {...(register('city'), { required: true })}
                      />
                   </div>
                   <div className="m-input m-input__background">
                      <input
                         type="text"
                         placeholder="Téléphone"
-                        {...register('phone')}
+                        {...(register('phone'), { required: true })}
                      />
                   </div>
                   <div className="m-input m-input__background">
                      <input
                         type="text"
                         placeholder="Code RNA Ex: W123456789"
-                        {...register('rna_code')}
+                        {...(register('rna_code'), { required: true })}
                      />
                   </div>
                   <div className="m-input m-input__background">
@@ -186,12 +190,12 @@ const SubcriptionAssociation = () => {
                         type="file"
                         readOnly
                         onChange={handleUploadFile}
-                        style={{ opacity: fileUpload ? 1 : 0 }}
+                        style={{ opacity: watchFileUpload ? 1 : 0 }}
                      />
                      <button type="button" className="m-input__suffix">
                         <FileArrowDown weight="bold" />
                      </button>
-                     {fileUpload ? null : (
+                     {watchFileUpload ? null : (
                         <span className={styles.textFile}>
                            Importez votre récépissé de déclaration
                         </span>
@@ -200,7 +204,7 @@ const SubcriptionAssociation = () => {
                   <div className="m-input m-input__background">
                      <textarea
                         placeholder="Description"
-                        {...register('description')}
+                        {...(register('description'), { required: true })}
                      />
                   </div>
                </div>
