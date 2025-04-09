@@ -2,10 +2,36 @@
 
 import Image from 'next/image';
 import styles from './SubcriptionAssociation.module.scss';
-import { UploadSimple } from '@phosphor-icons/react';
+import { Eye, EyeClosed, UploadSimple } from '@phosphor-icons/react';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { useCallback, useMemo, useState } from 'react';
 
 const SubcriptionAssociation = () => {
+   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+   const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
+
+   const {
+      register,
+      setValue,
+      handleSubmit,
+      watch,
+      formState: { errors },
+   } = useForm();
+
+   const handleDisplayPassword = useCallback(
+      (item: string) => {
+         if (item === 'password') {
+            setPasswordVisible(!passwordVisible);
+         }
+
+         if (item === 'confirm') {
+            setConfirmVisible(!confirmVisible);
+         }
+      },
+      [passwordVisible, confirmVisible]
+   );
+
    return (
       <section className="container">
          <div className={styles.content}>
@@ -46,13 +72,38 @@ const SubcriptionAssociation = () => {
                      <input type="text" placeholder="E-mail de connexion" />
                   </div>
                   <div className="m-input m-input__background">
-                     <input type="text" placeholder="Mot de passe" />
+                     <input
+                        type={passwordVisible ? 'text' : 'password'}
+                        placeholder="Mot de passe"
+                     />
+                     <button
+                        type="button"
+                        className="m-input__suffix"
+                        onClick={() => handleDisplayPassword('password')}
+                     >
+                        {passwordVisible ? (
+                           <EyeClosed weight="bold" />
+                        ) : (
+                           <Eye weight="bold" />
+                        )}
+                     </button>
                   </div>
                   <div className="m-input m-input__background">
                      <input
-                        type="text"
+                        type={confirmVisible ? 'text' : 'password'}
                         placeholder="Confirmer le mot de passe"
                      />
+                     <button
+                        type="button"
+                        className="m-input__suffix"
+                        onClick={() => handleDisplayPassword('confirm')}
+                     >
+                        {confirmVisible ? (
+                           <EyeClosed weight="bold" />
+                        ) : (
+                           <Eye weight="bold" />
+                        )}
+                     </button>
                   </div>
                   <div className="m-input m-input__background">
                      <input type="text" placeholder="Nom de l'association" />
