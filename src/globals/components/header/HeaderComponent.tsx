@@ -1,7 +1,5 @@
 'use client';
-import Image from 'next/image';
-import styles from './HeaderComponent.module.scss';
-import Link from 'next/link';
+import ModalLoginComponent from '@/login/ModalLoginComponent';
 import {
    Cat,
    HandHeart,
@@ -10,11 +8,24 @@ import {
    User,
    Users,
 } from '@phosphor-icons/react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import ModalComponent from '../modal/ModalComponent';
+import styles from './HeaderComponent.module.scss';
 
 const HeaderComponent = () => {
    const [isDesktop, setIsDesktop] = useState(false);
    const [menuIsOpen, setMenuIsOpen] = useState(false);
+   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+
+   const handleOpenModal = useCallback(() => {
+      setModalIsOpen(true);
+   }, []);
+
+   const handleCloseModal = useCallback(() => {
+      setModalIsOpen(false);
+   }, []);
 
    const handleOpenMenuBurger = useCallback(() => {
       setMenuIsOpen(!menuIsOpen);
@@ -28,6 +39,17 @@ const HeaderComponent = () => {
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
    }, []);
+
+   const renderModal = useMemo(() => {
+      if (modalIsOpen) {
+         return (
+            <ModalComponent
+               onClose={handleCloseModal}
+               children={<ModalLoginComponent />}
+            />
+         );
+      }
+   }, [modalIsOpen]);
 
    const renderNavItems = () => {
       return (
@@ -78,25 +100,32 @@ const HeaderComponent = () => {
    }, [isDesktop, handleOpenMenuBurger, menuIsOpen, renderNavItems]);
 
    return (
-      <div className={styles.navbar}>
-         <div className={styles.content}>
-            <Link href={'/home'} className={styles.logo}>
-               <Image
-                  src={'/images/globals/logo.webp'}
-                  alt="logo"
-                  width={120}
-                  height={120}
-               />
-            </Link>
-            <div className={styles.container}>
-               {renderNavBar}
-               <button type="button" className={styles.user}>
-                  <User weight="bold" />
-                  <span>Mon espace</span>
-               </button>
+      <>
+         <div className={styles.navbar}>
+            <div className={styles.content}>
+               <Link href={'/home'} className={styles.logo}>
+                  <Image
+                     src={'/images/globals/logo.webp'}
+                     alt="logo"
+                     width={120}
+                     height={120}
+                  />
+               </Link>
+               <div className={styles.container}>
+                  {renderNavBar}
+                  <button
+                     type="button"
+                     className={styles.user}
+                     onClick={handleOpenModal}
+                  >
+                     <User weight="bold" />
+                     <span>Mon espace</span>
+                  </button>
+               </div>
             </div>
          </div>
-      </div>
+         {renderModal}
+      </>
    );
 };
 
