@@ -1,0 +1,59 @@
+@import '../../../../styles/_bases/mixins';
+
+.profil {
+   border: solid 1px var(--Blue-secondary);
+   border-radius: 5px;
+   padding: 10px 20px;
+   height: 100%;
+
+   @include desktop {
+      padding: 10px 30px;
+   }
+
+   .inputs {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      @include tablet {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         gap: 10px;
+
+         > :nth-child(1),
+         > :nth-child(2),
+         > :nth-child(3),
+         > :nth-child(4),
+         > :nth-child(5),
+         > :nth-child(6),
+         > :nth-child(7),
+         > :nth-child(8) {
+            grid-column: span 1;
+         }
+
+         > :nth-child(1), :nth-child(4),
+         :nth-child(8) {
+            grid-column: 1 / span 2;
+         }
+      }
+   }
+
+   .description {
+    margin: 20px 0;
+   }
+
+   .titleDescription {
+    font-weight: 700;
+    color: var(--Blue-secondary);
+    margin: 5px 0;
+   }
+
+   .buttons {
+    justify-content: right;
+    display: flex;
+    gap: 20px;
+}
+
+
+}
