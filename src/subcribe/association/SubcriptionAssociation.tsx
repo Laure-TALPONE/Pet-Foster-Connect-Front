@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import styles from './SubcriptionAssociation.module.scss';
+import { UploadSimple } from '@phosphor-icons/react';
+import Link from 'next/link';
 
 const SubcriptionAssociation = () => {
    return (
@@ -36,12 +38,24 @@ const SubcriptionAssociation = () => {
 
             <section className={styles.form}>
                <h2>
-                  Inscrivez votre organisation ici pour accéder à un réseau de
+                  Inscrivez votre association ici pour accéder à un réseau de
                   familles d’accueil
                </h2>
                <div className={styles.inputs}>
                   <div className="m-input m-input__background">
-                     <input type="text" placeholder="Nom de l’organisation" />
+                     <input type="text" placeholder="E-mail de connexion" />
+                  </div>
+                  <div className="m-input m-input__background">
+                     <input type="text" placeholder="Mot de passe" />
+                  </div>
+                  <div className="m-input m-input__background">
+                     <input
+                        type="text"
+                        placeholder="Confirmer le mot de passe"
+                     />
+                  </div>
+                  <div className="m-input m-input__background">
+                     <input type="text" placeholder="Nom de l'association" />
                   </div>
                   <div className="m-input m-input__background">
                      <input type="text" placeholder="Adresse" />
@@ -53,13 +67,17 @@ const SubcriptionAssociation = () => {
                      <input type="text" placeholder="Ville" />
                   </div>
                   <div className="m-input m-input__background">
-                     <input type="text" placeholder="E-mail" />
-                  </div>
-                  <div className="m-input m-input__background">
                      <input type="text" placeholder="Téléphone" />
                   </div>
                   <div className="m-input m-input__background">
-                     <input type="text" placeholder="Ajouter des fichiers" />
+                     <input
+                        type="text"
+                        readOnly
+                        placeholder="Ajouter des fichiers"
+                     />
+                     <button type="button" className="m-input__suffix">
+                        <UploadSimple weight="bold" />
+                     </button>
                   </div>
                   <div className="m-input m-input__background">
                      <textarea placeholder="Description" />
@@ -78,9 +96,12 @@ const SubcriptionAssociation = () => {
                      Inscrivez-vous ici et faites la différence !
                   </p>
                </div>
-               <button type="button" className="m-button">
+               <Link
+                  href={'/inscription/famille-daccueil'}
+                  className="m-button"
+               >
                   M’inscrire ici
-               </button>
+               </Link>
             </section>
          </div>
       </section>
