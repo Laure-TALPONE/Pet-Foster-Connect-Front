@@ -72,6 +72,24 @@
             width: 65%;
         }
     }
+
+    input[type="file"] {
+        z-index: 3;
+        color: black;
+        font-size: 15px;
+    }
+
+    input[type="file"]::file-selector-button {
+        display: none;
+    }
+
+    .textFile {
+        color: gray;
+        font-size: 15px;
+        position: absolute;
+        left: 8px;
+        white-space: nowrap;
+    }
 }
 
 .inputs {

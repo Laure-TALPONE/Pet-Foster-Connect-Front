@@ -2,7 +2,13 @@
 
 import Image from 'next/image';
 import styles from './SubcriptionAssociation.module.scss';
-import { Eye, EyeClosed, UploadSimple } from '@phosphor-icons/react';
+import {
+   DownloadSimple,
+   Eye,
+   EyeClosed,
+   FileArrowDown,
+   UploadSimple,
+} from '@phosphor-icons/react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useCallback, useMemo, useState } from 'react';
@@ -10,6 +16,7 @@ import { useCallback, useMemo, useState } from 'react';
 const SubcriptionAssociation = () => {
    const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
    const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
+   const [fileUpload, setFileUpload] = useState();
 
    const {
       register,
@@ -46,6 +53,12 @@ const SubcriptionAssociation = () => {
       };
 
       console.log(newData, 'ici les datas');
+   };
+
+   const handleUploadFile = (e: any) => {
+      const file = e.target.value;
+      setFileUpload(file);
+      console.log(file);
    };
 
    return (
@@ -170,13 +183,19 @@ const SubcriptionAssociation = () => {
                   </div>
                   <div className="m-input m-input__background">
                      <input
-                        type="text"
+                        type="file"
                         readOnly
-                        placeholder="Ajouter des fichiers"
+                        onChange={handleUploadFile}
+                        style={{ opacity: fileUpload ? 1 : 0 }}
                      />
                      <button type="button" className="m-input__suffix">
-                        <UploadSimple weight="bold" />
+                        <FileArrowDown weight="bold" />
                      </button>
+                     {fileUpload ? null : (
+                        <span className={styles.textFile}>
+                           Importez votre récépissé de déclaration
+                        </span>
+                     )}
                   </div>
                   <div className="m-input m-input__background">
                      <textarea
