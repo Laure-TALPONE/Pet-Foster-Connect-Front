@@ -27,32 +27,6 @@
    .form {
       flex-direction: row;
       flex-wrap: wrap;
-
-      @include tablet {
-         > :nth-child(1),
-         > :nth-child(10) {
-            width: 100%;
-         }
-
-         > :nth-child(2),
-         > :nth-child(3),
-         > :nth-child(4),
-         > :nth-child(5),
-         > :nth-child(6),
-         > :nth-child(7),
-         > :nth-child(8),
-         > :nth-child(9) {
-            width: calc(50% - 10px);
-         }
-      }
-   }
-   .type,
-   .available,
-   .gender,
-   .vaccinated,
-   .weaned,
-   .sterilized {
-      position: relative;
    }
 
    .register {
@@ -65,10 +39,19 @@
         margin: .5rem 0;
     }
 
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      @include tablet {
+         flex-direction: row;
+      }
+    }
+
     .link {
         color: var(--Neutral-white);
         text-decoration: underline;
-        margin: 10px 10px 10px 0;
     }
    }
 }

@@ -34,20 +34,22 @@ const ModalLoginComponent = ({ onClose }: Props) => {
          <section className={styles.register}>
             <h2 className={styles.title}>Pas encore inscrit ?</h2>
             <p className={styles.text}>Inscrivez vous ici :</p>
-            <Link
-               href="/inscription/association"
-               className={styles.link}
-               onClick={handleCloseModal}
-            >
-               M'inscrire comme Association
-            </Link>
-            <Link
-               href="/inscription/famille-daccueil"
-               className={styles.link}
-               onClick={handleCloseModal}
-            >
-               M'inscrire comme Famille d'accueil
-            </Link>
+            <div className={styles.links}>
+               <Link
+                  href="/inscription/association"
+                  className={styles.link}
+                  onClick={handleCloseModal}
+               >
+                  M'inscrire comme Association
+               </Link>
+               <Link
+                  href="/inscription/famille-daccueil"
+                  className={styles.link}
+                  onClick={handleCloseModal}
+               >
+                  M'inscrire comme Famille d'accueil
+               </Link>
+            </div>
          </section>
       </section>
    );
