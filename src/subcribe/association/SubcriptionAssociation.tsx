@@ -36,15 +36,21 @@ const SubcriptionAssociation = () => {
 
    const onSubmit = (data: any) => {
       const newData = {
-         email: data.email,
-         password: watchPassword === watchConfirm && data.password,
-         name: data.name,
-         address: data.address,
-         city: data.city,
-         postcode: data.postcode,
-         phone: data.phone,
-         description: data.description,
-         rna_code: data.rna_code,
+         user: {
+            email: data.email,
+            password: watchPassword === watchConfirm && data.password,
+         },
+         organization: {
+            name: data.name,
+            address: data.address,
+            city: data.city,
+            postcode: data.postcode,
+            phone: data.phone,
+            description: data.description,
+            rna_code: data.rna_code,
+            certification_file: data.certification_file?.[0],
+            registration_date: '2025-04-01',
+         },
       };
 
       console.log(newData, 'ici les datas');
