@@ -106,18 +106,30 @@ const SubcriptionAssociation = () => {
                   familles d’accueil
                </h2>
                <div className={styles.inputs}>
-                  <div className="m-input m-input__background">
+                  <div
+                     className={
+                        errors.email
+                           ? 'm-input m-input__background m-input__error'
+                           : 'm-input m-input__background'
+                     }
+                  >
                      <input
-                        type="text"
+                        type="email"
                         placeholder="E-mail de connexion"
-                        {...(register('email'), { required: true })}
+                        {...register('email', { required: true })}
                      />
                   </div>
-                  <div className="m-input m-input__background">
+                  <div
+                     className={
+                        errors.password
+                           ? 'm-input m-input__background m-input__error'
+                           : 'm-input m-input__background'
+                     }
+                  >
                      <input
                         type={passwordVisible ? 'text' : 'password'}
                         placeholder="Mot de passe"
-                        {...(register('password'), { required: true })}
+                        {...register('password', { required: true })}
                      />
                      <button
                         type="button"
@@ -131,7 +143,13 @@ const SubcriptionAssociation = () => {
                         )}
                      </button>
                   </div>
-                  <div className="m-input m-input__background">
+                  <div
+                     className={
+                        watchPassword !== watchConfirm
+                           ? 'm-input m-input__background m-input__error'
+                           : 'm-input m-input__background'
+                     }
+                  >
                      <input
                         type={confirmVisible ? 'text' : 'password'}
                         placeholder="Confirmer le mot de passe"
@@ -149,49 +167,91 @@ const SubcriptionAssociation = () => {
                         )}
                      </button>
                   </div>
-                  <div className="m-input m-input__background">
+                  <div
+                     className={
+                        errors.name
+                           ? 'm-input m-input__background m-input__error'
+                           : 'm-input m-input__background'
+                     }
+                  >
                      <input
                         type="text"
                         placeholder="Nom de l'association"
-                        {...(register('name'), { required: true })}
+                        {...register('name', { required: true })}
                      />
                   </div>
-                  <div className="m-input m-input__background">
+                  <div
+                     className={
+                        errors.address
+                           ? 'm-input m-input__background m-input__error'
+                           : 'm-input m-input__background'
+                     }
+                  >
                      <input
                         type="text"
                         placeholder="Adresse"
-                        {...(register('address'), { required: true })}
+                        {...register('address', { required: true })}
                      />
                   </div>
-                  <div className="m-input m-input__background">
+                  <div
+                     className={
+                        errors.postcode
+                           ? 'm-input m-input__background m-input__error'
+                           : 'm-input m-input__background'
+                     }
+                  >
                      <input
                         type="text"
                         placeholder="Code postal"
-                        {...(register('postcode'), { required: true })}
+                        {...register('postcode', { required: true })}
                      />
                   </div>
-                  <div className="m-input m-input__background">
+                  <div
+                     className={
+                        errors.city
+                           ? 'm-input m-input__background m-input__error'
+                           : 'm-input m-input__background'
+                     }
+                  >
                      <input
                         type="text"
                         placeholder="Ville"
-                        {...(register('city'), { required: true })}
+                        {...register('city', { required: true })}
                      />
                   </div>
-                  <div className="m-input m-input__background">
+                  <div
+                     className={
+                        errors.phone
+                           ? 'm-input m-input__background m-input__error'
+                           : 'm-input m-input__background'
+                     }
+                  >
                      <input
                         type="text"
                         placeholder="Téléphone"
-                        {...(register('phone'), { required: true })}
+                        {...register('phone', { required: true })}
                      />
                   </div>
-                  <div className="m-input m-input__background">
+                  <div
+                     className={
+                        errors.rna_code
+                           ? 'm-input m-input__background m-input__error'
+                           : 'm-input m-input__background'
+                     }
+                  >
                      <input
                         type="text"
                         placeholder="Code RNA Ex: W123456789"
-                        {...(register('rna_code'), { required: true })}
+                        {...register('rna_code', { required: true })}
                      />
                   </div>
-                  <div className="m-input m-input__background">
+                  <div
+                     className={
+                        errors.certification_file
+                           ? 'm-input m-input__background m-input__error'
+                           : 'm-input m-input__background'
+                     }
+                  >
                      <input
                         type="file"
                         readOnly
@@ -207,15 +267,21 @@ const SubcriptionAssociation = () => {
                         </span>
                      )}
                   </div>
-                  <div className="m-input m-input__background">
+                  <div
+                     className={
+                        errors.description
+                           ? 'm-input m-input__background m-input__error'
+                           : 'm-input m-input__background'
+                     }
+                  >
                      <textarea
                         placeholder="Description"
-                        {...(register('description'), { required: true })}
+                        {...register('description', { required: true })}
                      />
                   </div>
                </div>
                <button
-                  type="button"
+                  type="submit"
                   className="m-button"
                   onClick={handleSubmit(onSubmit)}
                >
