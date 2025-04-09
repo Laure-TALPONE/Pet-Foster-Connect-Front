@@ -153,7 +153,10 @@ const AnimalSingleComponent = () => {
                   <h2 className={styles.title}>
                      Souhaitez-vous l’accueillir ?
                   </h2>
-                  <Link href={'/animals/1/home-request'} className="m-button">
+                  <Link
+                     href={'/nos-animaux/1/demande-daccueil'}
+                     className="m-button"
+                  >
                      Faire une demande
                   </Link>
                </div>
