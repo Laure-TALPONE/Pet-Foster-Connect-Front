@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './SectionFosterFamily.module.scss';
+import Link from 'next/link';
 
 const SectionFosterFamily = () => {
    return (
@@ -37,9 +38,9 @@ const SectionFosterFamily = () => {
                      </span>
                   </p>
                </div>
-               <button type="button" className="m-button">
+               <Link href={'/familles-daccueil'} className="m-button">
                   Découvrir nos familles d’accueil
-               </button>
+               </Link>
             </div>
          </div>
       </section>

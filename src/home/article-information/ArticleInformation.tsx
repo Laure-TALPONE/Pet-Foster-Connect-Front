@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './ArticleInformation.module.scss';
+import Link from 'next/link';
 
 const ArticleInformation = () => {
    return (
@@ -45,9 +46,9 @@ const ArticleInformation = () => {
                      participez activement à leur bien-être et leur donnez une
                      seconde chance. Parce qu’ils méritent tous un foyer !
                   </p>
-                  <button type="button" className="m-button">
+                  <Link href={'/nos-animaux'} className="m-button">
                      Découvrir nos animaux
-                  </button>
+                  </Link>
                </div>
             </div>
          </div>

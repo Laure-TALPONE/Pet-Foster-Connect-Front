@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './StepsAdoption.module.scss';
+import Link from 'next/link';
 
 const StepsAdoption = () => {
    return (
@@ -52,9 +53,12 @@ const StepsAdoption = () => {
                         </p>
                      </li>
                   </ol>
-                  <button type="button" className="m-button">
+                  <Link
+                     href={'/inscription/famille-daccueil'}
+                     className="m-button"
+                  >
                      M’inscrire dès maintenant
-                  </button>
+                  </Link>
                </div>
             </div>
          </div>

@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './SectionAssociation.module.scss';
+import Link from 'next/link';
 
 const SectionAssociation = () => {
    return (
@@ -25,9 +26,9 @@ const SectionAssociation = () => {
                      définitivement.
                   </p>
                </div>
-               <button type="button" className="m-button">
+               <Link href={'/associations'} className="m-button">
                   Découvrir nos associations
-               </button>
+               </Link>
             </div>
          </div>
       </section>

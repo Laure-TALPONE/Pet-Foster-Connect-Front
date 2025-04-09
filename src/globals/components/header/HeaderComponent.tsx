@@ -33,13 +33,13 @@ const HeaderComponent = () => {
       return (
          <ul className={styles.nav}>
             <li className={styles.item}>
-               <Link href="/home">
+               <Link href="/accueil">
                   <House weight="bold" />
                   <span>Accueil</span>
                </Link>
             </li>
             <li className={styles.item}>
-               <Link href="/animals">
+               <Link href="/nos-animaux">
                   <Cat weight="bold" />
                   <span>Nos animaux</span>
                </Link>
@@ -51,7 +51,7 @@ const HeaderComponent = () => {
                </Link>
             </li>
             <li className={styles.item}>
-               <Link href="/foster-families">
+               <Link href="/familles-daccueil">
                   <Users weight="bold" />
                   <span>Nos familles d'accueil</span>
                </Link>
@@ -80,7 +80,7 @@ const HeaderComponent = () => {
    return (
       <div className={styles.navbar}>
          <div className={styles.content}>
-            <Link href={'/home'} className={styles.logo}>
+            <Link href={'/accueil'} className={styles.logo}>
                <Image
                   src={'/images/globals/logo.webp'}
                   alt="logo"
