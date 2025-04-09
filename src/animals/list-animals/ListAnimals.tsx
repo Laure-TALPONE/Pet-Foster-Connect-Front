@@ -18,7 +18,7 @@ const ListAnimals = () => {
       return animals.map((pet: any, index: number) => {
          return (
             <li key={index} className={styles.item}>
-               <Link href={'/animals/1'}>
+               <Link href={'/nos-animaux/1'}>
                   <CardAnimal pet={pet} />
                </Link>
             </li>

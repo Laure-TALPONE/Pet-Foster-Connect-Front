@@ -18,7 +18,7 @@ const ListFosterFamilies = () => {
       return fosterFamilies.map((family: any, index: number) => {
          return (
             <li key={index} className={styles.item}>
-               <Link href={'/foster-families/1'}>
+               <Link href={'/familles-daccueil/1'}>
                   <CardFosterFamily family={family} />
                </Link>
             </li>
