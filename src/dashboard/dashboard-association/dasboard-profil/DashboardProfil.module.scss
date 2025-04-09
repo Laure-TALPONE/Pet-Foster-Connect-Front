@@ -5,6 +5,7 @@
    border-radius: 5px;
    padding: 10px 20px;
    height: 100%;
+   overflow: auto;
 
    @include desktop {
       padding: 10px 30px;
@@ -53,6 +54,28 @@
     justify-content: right;
     display: flex;
     gap: 20px;
+    flex-direction: column;
+    
+    .buttonModification {
+        order: 1;
+    }
+
+    .buttonDelete {
+        order: 2;
+    }
+
+    @include tablet { 
+        flex-direction: row;
+
+        .buttonDelete {
+            order: 1;
+        }
+
+        .buttonModification {
+            order: 2;
+        }
+    
+    }
 }
 
 

@@ -42,10 +42,10 @@ const DashboardProfil = () => {
                   </div>
                </div>
                <div className={styles.buttons}>
-                  <button type="button" className="m-button--square">
+                  <button type="button" className={`m-button--square ${styles.buttonDelete}`}>
                      Supprimer mon profil
                   </button>
-                  <button type="submit" className="m-button">
+                  <button type="submit" className={`m-button ${styles.buttonModification}`}>
                      Modifier mon profil
                   </button>
                </div>
