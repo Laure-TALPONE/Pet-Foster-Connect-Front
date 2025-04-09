@@ -2,5 +2,11 @@ export const animals = [
     "Chien",
     "Chat",
     "Oiseau",
-    "Rongeur"
+    "Rongeur",
+    "Lapin"
+]
+
+export const genders = [
+    "Mâle",
+    "Femelle"
 ]

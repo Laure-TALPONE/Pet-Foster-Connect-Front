@@ -87,7 +87,7 @@ const DashboardPetsList = () => {
          return (
             <ModalComponent
                onClose={handleCloseModal}
-               children={<ModalPetForm />}
+               children={<ModalPetForm onClose={handleCloseModal} />}
             />
          );
       }

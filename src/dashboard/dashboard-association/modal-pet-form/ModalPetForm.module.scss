@@ -44,8 +44,17 @@
         }
     }
 
-    .type {
+    .type,
+    .available,
+    .gender,
+    .vaccinated,
+    .weaned,
+    .sterilized {
         position: relative;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none;
     }
 }
 
