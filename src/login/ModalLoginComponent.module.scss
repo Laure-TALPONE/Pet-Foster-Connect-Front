@@ -1,0 +1,65 @@
+@import '../../styles/_bases/mixins';
+
+.loginForm {
+
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+
+   .title {
+      @include desktop-title-l;
+      font-size: 25px;
+      color: var(--Blue-secondary);
+
+      @include tablet {
+         font-size: 30px;
+      }
+   }
+
+   form,
+   .form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+   }
+
+   .form {
+      flex-direction: row;
+      flex-wrap: wrap;
+   }
+
+   .register {
+    background-color: var(--Blue-secondary);
+    padding: 1rem;
+    border-radius: 10px;
+
+    .title, .text {
+        color: var(--Neutral-white);
+        margin: .5rem 0;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      @include tablet {
+         flex-direction: row;
+      }
+    }
+
+    .link {
+        color: var(--Neutral-white);
+        text-decoration: underline;
+    }
+   }
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    white-space: nowrap;
+}
