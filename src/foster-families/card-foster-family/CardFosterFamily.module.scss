@@ -31,7 +31,19 @@
     flex-direction: row;
     align-items: center;
     gap: 40px;
-    padding: 30px 20px;
+    padding: 40px 20px 30px 35px;
+    position: relative;
+
+    .available {
+        font-weight: 500;
+        position: absolute;
+        left: 30px;
+        top: -23px;
+        background: var(--Orange);
+        color: var(--Neutral-white);
+        padding: 8px;
+        border-radius: 10px;
+     }
 }
 
 .names {
