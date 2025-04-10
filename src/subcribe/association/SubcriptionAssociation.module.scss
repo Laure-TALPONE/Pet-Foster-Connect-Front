@@ -75,7 +75,7 @@
 
     input[type="file"] {
         z-index: 3;
-        color: black;
+        color: var(--Blue-secondary);
         font-size: 15px;
     }
 
@@ -98,6 +98,22 @@
     flex-direction: column;
     gap: 10px;
 
+    >:nth-child(10),
+    :nth-child(11) {
+        cursor: pointer;
+
+        input {
+            cursor: pointer;
+        }
+    }
+
+    >:nth-child(10) {
+        span {
+            color: grey;
+            font-size: 13px;
+        }
+    }
+
     @include tablet {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -117,22 +133,28 @@
 
         > :nth-child(1),
         :nth-child(4),
-        :nth-child(10),
-        :nth-child(11) {
+        :nth-child(11),
+        :nth-child(12) {
             grid-column: 1 / span 2;
         }
 
         >:nth-child(4) {
             margin-top: 30px;
         }
+    }
 
-        >:nth-child(10) {
-            cursor: pointer;
-
-            input {
-                cursor: pointer;
-            }
+    .dateVisible {
+        input[type="date" i] {
+            color: var(--Blue-secondary);
         }
+    }
+
+    input[type="date" i] {
+        color: grey;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none;
     }
 
     @include desktop {

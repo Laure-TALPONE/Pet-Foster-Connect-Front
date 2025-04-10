@@ -2,10 +2,16 @@
 
 import Image from 'next/image';
 import styles from './SubcriptionAssociation.module.scss';
-import { Eye, EyeClosed, FileArrowDown } from '@phosphor-icons/react';
+import {
+   CalendarBlank,
+   Eye,
+   EyeClosed,
+   FileArrowDown,
+} from '@phosphor-icons/react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useCallback, useMemo, useState } from 'react';
+import dayjs from 'dayjs';
 
 const SubcriptionAssociation = () => {
    const {
@@ -20,6 +26,9 @@ const SubcriptionAssociation = () => {
    const watchFileUpload = watch('certification_file');
    const watchPassword = watch('password');
    const watchConfirm = watch('confirm');
+   const watchDateAsso = watch('registration_date');
+
+   // console.log(watchFileUpload);
 
    const handleDisplayPassword = useCallback(
       (item: string) => {
@@ -49,8 +58,10 @@ const SubcriptionAssociation = () => {
             description: data.description,
             rna_code: data.rna_code,
             logo: 'https://www.la-spa.fr/app/app/uploads/2021/09/MicrosoftTeams-image-63.png',
-            certification_file: data.certification_file?.[0],
-            registration_date: '2025-04-01',
+            certification_file: watchFileUpload,
+            registration_date: data.registration_date
+               ? dayjs(data.registration_date).format('YYYY-MM-DD')
+               : '01/01/2025',
          },
       };
 
@@ -77,17 +88,49 @@ const SubcriptionAssociation = () => {
       }
    };
 
-   const handleUploadFile = (e: any) => {
+   const handleUploadFile = async (e: any) => {
       const file = e.target.files[0];
       console.log(file);
+      // if (file) {
+      //    const reader = new FileReader();
+      //    reader.onloadend = () => {
+      //       const base64File = reader.result as string;
+      //       const base64Only = base64File.split(',')[1];
+      //       setValue('certification_file', base64Only);
+      //       // console.log('File in base64:', base64File);
+      //       // console.log('File in base64 ONLY:', base64Only);
+      //    };
+      //    reader.readAsDataURL(file);
+      // }
+
       if (file) {
-         const reader = new FileReader();
-         reader.onloadend = () => {
-            const base64File = reader.result as string;
-            setValue('certification_file', base64File);
-            // console.log('File in base64:', base64File);
-         };
-         reader.readAsDataURL(file);
+         const formData = new FormData();
+
+         const cloudinaryUrl =
+            'https://api.cloudinary.com/v1_1/dunuutcib/image/upload';
+         const uploadPreset = 'my_secret_preset';
+
+         formData.append('file', file);
+         formData.append('upload_preset', uploadPreset);
+
+         try {
+            const response = await fetch(cloudinaryUrl, {
+               method: 'POST',
+               body: formData,
+            });
+            const data = await response.json();
+
+            if (response.ok) {
+               console.log('Fichier uploadé avec succès:', data);
+               const uploadedFileUrl = data.secure_url;
+               console.log(uploadedFileUrl);
+               setValue('certification_file', uploadedFileUrl);
+            } else {
+               console.error("Erreur lors de l'upload:", data);
+            }
+         } catch (error) {
+            console.error("Erreur lors de l'upload du fichier:", error);
+         }
       }
    };
 
@@ -267,6 +310,17 @@ const SubcriptionAssociation = () => {
                      />
                   </div>
                   <div
+                     className={`m-input m-input__background ${errors.registration_date ? 'm-input__error' : ''} ${watchDateAsso ? styles.dateVisible : ''}`}
+                  >
+                     <input
+                        type="date"
+                        {...register('registration_date', { required: true })}
+                     />
+                     <span className="m-input__suffix">
+                        (création de l'association)
+                     </span>
+                  </div>
+                  <div
                      className={
                         errors.certification_file
                            ? 'm-input m-input__background m-input__error'
@@ -275,6 +329,7 @@ const SubcriptionAssociation = () => {
                   >
                      <input
                         type="file"
+                        accept=".pdf"
                         readOnly
                         onChange={handleUploadFile}
                         style={{ opacity: watchFileUpload ? 1 : 0 }}
@@ -284,7 +339,7 @@ const SubcriptionAssociation = () => {
                      </button>
                      {watchFileUpload ? null : (
                         <span className={styles.textFile}>
-                           Importez votre récépissé de déclaration
+                           Importez votre récépissé de déclaration (.pdf)
                         </span>
                      )}
                   </div>
