@@ -12,7 +12,6 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import dayjs from 'dayjs';
-import { Span } from 'next/dist/trace';
 
 const SubcriptionAssociation = () => {
    const {

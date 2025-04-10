@@ -13,7 +13,7 @@ export default function AppRootLayout({
          <div className="container">
             <section className="dashboard">
                <DashboardSidebar />
-               <div>{children}</div>
+               <div className="main">{children}</div>
             </section>
          </div>
          <FooterComponent />
