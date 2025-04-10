@@ -2,9 +2,9 @@
 
 .loginForm {
 
-    display: flex;
-    gap: 40px;
-    flex-direction: column;
+   display: flex;
+   gap: 40px;
+   flex-direction: column;
 
    .title {
       @include desktop-title-l;
@@ -29,37 +29,48 @@
       flex-wrap: wrap;
    }
 
-   .register {
-    background-color: var(--Blue-secondary);
-    padding: 1rem;
-    border-radius: 10px;
+   .forgotten {
+      align-self: flex-start;
+      color: var(--Blue-secondary);
+      font-size: 14px;
 
-    .title, .text {
-        color: var(--Neutral-white);
-        margin: .5rem 0;
-    }
-
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
-      @include tablet {
-         flex-direction: row;
+      &:hover {
+         text-decoration: underline;
       }
-    }
+   }
 
-    .link {
-        color: var(--Neutral-white);
-        text-decoration: underline;
-    }
+   .register {
+      background-color: var(--Blue-secondary);
+      padding: 1rem;
+      border-radius: 10px;
+
+      .title,
+      .text {
+         color: var(--Neutral-white);
+         margin: .5rem 0;
+      }
+
+      .links {
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+
+         @include tablet {
+            flex-direction: row;
+         }
+      }
+
+      .link {
+         color: var(--Neutral-white);
+         text-decoration: underline;
+      }
    }
 }
 
 .buttons {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 20px;
-    white-space: nowrap;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   gap: 20px;
+   white-space: nowrap;
 }
