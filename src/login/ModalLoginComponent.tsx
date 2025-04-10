@@ -36,7 +36,7 @@ const ModalLoginComponent = ({ onClose }: Props) => {
       console.log(newData, 'ici les datas');
 
       try {
-         const response = await fetch('/api/auth/register/association', {
+         const response = await fetch('/api/auth/login', {
             method: 'POST',
             headers: {
                'Content-Type': 'application/json',
