@@ -29,6 +29,9 @@ const SubcriptionAssociation = () => {
    const watchConfirm = watch('confirm');
    const watchDateAsso = watch('registration_date');
    const [errorMessage, setErrorMessage] = useState('');
+   const [errorEmailMessage, setErrorEmailMessage] = useState('');
+
+   console.log(errorEmailMessage);
 
    const handleDisplayPassword = useCallback(
       (item: string) => {
@@ -58,7 +61,9 @@ const SubcriptionAssociation = () => {
             description: data.description,
             rna_code: data.rna_code,
             logo: 'https://www.la-spa.fr/app/app/uploads/2021/09/MicrosoftTeams-image-63.png',
-            certification_file: watchFileUpload,
+            certification_file:
+               watchFileUpload ||
+               'https://res.cloudinary.com/dunuutcib/image/upload/v1744297417/eas7volldm9p6tlnfewc.pdf',
             registration_date: data.registration_date
                ? dayjs(data.registration_date).format('YYYY-MM-DD')
                : '01/01/2025',
@@ -79,6 +84,7 @@ const SubcriptionAssociation = () => {
          const result = await response.json();
 
          if (!response.ok) {
+            setErrorEmailMessage(result.message);
             throw new Error(result.message || 'Une erreur est survenue.');
          }
 
@@ -195,19 +201,24 @@ const SubcriptionAssociation = () => {
                   familles d’accueil
                </h2>
                <div className={styles.inputs}>
-                  <div
-                     className={
-                        errors.email
-                           ? 'm-input m-input__background m-input__error'
-                           : 'm-input m-input__background'
-                     }
-                  >
-                     <input
-                        type="email"
-                        placeholder="E-mail de connexion"
-                        {...register('email', { required: true })}
-                     />
-                  </div>
+                  <section className={styles.email}>
+                     <div
+                        className={
+                           errors.email
+                              ? 'm-input m-input__background m-input__error'
+                              : 'm-input m-input__background'
+                        }
+                     >
+                        <input
+                           type="email"
+                           placeholder="E-mail de connexion"
+                           {...register('email', { required: true })}
+                        />
+                     </div>
+                     {errorEmailMessage && (
+                        <p className={styles.emailError}>{errorEmailMessage}</p>
+                     )}
+                  </section>
                   <section className={styles.password}>
                      <div
                         className={
