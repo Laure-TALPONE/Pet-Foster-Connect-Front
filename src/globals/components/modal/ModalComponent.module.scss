@@ -40,6 +40,7 @@
     @include desktop {
         max-width: 700px;
         border-radius: 10px;
+        height: auto;
     }
 
     &::-webkit-scrollbar {
