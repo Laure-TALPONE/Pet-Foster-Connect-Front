@@ -92,11 +92,29 @@
     }
 }
 
+.password {
+    position: relative;
+
+    .passwordError {
+        position: absolute;
+        color: red;
+        font-size: 13px;
+    }
+}
+
 .inputs {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    >:nth-child(3) {
+        margin-top: 10px;
+
+        @include tablet {
+            margin-top: 0;
+        }
+    }
 
     >:nth-child(10),
     :nth-child(11) {

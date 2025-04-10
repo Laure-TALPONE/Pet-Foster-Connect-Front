@@ -10,8 +10,9 @@ import {
 } from '@phosphor-icons/react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import dayjs from 'dayjs';
+import { Span } from 'next/dist/trace';
 
 const SubcriptionAssociation = () => {
    const {
@@ -27,8 +28,7 @@ const SubcriptionAssociation = () => {
    const watchPassword = watch('password');
    const watchConfirm = watch('confirm');
    const watchDateAsso = watch('registration_date');
-
-   // console.log(watchFileUpload);
+   const [errorMessage, setErrorMessage] = useState('');
 
    const handleDisplayPassword = useCallback(
       (item: string) => {
@@ -134,6 +134,31 @@ const SubcriptionAssociation = () => {
       }
    };
 
+   useEffect(() => {
+      if (watchPassword && watchPassword.length >= 2) {
+         const lowerCaseRegex = /[a-z]/;
+         const uppercaseRegex = /[A-Z]/;
+         const digitRegex = /[0-9]/;
+         const specialCharRegex = /[^A-Za-z0-9.,]/;
+
+         if (watchPassword.length < 7) {
+            setErrorMessage('Votre mot de passe est trop court !');
+         } else if (!watchPassword.match(lowerCaseRegex)) {
+            setErrorMessage('Votre mot de passe doit contenir une minuscule !');
+         } else if (!watchPassword.match(uppercaseRegex)) {
+            setErrorMessage('Votre mot de passe doit contenir une majuscule !');
+         } else if (!watchPassword.match(digitRegex)) {
+            setErrorMessage('Votre mot de passe doit contenir un chiffre !');
+         } else if (!watchPassword.match(specialCharRegex)) {
+            setErrorMessage(
+               'Votre mot de passe doit contenir un caratère spécial : @#! !'
+            );
+         } else {
+            setErrorMessage('');
+         }
+      }
+   }, [watchPassword]);
+
    return (
       <section className="container">
          <div className={styles.content}>
@@ -183,30 +208,35 @@ const SubcriptionAssociation = () => {
                         {...register('email', { required: true })}
                      />
                   </div>
-                  <div
-                     className={
-                        errors.password
-                           ? 'm-input m-input__background m-input__error'
-                           : 'm-input m-input__background'
-                     }
-                  >
-                     <input
-                        type={passwordVisible ? 'text' : 'password'}
-                        placeholder="Mot de passe"
-                        {...register('password', { required: true })}
-                     />
-                     <button
-                        type="button"
-                        className="m-input__suffix"
-                        onClick={() => handleDisplayPassword('password')}
+                  <section className={styles.password}>
+                     <div
+                        className={
+                           errors.password
+                              ? 'm-input m-input__background m-input__error'
+                              : 'm-input m-input__background'
+                        }
                      >
-                        {passwordVisible ? (
-                           <EyeClosed weight="bold" />
-                        ) : (
-                           <Eye weight="bold" />
-                        )}
-                     </button>
-                  </div>
+                        <input
+                           type={passwordVisible ? 'text' : 'password'}
+                           placeholder="Mot de passe"
+                           {...register('password', { required: true })}
+                        />
+                        <button
+                           type="button"
+                           className="m-input__suffix"
+                           onClick={() => handleDisplayPassword('password')}
+                        >
+                           {passwordVisible ? (
+                              <EyeClosed weight="bold" />
+                           ) : (
+                              <Eye weight="bold" />
+                           )}
+                        </button>
+                     </div>
+                     {errorMessage && (
+                        <p className={styles.passwordError}>{errorMessage}</p>
+                     )}
+                  </section>
                   <div
                      className={
                         watchPassword !== watchConfirm
