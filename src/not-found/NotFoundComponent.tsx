@@ -2,6 +2,7 @@
 
 import { PawPrint } from '@phosphor-icons/react';
 import styles from './NotFoundComponent.module.scss';
+import Link from 'next/link';
 
 const NotFoundComponent = () => {
    return (
@@ -19,9 +20,9 @@ const NotFoundComponent = () => {
                Mais parfois, même les meilleures truffes peuvent se perdre en
                chemin.
             </p>
-            <button type="button" className="m-button">
+            <Link href={'/accueil'} className="m-button">
                Retour à l’accueil
-            </button>
+            </Link>
          </div>
       </section>
    );

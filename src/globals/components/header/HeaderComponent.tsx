@@ -45,7 +45,7 @@ const HeaderComponent = () => {
          return (
             <ModalComponent
                onClose={handleCloseModal}
-               children={<ModalLoginComponent />}
+               children={<ModalLoginComponent onClose={handleCloseModal} />}
             />
          );
       }
