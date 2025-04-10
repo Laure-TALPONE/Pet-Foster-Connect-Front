@@ -1,0 +1,27 @@
+@import '../../styles/_bases/mixins';
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 50px;
+    padding: 100px 0;
+}
+
+.textError {
+    @include desktop-title-l;
+    color: var(--Orange);
+    text-align: center;
+    font-size: 80px
+}
+
+.title {
+    @include desktop-title-l;
+    color: var(--Blue-secondary);
+    text-align: center;
+}
+
+.text {
+    text-align: center;
+}
