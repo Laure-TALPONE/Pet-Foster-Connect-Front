@@ -1,7 +1,6 @@
 @import '../../styles/_bases/mixins';
 
 .loginForm {
-
    display: flex;
    gap: 40px;
    flex-direction: column;
@@ -22,11 +21,6 @@
       flex-direction: column;
       gap: 20px;
       width: 100%;
-   }
-
-   .form {
-      flex-direction: row;
-      flex-wrap: wrap;
    }
 
    .forgotten {
@@ -52,12 +46,8 @@
 
       .links {
          display: flex;
-         flex-direction: column;
+         flex-wrap: wrap;
          gap: 10px;
-
-         @include tablet {
-            flex-direction: row;
-         }
       }
 
       .link {
