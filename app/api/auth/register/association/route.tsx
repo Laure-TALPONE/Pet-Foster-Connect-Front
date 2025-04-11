@@ -5,7 +5,8 @@ export async function POST(request: NextRequest) {
       const data = await request.json();
 
       const response = await fetch(
-         'http://jeremyjacquette-server.eddi.cloud/api/organization/register',
+         // 'http://jeremyjacquette-server.eddi.cloud/api/organization/register',
+         'http://localhost/api/organization/register',
          {
             method: 'POST',
             headers: {

@@ -30,8 +30,6 @@ const SubcriptionAssociation = () => {
    const [errorMessage, setErrorMessage] = useState('');
    const [errorEmailMessage, setErrorEmailMessage] = useState('');
 
-   console.log(watchPassword);
-
    const handleDisplayPassword = useCallback(
       (item: string) => {
          if (item === 'password') {
@@ -63,9 +61,9 @@ const SubcriptionAssociation = () => {
             certification_file:
                watchFileUpload ||
                'https://res.cloudinary.com/dunuutcib/image/upload/v1744297417/eas7volldm9p6tlnfewc.pdf',
-            registration_date: data
-               .dayjs(data.registration_date)
-               .format('YYYY-MM-DD'),
+            registration_date: dayjs(data.registration_date).format(
+               'YYYY-MM-DD'
+            ),
          },
       };
 
@@ -83,7 +81,7 @@ const SubcriptionAssociation = () => {
          const result = await response.json();
 
          if (!response.ok) {
-            setErrorEmailMessage(result.message);
+            // setErrorEmailMessage(result.message);
             throw new Error(result.message || 'Une erreur est survenue.');
          }
 
@@ -207,7 +205,7 @@ const SubcriptionAssociation = () => {
                         <p className={styles.emailError}>{errorEmailMessage}</p>
                      )}
                   </section>
-                  <section className={styles.password}>
+                  <section className={errorMessage ? styles.password : ''}>
                      <div
                         className={
                            errors.password

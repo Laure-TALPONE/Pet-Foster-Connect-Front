@@ -92,8 +92,18 @@
     }
 }
 
+.email {
+    display: flex;
+    flex-direction: column;
+}
+
 .password {
     position: relative;
+    margin-bottom: 20px;
+
+    @include tablet {
+        margin-bottom: 0;
+    }
 
     .passwordError {
         position: absolute;
@@ -113,13 +123,13 @@
     flex-direction: column;
     gap: 10px;
 
-    >:nth-child(3) {
-        margin-top: 10px;
+    // >:nth-child(3) {
+    //     margin-top: 10px;
 
-        @include tablet {
-            margin-top: 0;
-        }
-    }
+    //     @include tablet {
+    //         margin-top: 0;
+    //     }
+    // }
 
     >:nth-child(10),
     :nth-child(11) {
