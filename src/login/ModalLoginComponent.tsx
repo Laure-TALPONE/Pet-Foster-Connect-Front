@@ -114,7 +114,11 @@ const ModalLoginComponent = ({ onClose }: Props) => {
                Mot de passe oublié ?
             </Link>
             <div className={styles.buttons}>
-               <button type="submit" className="m-button" onClick={onSubmit}>
+               <button
+                  type="submit"
+                  className="m-button"
+                  onClick={handleSubmit(onSubmit)}
+               >
                   Me connecter
                </button>
             </div>
