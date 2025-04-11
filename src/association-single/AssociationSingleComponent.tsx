@@ -24,7 +24,7 @@ const AssociationSingleComponent = () => {
             </li>
          );
       });
-   }, []);
+   }, [animals]);
 
    return (
       <section className="container">

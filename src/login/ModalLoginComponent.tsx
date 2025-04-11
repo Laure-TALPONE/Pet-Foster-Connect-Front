@@ -11,6 +11,7 @@ type Props = {
 const ModalLoginComponent = ({ onClose }: Props) => {
    const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
    const [errorMessage, setErrorMessage] = useState('');
+   const [userConnected, setUserConnected] = useState();
    const {
       register,
       setValue,
@@ -51,7 +52,10 @@ const ModalLoginComponent = ({ onClose }: Props) => {
             throw new Error(result.message || 'Une erreur est survenue.');
          }
 
-         console.log('Connexion réussie :', result);
+         if (response.ok) {
+            console.log('Connexion réussie :', result);
+            console.log(response, 'ici la response !!!!!');
+         }
       } catch (error) {
          console.error('Erreur API :', error);
       }

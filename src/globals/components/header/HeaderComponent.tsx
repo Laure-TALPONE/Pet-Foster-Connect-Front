@@ -103,7 +103,7 @@ const HeaderComponent = () => {
       <>
          <div className={styles.navbar}>
             <div className={styles.content}>
-               <Link href={'/home'} className={styles.logo}>
+               <Link href={'/accueil'} className={styles.logo}>
                   <Image
                      src={'/images/globals/logo.webp'}
                      alt="logo"

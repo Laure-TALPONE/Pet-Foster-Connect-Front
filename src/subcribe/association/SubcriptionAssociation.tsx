@@ -30,7 +30,7 @@ const SubcriptionAssociation = () => {
    const [errorMessage, setErrorMessage] = useState('');
    const [errorEmailMessage, setErrorEmailMessage] = useState('');
 
-   console.log(errorEmailMessage);
+   console.log(watchPassword);
 
    const handleDisplayPassword = useCallback(
       (item: string) => {
@@ -63,9 +63,9 @@ const SubcriptionAssociation = () => {
             certification_file:
                watchFileUpload ||
                'https://res.cloudinary.com/dunuutcib/image/upload/v1744297417/eas7volldm9p6tlnfewc.pdf',
-            registration_date: data.registration_date
-               ? dayjs(data.registration_date).format('YYYY-MM-DD')
-               : '01/01/2025',
+            registration_date: data
+               .dayjs(data.registration_date)
+               .format('YYYY-MM-DD'),
          },
       };
 
@@ -96,17 +96,6 @@ const SubcriptionAssociation = () => {
    const handleUploadFile = async (e: any) => {
       const file = e.target.files[0];
       console.log(file);
-      // if (file) {
-      //    const reader = new FileReader();
-      //    reader.onloadend = () => {
-      //       const base64File = reader.result as string;
-      //       const base64Only = base64File.split(',')[1];
-      //       setValue('certification_file', base64Only);
-      //       // console.log('File in base64:', base64File);
-      //       // console.log('File in base64 ONLY:', base64Only);
-      //    };
-      //    reader.readAsDataURL(file);
-      // }
 
       if (file) {
          const formData = new FormData();
