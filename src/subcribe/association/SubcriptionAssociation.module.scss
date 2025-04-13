@@ -5,6 +5,7 @@
     flex-direction: column;
     gap: 80px;
     padding: 150px 0;
+    position: relative;
 
     @include desktop {
         gap: 150px

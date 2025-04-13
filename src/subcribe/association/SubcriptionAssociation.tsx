@@ -12,6 +12,8 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import dayjs from 'dayjs';
+import ModalComponent from '@/globals/components/modal/ModalComponent';
+import ModalLoginComponent from '@/login/ModalLoginComponent';
 
 const SubcriptionAssociation = () => {
    const {
@@ -29,6 +31,7 @@ const SubcriptionAssociation = () => {
    const watchDateAsso = watch('registration_date');
    const [errorMessage, setErrorMessage] = useState('');
    const [errorEmailMessage, setErrorEmailMessage] = useState('');
+   const [openModalLogin, setOpenModalLogin] = useState<boolean>(false);
 
    const handleDisplayPassword = useCallback(
       (item: string) => {
@@ -85,7 +88,10 @@ const SubcriptionAssociation = () => {
             throw new Error(result.message || 'Une erreur est survenue.');
          }
 
-         console.log('Inscription réussie :', result);
+         if (response.ok) {
+            console.log('Inscription réussie :', result);
+            setOpenModalLogin(true);
+         }
       } catch (error) {
          console.error('Erreur API :', error);
       }
@@ -151,9 +157,23 @@ const SubcriptionAssociation = () => {
       }
    }, [watchPassword]);
 
+   const renderModalLogin = useMemo(() => {
+      if (openModalLogin) {
+         return (
+            <ModalComponent
+               onClose={setOpenModalLogin(false)}
+               children={
+                  <ModalLoginComponent onClose={setOpenModalLogin(false)} />
+               }
+            />
+         );
+      }
+   }, [openModalLogin]);
+
    return (
       <section className="container">
          <div className={styles.content}>
+            {renderModalLogin}
             <section className={styles.informations}>
                <div className={styles.infos}>
                   <h2 className={styles.title}>Inscrivez votre association</h2>

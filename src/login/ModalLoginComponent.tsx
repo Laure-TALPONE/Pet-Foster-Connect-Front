@@ -42,19 +42,20 @@ const ModalLoginComponent = ({ onClose }: Props) => {
             headers: {
                'Content-Type': 'application/json',
             },
+            credentials: 'include',
             body: JSON.stringify(newData),
          });
 
          const result = await response.json();
 
          if (!response.ok) {
-            setErrorMessage(result.message);
+            setErrorMessage('E-mail ou mot de passe incorrecte');
             throw new Error(result.message || 'Une erreur est survenue.');
          }
 
          if (response.ok) {
+            setErrorMessage('');
             console.log('Connexion réussie :', result);
-            console.log(response, 'ici la response !!!!!');
          }
       } catch (error) {
          console.error('Erreur API :', error);
@@ -69,7 +70,7 @@ const ModalLoginComponent = ({ onClose }: Props) => {
                <section className={styles.email}>
                   <div
                      className={
-                        errors.email
+                        errorMessage
                            ? 'm-input m-input__background m-input__label m-input__error'
                            : 'm-input m-input__background m-input__label'
                      }
@@ -81,13 +82,13 @@ const ModalLoginComponent = ({ onClose }: Props) => {
                      />
                   </div>
                   {errorMessage && (
-                     <p className={styles.passwordError}>{errorMessage}</p>
+                     <p className={styles.messageError}>{errorMessage}</p>
                   )}
                </section>
                <section className={styles.password}>
                   <div
                      className={
-                        errors.password
+                        errorMessage
                            ? 'm-input m-input__background m-input__label m-input__error'
                            : 'm-input m-input__background m-input__label'
                      }
@@ -110,7 +111,7 @@ const ModalLoginComponent = ({ onClose }: Props) => {
                      </button>
                   </div>
                   {errorMessage && (
-                     <p className={styles.passwordError}>{errorMessage}</p>
+                     <p className={styles.messageError}>{errorMessage}</p>
                   )}
                </section>
             </div>
