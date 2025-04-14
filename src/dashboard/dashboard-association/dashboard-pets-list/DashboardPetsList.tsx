@@ -49,7 +49,11 @@ const DashboardPetsList = () => {
                   <span className={styles.status}></span>
                )}
                {isDesktop ? (
-                  <button type="button" className="m-button--square">
+                  <button
+                     type="button"
+                     className="m-button--square"
+                     onClick={handleOpenModal}
+                  >
                      Modifier
                   </button>
                ) : (
@@ -60,7 +64,7 @@ const DashboardPetsList = () => {
             </li>
          );
       });
-   }, [associations, isDesktop]);
+   }, [associations, isDesktop, handleOpenModal]);
 
    const renderButtons = useMemo(() => {
       if (!isDesktop) {
