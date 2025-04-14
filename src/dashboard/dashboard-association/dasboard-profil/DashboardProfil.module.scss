@@ -9,6 +9,7 @@
 
     @include desktop {
         padding: 30px;
+        height: fit-content;
     }
 
     .form {
@@ -39,11 +40,34 @@
                 grid-column: span 1;
             }
 
-            > :nth-child(1),
+            >:nth-child(1),
             :nth-child(4),
             :nth-child(8) {
                 grid-column: 1 / span 2;
             }
+
+            >:nth-child(4) {
+                margin-top: 30px;
+            }
+
+            >:nth-child(8) {
+                margin-top: 40px;
+            }
+        }
+    }
+
+    .password {
+        position: relative;
+        margin-bottom: 20px;
+
+        @include tablet {
+            margin-bottom: 0;
+        }
+
+        .passwordError {
+            position: absolute;
+            color: red;
+            font-size: 13px;
         }
     }
 

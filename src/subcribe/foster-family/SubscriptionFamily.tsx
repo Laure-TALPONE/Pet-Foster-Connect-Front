@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './SubscriptionFamily.module.scss';
 import { useForm } from 'react-hook-form';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Eye, EyeClosed, FileArrowDown } from '@phosphor-icons/react';
+import { Eye, EyeClosed } from '@phosphor-icons/react';
 import Link from 'next/link';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalLoginComponent from '@/login/ModalLoginComponent';
