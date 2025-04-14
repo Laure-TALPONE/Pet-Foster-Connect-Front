@@ -63,6 +63,10 @@
 
     h2 {
         text-align: center;
+
+        @include desktop {
+            width: 65%;
+        }
     }
 
     @include desktop {
@@ -77,29 +81,50 @@
     gap: 10px;
 
     @include tablet {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-
-        > :nth-child(1),
-        > :nth-child(2),
-        > :nth-child(3),
-        > :nth-child(4),
-        > :nth-child(5),
-        > :nth-child(6),
-        > :nth-child(7),
-        > :nth-child(8) {
-            grid-column: span 1;
-        }
-
-
-        >:nth-child(8) {
-            grid-column: 1 / span 2;
-        }
+        gap: 50px;
     }
 
     @include desktop {
         width: 70%;
+    }
+}
+
+.contacts,
+.family {
+    @extend .inputs;
+    width: 100%;
+
+    @include tablet {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+.contacts {
+    >:nth-child(1) {
+        grid-column: 1 / span 2;
+    }
+}
+
+.family {
+    >:nth-child(7) {
+        grid-column: 1 / span 2;
+    }
+}
+
+.password {
+    position: relative;
+    margin-bottom: 20px;
+
+    @include tablet {
+        margin-bottom: 0;
+    }
+
+    .passwordError {
+        position: absolute;
+        color: red;
+        font-size: 13px;
     }
 }
 
@@ -140,7 +165,7 @@
         }
     }
 
-    button {
+    a {
         align-self: center;
         display: flex;
         flex-wrap: nowrap;
