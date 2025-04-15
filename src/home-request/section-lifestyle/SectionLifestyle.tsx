@@ -45,12 +45,12 @@ const SectionLifestyle = () => {
                <p>Avez vous des enfants sous votre toit ?* :</p>
                <ul className={styles.choices}>
                   <li className="m-radio">
-                     <input type="radio" />
+                     <input type="radio" name="childs" />
                      <span></span>
                      <label>Oui</label>
                   </li>
                   <li className="m-radio">
-                     <input type="radio" />
+                     <input type="radio" name="childs" />
                      <span></span>
                      <label>Non</label>
                   </li>
@@ -66,12 +66,12 @@ const SectionLifestyle = () => {
                <p>Avez vous déjà des animaux sous votre toit ?* :</p>
                <ul className={styles.choices}>
                   <li className="m-radio">
-                     <input type="radio" />
+                     <input type="radio" name="pets" />
                      <span></span>
                      <label>Oui</label>
                   </li>
                   <li className="m-radio">
-                     <input type="radio" />
+                     <input type="radio" name="pets" />
                      <span></span>
                      <label>Non</label>
                   </li>

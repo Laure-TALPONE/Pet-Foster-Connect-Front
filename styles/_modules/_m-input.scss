@@ -78,7 +78,7 @@
         color: var(--Blue-secondary);
         font-weight: 500;
         position: absolute;
-        bottom: 100%;
+        bottom: calc(100% + 5px);
         left: 0;
     }
 }

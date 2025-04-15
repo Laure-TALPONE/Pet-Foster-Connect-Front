@@ -4,7 +4,7 @@
     border-radius: 10px;
     font-family: "Baloo Bhai 2", serif;
     font-weight: 600;
-    padding: 10px;
+    padding: 15px;
     transition: transform 0.3s ease;
     color: var(--Blue-secondary);
 
@@ -13,7 +13,7 @@
     }
 
     &--square {
-        padding: 8px 12px;
+        padding: 12px;
         border: solid 2px var(--Blue-secondary);
         border-radius: 5px;
         width: auto;
