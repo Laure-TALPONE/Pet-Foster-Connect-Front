@@ -33,6 +33,28 @@ const HomeRequestComponent = () => {
       };
 
       console.log(newData, 'ici les datas');
+
+      // try {
+      //    const response = await fetch('/api/home-request', {
+      //       method: 'POST',
+      //       headers: {
+      //          'Content-Type': 'application/json',
+      //       },
+      //       body: JSON.stringify(newData),
+      //    });
+
+      //    const result = await response.json();
+
+      //    if (!response.ok) {
+      //       throw new Error(result.message || 'Une erreur est survenue.');
+      //    }
+
+      //    if (response.ok) {
+      //       console.log('Demande d'accueil réussie :', result);
+      //    }
+      // } catch (error) {
+      //    console.error('Erreur API :', error);
+      // }
    };
 
    return (
