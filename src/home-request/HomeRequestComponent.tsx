@@ -6,10 +6,12 @@ import SectionInformations from './section-informations/SectionInformations';
 import SectionLifestyle from './section-lifestyle/SectionLifestyle';
 import SectionMotivations from './section-motivations/SectionMotivations';
 import SectionAdoption from './section-info-adoption/SectionAdoption';
+import { useState } from 'react';
 
 const HomeRequestComponent = () => {
    const methods = useForm();
    const { handleSubmit } = methods;
+   const [consent, setConsent] = useState<boolean>(false);
 
    const onSubmit = async (data: any) => {
       const newData = {
@@ -22,11 +24,12 @@ const HomeRequestComponent = () => {
          postcode: data.postcode,
          city: data.city,
          house: data.house,
-         children: data.children,
+         has_children: data.has_children,
          children_age: data.children_age,
          has_animal: data.has_animal,
          animals_infos: data.animals_infos,
          motivation: data.motivation,
+         consent: data.consent,
       };
 
       console.log(newData, 'ici les datas');
@@ -40,12 +43,13 @@ const HomeRequestComponent = () => {
                <form>
                   <SectionInformations />
                   <SectionLifestyle />
-                  <SectionMotivations />
+                  <SectionMotivations onSendConsent={setConsent} />
                   <SectionAdoption />
                   <button
                      type="submit"
                      className="m-button"
                      onClick={handleSubmit(onSubmit)}
+                     disabled={!consent}
                   >
                      Faire ma demande
                   </button>

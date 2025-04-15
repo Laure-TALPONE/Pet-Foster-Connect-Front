@@ -12,7 +12,6 @@ const SectionInformations = () => {
    const {
       register,
       setValue,
-      watch,
       formState: { errors },
    } = useFormContext();
 
@@ -82,7 +81,7 @@ const SectionInformations = () => {
          </div>
          <div className={errors.email ? 'm-input m-input__error' : 'm-input'}>
             <input
-               type="text"
+               type="email"
                placeholder="E-mail*"
                {...register('email', { required: true })}
             />

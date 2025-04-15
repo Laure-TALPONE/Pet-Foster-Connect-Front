@@ -24,6 +24,12 @@
         @include text-l;
         color: var(--Blue-secondary);
     }
+
+    button {
+        &:disabled {
+            cursor: pointer;
+        }
+    }
 }
 
 .title {
