@@ -5,10 +5,16 @@ import styles from './SectionInformations.module.scss';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
 import { civilities } from '@/globals/constants/civility';
 import { CaretDown } from '@phosphor-icons/react';
+import { useFormContext } from 'react-hook-form';
 
 const SectionInformations = () => {
    const [civilityDisplay, setCivilityDisplay] = useState(false);
-   const [civilityValue, setCivilityValue] = useState('');
+   const {
+      register,
+      setValue,
+      watch,
+      formState: { errors },
+   } = useFormContext();
 
    const refCivility = useOutsideClick(() => setCivilityDisplay(false));
 
@@ -17,7 +23,7 @@ const SectionInformations = () => {
    };
 
    const handleSelectItem = useCallback((civility: string) => {
-      setCivilityValue(civility);
+      setValue('civility', civility);
    }, []);
 
    const renderSelectCivility = useMemo(() => {
@@ -41,7 +47,7 @@ const SectionInformations = () => {
    return (
       <section className={styles.informations}>
          <div
-            className="m-select"
+            className={errors.civility ? 'm-input m-input__error' : 'm-input'}
             onClick={handleOpenDropdown}
             ref={refCivility}
          >
@@ -49,33 +55,67 @@ const SectionInformations = () => {
                type="text"
                readOnly
                placeholder="Civilité"
-               value={civilityValue}
+               {...register('civility', { required: true })}
             />
             <span className="m-select__suffix">
                <CaretDown weight="bold" />
             </span>
             {renderSelectCivility}
          </div>
-         <div className="m-input">
-            <input type="text" placeholder="Prénom*" />
+         <div
+            className={errors.firstname ? 'm-input m-input__error' : 'm-input'}
+         >
+            <input
+               type="text"
+               placeholder="Prénom*"
+               {...register('firstname', { required: true })}
+            />
          </div>
-         <div className="m-input">
-            <input type="text" placeholder="Nom*" />
+         <div
+            className={errors.lastname ? 'm-input m-input__error' : 'm-input'}
+         >
+            <input
+               type="text"
+               placeholder="Nom*"
+               {...register('lastname', { required: true })}
+            />
          </div>
-         <div className="m-input">
-            <input type="text" placeholder="E-mail*" />
+         <div className={errors.email ? 'm-input m-input__error' : 'm-input'}>
+            <input
+               type="text"
+               placeholder="E-mail*"
+               {...register('email', { required: true })}
+            />
          </div>
-         <div className="m-input">
-            <input type="text" placeholder="Téléphone*" />
+         <div className={errors.phone ? 'm-input m-input__error' : 'm-input'}>
+            <input
+               type="text"
+               placeholder="Téléphone*"
+               {...register('phone', { required: true })}
+            />
          </div>
-         <div className="m-input">
-            <input type="text" placeholder="Numéro et nom de voie*" />
+         <div className={errors.address ? 'm-input m-input__error' : 'm-input'}>
+            <input
+               type="text"
+               placeholder="Numéro et nom de voie*"
+               {...register('address', { required: true })}
+            />
          </div>
-         <div className="m-input">
-            <input type="text" placeholder="Code Postal*" />
+         <div
+            className={errors.postcode ? 'm-input m-input__error' : 'm-input'}
+         >
+            <input
+               type="text"
+               placeholder="Code postal*"
+               {...register('postcode', { required: true })}
+            />
          </div>
-         <div className="m-input">
-            <input type="text" placeholder="Ville*" />
+         <div className={errors.city ? 'm-input m-input__error' : 'm-input'}>
+            <input
+               type="text"
+               placeholder="Ville*"
+               {...register('city', { required: true })}
+            />
          </div>
       </section>
    );

@@ -41,22 +41,22 @@ const SectionLifestyle = () => {
                   </li>
                </ul>
             </section>
-            <section className={styles.childs}>
+            <section className={styles.child}>
                <p>Avez vous des enfants sous votre toit ?* :</p>
                <ul className={styles.choices}>
                   <li className="m-radio">
-                     <input type="radio" name="childs" />
+                     <input type="radio" name="child" />
                      <span></span>
                      <label>Oui</label>
                   </li>
                   <li className="m-radio">
-                     <input type="radio" name="childs" />
+                     <input type="radio" name="child" />
                      <span></span>
                      <label>Non</label>
                   </li>
                </ul>
             </section>
-            <section className={styles.childsAge}>
+            <section className={styles.childAge}>
                <p>Si oui, merci d’indiquer leurs âges</p>
                <div className="m-input m-input__background">
                   <input type="text" />
