@@ -15,86 +15,77 @@ const SectionLifestyle = () => {
             />
          </div>
          <div className={styles.infos}>
-            <div className={styles.childs}>
-               <h3>Avez vous des enfants* :</h3>
-               <div className={styles.radios}>
-                  <div className="m-radio">
+            <section className={styles.house}>
+               <p>Quel est le type de votre habitation ?*</p>
+               <ul className={styles.choices}>
+                  <li className="m-checkbox m-checkbox--label">
+                     <input type="checkbox" />
+                     <span></span>
+                     <label>Maison</label>
+                  </li>
+                  <li className="m-checkbox m-checkbox--label">
+                     <input type="checkbox" />
+                     <span></span>
+                     <label>Appartement</label>
+                  </li>
+                  <span>avec</span>
+                  <li className="m-checkbox m-checkbox--label">
+                     <input type="checkbox" />
+                     <span></span>
+                     <label>Jardin</label>
+                  </li>
+                  <li className="m-checkbox m-checkbox--label">
+                     <input type="checkbox" />
+                     <span></span>
+                     <label>Balcon</label>
+                  </li>
+               </ul>
+            </section>
+            <section className={styles.childs}>
+               <p>Avez vous des enfants sous votre toit ?* :</p>
+               <ul className={styles.choices}>
+                  <li className="m-radio">
                      <input type="radio" />
                      <span></span>
                      <label>Oui</label>
-                  </div>
-                  <div className="m-radio">
+                  </li>
+                  <li className="m-radio">
                      <input type="radio" />
                      <span></span>
                      <label>Non</label>
-                  </div>
-               </div>
-            </div>
-            <div className={styles.family}>
-               <h3>Votre Famille*</h3>
-               <p>
-                  Parlez-nous de votre personnalité et de votre style de vie en
-                  sélectionnant les options qui vous décrivent le mieux :
-               </p>
-               <ul className={styles.choices}>
-                  <li>
-                     <div className="m-checkbox m-checkbox--label">
-                        <input type="checkbox" />
-                        <span></span>
-                        <label>Calme</label>
-                     </div>
-                  </li>
-                  <li>
-                     <div className="m-checkbox m-checkbox--label">
-                        <input type="checkbox" />
-                        <span></span>
-                        <label>Casanier</label>
-                     </div>
-                  </li>
-                  <li>
-                     <div className="m-checkbox m-checkbox--label">
-                        <input type="checkbox" />
-                        <span></span>
-                        <label>Dynamique</label>
-                     </div>
-                  </li>
-                  <li>
-                     <div className="m-checkbox m-checkbox--label">
-                        <input type="checkbox" />
-                        <span></span>
-                        <label>Aventureux</label>
-                     </div>
-                  </li>
-                  <li>
-                     <div className="m-checkbox m-checkbox--label">
-                        <input type="checkbox" />
-                        <span></span>
-                        <label>Sportif</label>
-                     </div>
-                  </li>
-                  <li>
-                     <div className="m-checkbox m-checkbox--label">
-                        <input type="checkbox" />
-                        <span></span>
-                        <label>Urbain</label>
-                     </div>
-                  </li>
-                  <li>
-                     <div className="m-checkbox m-checkbox--label">
-                        <input type="checkbox" />
-                        <span></span>
-                        <label>Outdoor</label>
-                     </div>
-                  </li>
-                  <li>
-                     <div className="m-checkbox m-checkbox--label">
-                        <input type="checkbox" />
-                        <span></span>
-                        <label>Voyageur</label>
-                     </div>
                   </li>
                </ul>
-            </div>
+            </section>
+            <section className={styles.childsAge}>
+               <p>Si oui, merci d’indiquer leurs âges</p>
+               <div className="m-input m-input__background">
+                  <input type="text" />
+               </div>
+            </section>
+            <section className={styles.animals}>
+               <p>Avez vous déjà des animaux sous votre toit ?* :</p>
+               <ul className={styles.choices}>
+                  <li className="m-radio">
+                     <input type="radio" />
+                     <span></span>
+                     <label>Oui</label>
+                  </li>
+                  <li className="m-radio">
+                     <input type="radio" />
+                     <span></span>
+                     <label>Non</label>
+                  </li>
+               </ul>
+            </section>
+            <section className={styles.animalsInfos}>
+               <p>
+                  Si oui, merci d’indiquer l’espèce, l’âge, le sexe, sterilisé
+                  ou non
+               </p>
+               <div className="m-input m-input__background">
+                  <input type="text" />
+               </div>
+            </section>
          </div>
       </section>
    );

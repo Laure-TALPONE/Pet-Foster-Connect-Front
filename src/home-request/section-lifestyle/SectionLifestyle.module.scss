@@ -5,6 +5,7 @@
     flex-direction: column;
     gap: 30px;
     align-items: center;
+    width: 100%;
 
     @include desktop {
         flex-direction: row;
@@ -16,6 +17,11 @@
         max-width: 504px;
         max-height: 393px;
         flex-shrink: 0;
+        align-self: center;
+
+        @include desktop {
+            align-self: flex-start;
+        }
 
         img {
             width: 100%;
@@ -26,41 +32,58 @@
     .infos {
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 20px;
+        flex-grow: 1;
     }
 
-    .childs,
-    .family {
+    .house {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-    }
-
-    .childs {
-        @include desktop {
-            flex-direction: row;
-            align-items: center;
-            gap: 30px;
-        }
-    }
-
-    .radios {
-        display: flex;
-        align-items: center;
-        gap: 40px;
     }
 
     .choices {
         display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
 
-        @include desktop {
-            gap: 30px;
-        }
-
-        li {
-            width: fit-content;
+        span {
+            display: flex;
+            align-items: center;
         }
     }
+
+    // .childs,
+    // .family {
+    //     display: flex;
+    //     flex-direction: column;
+    //     gap: 10px;
+    // }
+
+    // .childs {
+    //     @include desktop {
+    //         flex-direction: row;
+    //         align-items: center;
+    //         gap: 30px;
+    //     }
+    // }
+
+    // .radios {
+    //     display: flex;
+    //     align-items: center;
+    //     gap: 40px;
+    // }
+
+    // .choices {
+    //     display: flex;
+    //     gap: 15px;
+    //     flex-wrap: wrap;
+
+    //     @include desktop {
+    //         gap: 30px;
+    //     }
+
+    //     li {
+    //         width: fit-content;
+    //     }
+    // }
 }
