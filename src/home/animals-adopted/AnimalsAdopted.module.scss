@@ -38,14 +38,12 @@
 
 .pictures {
     display: flex;
-    // flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 70px;
+    gap: 40px;
 
     @include desktop {
-        // flex-direction: row;
         gap: 70px;
     }
 }

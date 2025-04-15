@@ -70,7 +70,7 @@
 
     .setpoint {
         color: var(--Orange);
-        font-weight: 500;
+        @include text-l;
         font-size: 18px;
 
         span {

@@ -38,6 +38,10 @@
 }
 
 .subtitle {
+    @include desktop-title-m;
+}
+
+.subtitle {
     font-weight: 600;
     font-size: 25px;
     text-align: center;
