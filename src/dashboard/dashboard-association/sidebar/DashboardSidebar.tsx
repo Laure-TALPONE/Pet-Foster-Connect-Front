@@ -3,7 +3,7 @@
 import styles from './DashboardSidebar.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import { List, PawPrint, Siren, UserCircle } from '@phosphor-icons/react';
+import { Gear, List, PawPrint, Siren, UserCircle } from '@phosphor-icons/react';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -79,6 +79,17 @@ const DashboardSidebar = () => {
                >
                   <UserCircle weight="bold" />
                   Profil
+               </Link>
+            </li>
+            <li>
+               <Link
+                  href={'/dashboard/parametres'}
+                  className={
+                     pathname === '/dashboard/parametres' ? styles.actif : ''
+                  }
+               >
+                  <Gear weight="bold" />
+                  Paramètres
                </Link>
             </li>
          </ul>

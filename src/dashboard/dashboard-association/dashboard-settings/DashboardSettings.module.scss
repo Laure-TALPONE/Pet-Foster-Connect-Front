@@ -1,0 +1,12 @@
+@import '../../../../styles/_bases/mixins';
+
+.settings {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+
+    @include tablet {
+        padding: 30px 0 0 30px;
+        justify-content: inherit;
+    }
+}
