@@ -1,18 +1,34 @@
+@import '../../../../styles/_bases/mixins';
+
 .footer {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 70px 0;
+    padding: 70px 20px;
     background-color: var(--Blue-secondary);
+    gap: 20px;
+    color: var(--Neutral-white);
 
-    p {
-        color: var(--Neutral-white);
-        font-family: 'Karla', sans-serif;
-        font-size: 16px;
+    .links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        @include tablet {
+            flex-direction: row;
+            gap: 30px;
+        }
+
+        a {
+            text-decoration: underline;
+            line-height: 20px;
+        }
+
     }
 
-    a {
-        text-decoration: underline;
+    p {
+        font-size: 16px;
+        line-height: 20px;
     }
 }
