@@ -126,7 +126,6 @@
     align-items: center;
     gap: 30px;
     justify-content: space-between;
-    text-align: center;
 
     .title {
         @include desktop-title-l;
@@ -136,22 +135,6 @@
     .info {
         @include text-l;
         color: var(--Blue-secondary);
-    }
-
-    .list {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 20px;
-        place-items: center;
-
-        .item {
-            width: 100%;
-            max-width: 340px;
-
-            a {
-                width: 100%;
-            }
-        }
+        text-align: center;
     }
 }

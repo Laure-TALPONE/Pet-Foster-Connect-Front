@@ -179,14 +179,9 @@
             color: var(--Blue-secondary);
         }
 
-        .viewPage {
-            padding: 8px 12px;
-            border: solid 2px var(--Blue-secondary);
-            border-radius: 5px;
-            width: auto;
-            align-self: flex-start;
-            columns: var(--Blue-secondary);
-            font-weight: 500;
+        a {
+            width: fit-content;
+            color: var(--Blue-secondary);
 
             &:hover {
                 text-decoration: underline;

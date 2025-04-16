@@ -5,7 +5,11 @@ import styles from './ListAnimals.module.scss';
 import { associations } from '@/globals/constants/data';
 import Link from 'next/link';
 
-const ListAnimals = () => {
+type Props = {
+   listAnimals?: any;
+};
+
+const ListAnimals = ({ listAnimals }: Props) => {
    const [organizations, setOrganizations] = useState(associations);
 
    const animals = useMemo(() => {

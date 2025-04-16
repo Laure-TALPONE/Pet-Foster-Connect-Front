@@ -30,7 +30,7 @@ const CardAnimal = ({ pet }: Props) => {
             />
          </div>
          <div className={styles.informations}>
-            <div className={styles.names}>
+            <div className={styles.infoNames}>
                <p className={styles.animalName}>{pet.name}</p>
                <p className={styles.assoName}>Nom de l'Association</p>
             </div>

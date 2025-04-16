@@ -125,7 +125,6 @@
    align-items: center;
    gap: 30px;
    justify-content: space-between;
-   text-align: center;
 
    .title {
       @include desktop-title-l;
@@ -135,6 +134,7 @@
    .info {
       @include text-l;
       color: var(--Blue-secondary);
+      text-align: center;
    }
 
    .list {

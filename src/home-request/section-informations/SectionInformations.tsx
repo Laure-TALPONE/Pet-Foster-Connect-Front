@@ -46,7 +46,9 @@ const SectionInformations = () => {
    return (
       <section className={styles.informations}>
          <div
-            className={errors.civility ? 'm-input m-input__error' : 'm-input'}
+            className={
+               errors.civility ? 'm-select m-select__error' : 'm-select'
+            }
             onClick={handleOpenDropdown}
             ref={refCivility}
          >

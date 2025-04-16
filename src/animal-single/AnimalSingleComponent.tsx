@@ -145,9 +145,9 @@ const AnimalSingleComponent = () => {
                      offrir une seconde chance aux animaux abandonnés ou
                      maltraités.
                   </p>
-                  <button type="button" className={styles.viewPage}>
+                  <Link href={'#'} className="m-button--square">
                      Voir la page de l’association
-                  </button>
+                  </Link>
                </div>
                <div className={styles.adopte}>
                   <h2 className={styles.title}>

@@ -5,27 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import styles from './FosterFamilySingleComponent.module.scss';
+import ListAnimals from '@/animals/list-animals/ListAnimals';
 
 const FosterFamilySingleComponent = () => {
-   const [organizations, setOrganizations] = useState(associations);
-
-   const animals = useMemo(() => {
-      const firstAssociation = organizations[0];
-      return firstAssociation ? firstAssociation.animals : [];
-   }, [organizations]);
-
-   const renderAnimalsList = useMemo(() => {
-      return animals.map((pet: any, index: number) => {
-         return (
-            <li key={index} className={styles.item}>
-               <Link href={'/animals/1'}>
-                  <CardAnimal pet={pet} />
-               </Link>
-            </li>
-         );
-      });
-   }, []);
-
    return (
       <section className="container">
          <div className={styles.familyPage}>
@@ -80,7 +62,7 @@ const FosterFamilySingleComponent = () => {
                   attendent avec impatience de trouver un foyer définitif où ils
                   pourront s’épanouir pleinement.
                </p>
-               <ul className={styles.list}>{renderAnimalsList}</ul>
+               <ListAnimals />
             </section>
          </div>
       </section>

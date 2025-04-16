@@ -51,41 +51,7 @@
         span {
             display: flex;
             align-items: center;
+            color: var(--Blue-secondary);
         }
     }
-
-    // .childs,
-    // .family {
-    //     display: flex;
-    //     flex-direction: column;
-    //     gap: 10px;
-    // }
-
-    // .childs {
-    //     @include desktop {
-    //         flex-direction: row;
-    //         align-items: center;
-    //         gap: 30px;
-    //     }
-    // }
-
-    // .radios {
-    //     display: flex;
-    //     align-items: center;
-    //     gap: 40px;
-    // }
-
-    // .choices {
-    //     display: flex;
-    //     gap: 15px;
-    //     flex-wrap: wrap;
-
-    //     @include desktop {
-    //         gap: 30px;
-    //     }
-
-    //     li {
-    //         width: fit-content;
-    //     }
-    // }
 }
