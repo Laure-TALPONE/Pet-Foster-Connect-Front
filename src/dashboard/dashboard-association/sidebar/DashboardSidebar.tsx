@@ -6,11 +6,13 @@ import Link from 'next/link';
 import { Gear, List, PawPrint, Siren, UserCircle } from '@phosphor-icons/react';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import useOutsideClick from '@/globals/hooks/useOutsideClick';
 
 const DashboardSidebar = () => {
    const pathname = usePathname();
    const [isDesktop, setIsDesktop] = useState(false);
    const [menuIsOpen, setMenuIsOpen] = useState(false);
+   const sidebarRef = useOutsideClick(() => setMenuIsOpen(false));
 
    useEffect(() => {
       const handleResize = () => {
@@ -103,7 +105,9 @@ const DashboardSidebar = () => {
       return (
          <div className={styles.sidebar}>
             {menuIsOpen && (
-               <div className={styles.menuOpen}>{renderSidebarItems()}</div>
+               <div className={styles.menuOpen} ref={sidebarRef}>
+                  {renderSidebarItems()}
+               </div>
             )}
             <button type="button" onClick={handleOpenMenu}>
                <List weight="bold" />

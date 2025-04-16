@@ -57,7 +57,11 @@ const DashboardPetsList = () => {
                      Modifier
                   </button>
                ) : (
-                  <button type="button" className={styles.edit}>
+                  <button
+                     type="button"
+                     className={styles.edit}
+                     onClick={handleOpenModal}
+                  >
                      <PencilSimple />
                   </button>
                )}
