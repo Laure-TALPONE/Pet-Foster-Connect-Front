@@ -13,11 +13,15 @@ import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import ModalComponent from '../modal/ModalComponent';
 import styles from './HeaderComponent.module.scss';
+import useOutsideClick from '@/globals/hooks/useOutsideClick';
+import { usePathname } from 'next/navigation';
 
 const HeaderComponent = () => {
    const [isDesktop, setIsDesktop] = useState(false);
    const [menuIsOpen, setMenuIsOpen] = useState(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+   const menuRef = useOutsideClick(() => setMenuIsOpen(false));
+   const pathname = usePathname();
 
    const handleOpenModal = useCallback(() => {
       setModalIsOpen(true);
@@ -39,6 +43,10 @@ const HeaderComponent = () => {
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
    }, []);
+
+   useEffect(() => {
+      setMenuIsOpen(false);
+   }, [pathname]);
 
    const renderModal = useMemo(() => {
       if (modalIsOpen) {
@@ -92,7 +100,9 @@ const HeaderComponent = () => {
                   <List weight="bold" />
                </button>
                {menuIsOpen && (
-                  <div className={styles.menuOpen}>{renderNavItems()}</div>
+                  <div className={styles.menuOpen} ref={menuRef}>
+                     {renderNavItems()}
+                  </div>
                )}
             </div>
          </div>
