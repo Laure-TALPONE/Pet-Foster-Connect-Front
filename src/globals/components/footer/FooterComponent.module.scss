@@ -21,8 +21,10 @@
         }
 
         a {
-            text-decoration: underline;
-            line-height: 20px;
+            // text-decoration: underline;
+            line-height: 16px;
+            border-bottom: solid 1px var(--Neutral-white);
+            width: fit-content;
         }
 
     }
