@@ -62,25 +62,43 @@ const HeaderComponent = () => {
    const renderNavItems = () => {
       return (
          <ul className={styles.nav}>
-            <li className={styles.item}>
+            <li
+               className={
+                  pathname === '/accueil' ? styles.itemActive : styles.item
+               }
+            >
                <Link href="/accueil">
                   <House weight="bold" />
                   <span>Accueil</span>
                </Link>
             </li>
-            <li className={styles.item}>
+            <li
+               className={
+                  pathname === '/nos-animaux' ? styles.itemActive : styles.item
+               }
+            >
                <Link href="/nos-animaux">
                   <Cat weight="bold" />
                   <span>Nos animaux</span>
                </Link>
             </li>
-            <li className={styles.item}>
+            <li
+               className={
+                  pathname === '/associations' ? styles.itemActive : styles.item
+               }
+            >
                <Link href="/associations">
                   <HandHeart weight="bold" />
                   <span>Nos associations</span>
                </Link>
             </li>
-            <li className={styles.item}>
+            <li
+               className={
+                  pathname === '/familles-daccueil'
+                     ? styles.itemActive
+                     : styles.item
+               }
+            >
                <Link href="/familles-daccueil">
                   <Users weight="bold" />
                   <span>Nos familles d'accueil</span>
