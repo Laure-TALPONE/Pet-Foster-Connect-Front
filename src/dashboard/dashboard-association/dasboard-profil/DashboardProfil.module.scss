@@ -4,12 +4,12 @@
     border: solid 1px var(--Blue-secondary);
     border-radius: 5px;
     padding: 20px;
+    max-height: 630px;
     height: 100%;
     overflow: auto;
 
     @include desktop {
         padding: 30px;
-        height: fit-content;
     }
 
     .form {
