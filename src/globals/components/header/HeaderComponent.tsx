@@ -14,18 +14,27 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import ModalComponent from '../modal/ModalComponent';
 import styles from './HeaderComponent.module.scss';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
-const HeaderComponent = () => {
+type Props = {
+   token: any;
+};
+
+const HeaderComponent = ({ token }: Props) => {
    const [isDesktop, setIsDesktop] = useState(false);
    const [menuIsOpen, setMenuIsOpen] = useState(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
    const menuRef = useOutsideClick(() => setMenuIsOpen(false));
    const pathname = usePathname();
+   const router = useRouter();
 
    const handleOpenModal = useCallback(() => {
-      setModalIsOpen(true);
-   }, []);
+      if (!token) {
+         setModalIsOpen(true);
+      } else {
+         router.push('/dashboard');
+      }
+   }, [token]);
 
    const handleCloseModal = useCallback(() => {
       setModalIsOpen(false);

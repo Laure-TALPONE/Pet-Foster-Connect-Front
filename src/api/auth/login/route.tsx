@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { redirect } from 'next/navigation';
 
 const fetchPostLogin = async (request: NextRequest) => {
    try {

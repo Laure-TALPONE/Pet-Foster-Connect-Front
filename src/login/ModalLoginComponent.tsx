@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import styles from './ModalLoginComponent.module.scss';
 import { useState } from 'react';
 import { Eye, EyeClosed } from '@phosphor-icons/react';
+import { useRouter } from 'next/navigation';
 
 type Props = {
    onClose: any;
@@ -19,6 +20,7 @@ const ModalLoginComponent = ({ onClose }: Props) => {
       watch,
       formState: { errors },
    } = useForm();
+   const router = useRouter();
 
    const handleCloseModal = () => {
       onClose(false);
@@ -56,6 +58,7 @@ const ModalLoginComponent = ({ onClose }: Props) => {
          if (response.ok) {
             setErrorMessage('');
             console.log('Connexion réussie :', result);
+            router.push('/dashboard');
          }
       } catch (error) {
          console.error('Erreur API :', error);
