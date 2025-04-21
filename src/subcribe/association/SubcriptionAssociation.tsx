@@ -14,6 +14,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import dayjs from 'dayjs';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalLoginComponent from '@/login/ModalLoginComponent';
+import sendRequest from '@/globals/hooks/sendRequest';
 
 const SubcriptionAssociation = () => {
    const {
@@ -72,28 +73,18 @@ const SubcriptionAssociation = () => {
 
       console.log(newData, 'ici les datas');
 
-      try {
-         const response = await fetch('/api/auth/register/association', {
-            method: 'POST',
-            headers: {
-               'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newData),
-         });
+      const result = await sendRequest(
+         'POST',
+         '/api/auth/register/association',
+         newData
+      );
 
-         const result = await response.json();
+      if (result) {
+         setOpenModalLogin(true);
+      }
 
-         if (!response.ok) {
-            // setErrorEmailMessage(result.message);
-            throw new Error(result.message || 'Une erreur est survenue.');
-         }
-
-         if (response.ok) {
-            console.log('Inscription réussie :', result);
-            setOpenModalLogin(true);
-         }
-      } catch (error) {
-         console.error('Erreur API :', error);
+      if (!result) {
+         setErrorEmailMessage('E-mail déjà existant.');
       }
    };
 

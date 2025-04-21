@@ -8,6 +8,7 @@ import { Eye, EyeClosed } from '@phosphor-icons/react';
 import Link from 'next/link';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalLoginComponent from '@/login/ModalLoginComponent';
+import sendRequest from '@/globals/hooks/sendRequest';
 
 const SubcriptionFamily = () => {
    const {
@@ -18,6 +19,7 @@ const SubcriptionFamily = () => {
       formState: { errors },
    } = useForm();
    const [errorMessage, setErrorMessage] = useState('');
+   const [errorEmailMessage, setErrorEmailMessage] = useState('');
    const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
    const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
    const [openModalLogin, setOpenModalLogin] = useState<boolean>(false);
@@ -82,30 +84,19 @@ const SubcriptionFamily = () => {
 
       console.log(newData, 'ici les datas');
 
-      // try {
-      //    const response = await fetch('/api/auth/register/foster-family', {
-      //       method: 'POST',
-      //       headers: {
-      //          'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify(newData),
-      //    });
+      const result = await sendRequest(
+         'POST',
+         '/api/auth/register/foster-family',
+         newData
+      );
 
-      //    const result = await response.json();
+      if (result) {
+         setOpenModalLogin(true);
+      }
 
-      //    if (!response.ok) {
-      //       // setErrorEmailMessage(result.message);
-      //       throw new Error(result.message || 'Une erreur est survenue.');
-      //    }
-
-      //    if (response.ok) {
-      //       console.log('Inscription réussie :', result);
-      //       setOpenModalLogin(true);
-
-      //    }
-      // } catch (error) {
-      //    console.error('Erreur API :', error);
-      // }
+      if (!result) {
+         setErrorEmailMessage('E-mail déjà existant.');
+      }
    };
 
    const renderModalLogin = useMemo(() => {
@@ -172,9 +163,11 @@ const SubcriptionFamily = () => {
                               {...register('email', { required: true })}
                            />
                         </div>
-                        {/* {errorEmailMessage && (
-                        <p className={styles.emailError}>{errorEmailMessage}</p>
-                     )} */}
+                        {errorEmailMessage && (
+                           <p className={styles.emailError}>
+                              {errorEmailMessage}
+                           </p>
+                        )}
                      </section>
                      <section className={errorMessage ? styles.password : ''}>
                         <div
