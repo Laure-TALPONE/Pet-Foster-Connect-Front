@@ -11,8 +11,9 @@ export default async function AppRootLayout({
 }) {
    const cookieStore = await cookies();
    const token = cookieStore.get('token');
-   console.log(token, 'ici le tokeeeeeeeeeeen');
+   // console.log(token, 'ici le token');
 
+   // si pas de token, redirection vers la page d'accueil
    if (!token) redirect('/');
 
    return (

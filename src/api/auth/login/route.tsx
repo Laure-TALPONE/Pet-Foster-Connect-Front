@@ -26,16 +26,20 @@ const fetchPostLogin = async (request: NextRequest) => {
          );
       }
 
-      const cookie = response.headers.get('set-cookie'); // obtenir les cookies dans le headers
+      // obtenir les cookies dans le headers
+      const cookies = response.headers.getSetCookie();
+      console.log(cookies, 'ici les cookies');
 
-      const nextResponse = NextResponse.json(result, { status: 200 }); //on duplique NextResponse
+      //on duplique NextResponse
+      const nextResponse = NextResponse.json(result, { status: 200 });
 
-      if (cookie) {
+      if (cookies) {
          // si j'ai des cookies, je l'ajoute dans la response de next
-         nextResponse.headers.set('set-cookie', cookie);
+         nextResponse.headers.append('set-cookie', cookies);
       }
 
-      return nextResponse; //puis on le retourne pour avoir les cookies dans Response Headers
+      //puis on la retourne pour avoir les cookies dans Response Headers
+      return nextResponse;
    } catch (error: any) {
       console.error('Erreur lors du POST vers NestJS :', error);
       return NextResponse.json(

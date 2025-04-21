@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import styles from './ModalLoginComponent.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Eye, EyeClosed } from '@phosphor-icons/react';
 import { useRouter } from 'next/navigation';
+import sendRequest from '@/globals/hooks/sendRequest';
 
 type Props = {
    onClose: any;
@@ -12,7 +13,7 @@ type Props = {
 const ModalLoginComponent = ({ onClose }: Props) => {
    const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
    const [errorMessage, setErrorMessage] = useState('');
-   const [userConnected, setUserConnected] = useState();
+   const [user, setUser] = useState();
    const {
       register,
       setValue,
@@ -38,30 +39,15 @@ const ModalLoginComponent = ({ onClose }: Props) => {
 
       console.log(newData, 'ici les datas');
 
-      try {
-         const response = await fetch('/api/auth/login', {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-               'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newData),
-         });
+      const result = await sendRequest('POST', '/api/auth/login', newData);
 
-         const result = await response.json();
+      if (result) {
+         setUser(result?.user);
+         router.push('/dashboard');
+      }
 
-         if (!response.ok) {
-            setErrorMessage('E-mail ou mot de passe incorrecte');
-            throw new Error(result.message || 'Une erreur est survenue.');
-         }
-
-         if (response.ok) {
-            setErrorMessage('');
-            console.log('Connexion réussie :', result);
-            router.push('/dashboard');
-         }
-      } catch (error) {
-         console.error('Erreur API :', error);
+      if (!result) {
+         setErrorMessage('E-mail ou mot de passe incorrecte');
       }
    };
 
