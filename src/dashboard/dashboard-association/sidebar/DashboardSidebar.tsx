@@ -3,12 +3,23 @@
 import styles from './DashboardSidebar.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Gear, List, PawPrint, Siren, UserCircle } from '@phosphor-icons/react';
+import {
+   Gear,
+   List,
+   PawPrint,
+   SignOut,
+   Siren,
+   UserCircle,
+} from '@phosphor-icons/react';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
 
-const DashboardSidebar = () => {
+type Props = {
+   token: any;
+};
+
+const DashboardSidebar = ({ token }: Props) => {
    const pathname = usePathname();
    const [isDesktop, setIsDesktop] = useState(false);
    const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -30,6 +41,12 @@ const DashboardSidebar = () => {
    useEffect(() => {
       setMenuIsOpen(false);
    }, [pathname]);
+
+   // const handleLogOut = () => {
+   //    if(token) {
+
+   //    }
+   // };
 
    const renderPageName = useMemo(() => {
       if (!isDesktop) {
@@ -93,6 +110,12 @@ const DashboardSidebar = () => {
                   <Gear weight="bold" />
                   Paramètres
                </Link>
+            </li>
+            <li>
+               <button type="button">
+                  <SignOut weight="bold" />
+                  Déconnexion
+               </button>
             </li>
          </ul>
       );

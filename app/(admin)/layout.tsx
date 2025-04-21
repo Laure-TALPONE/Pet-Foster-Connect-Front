@@ -20,7 +20,7 @@ export default async function AppRootLayout({
          <HeaderComponent token={token} />
          <div className="container">
             <section className="dashboard">
-               <DashboardSidebar />
+               <DashboardSidebar token={token} />
                <div className="main">{children}</div>
             </section>
          </div>

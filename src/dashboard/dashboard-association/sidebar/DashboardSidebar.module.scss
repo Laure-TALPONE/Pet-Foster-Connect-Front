@@ -70,7 +70,9 @@
         padding-left: 20px;
 
         li {
-            a {
+
+            a,
+            button {
                 @include text-l;
                 font-weight: 600;
                 color: var(--Blue-secondary);
