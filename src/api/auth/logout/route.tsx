@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
-const fetchPostLogOut = async (request: NextRequest) => {
+const fetchPostLogOut = async () => {
    try {
-      const data = await request.json();
-
       const response = await fetch(
          // 'http://jeremyjacquette-server.eddi.cloud/api/logout',
          'http://localhost/api/logout',
@@ -12,9 +11,21 @@ const fetchPostLogOut = async (request: NextRequest) => {
             headers: {
                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
          }
       );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+         return NextResponse.json(
+            { message: result.message || 'Erreur côté serveur NestJS' },
+            { status: response.status }
+         );
+      }
+
+      cookies().delete('token');
+
+      return NextResponse.json(result, { status: 200 });
    } catch (error: any) {
       console.error('Erreur lors du POST vers NestJS :', error);
       return NextResponse.json(

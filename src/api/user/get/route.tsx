@@ -3,8 +3,7 @@ import { cookies } from 'next/headers';
 
 const fetchGetUser = async (request: NextRequest) => {
    try {
-      const cookieStore = cookies();
-      const token = cookieStore.get('token');
+      const token = cookies().get('token');
 
       if (!token) {
          return NextResponse.json(

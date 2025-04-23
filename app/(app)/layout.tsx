@@ -11,7 +11,7 @@ export default async function AppRootLayout({
 }) {
    const cookieStore = await cookies();
    const token = cookieStore.get('token');
-   console.log(token, 'ici le tokeeeeeeeeeeen');
+   // console.log(token, 'ici le token');
 
    return (
       <div className="layout">

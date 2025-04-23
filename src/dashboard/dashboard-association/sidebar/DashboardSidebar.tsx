@@ -11,9 +11,10 @@ import {
    Siren,
    UserCircle,
 } from '@phosphor-icons/react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
+import sendRequest from '@/globals/hooks/sendRequest';
 
 type Props = {
    token: any;
@@ -24,6 +25,7 @@ const DashboardSidebar = ({ token }: Props) => {
    const [isDesktop, setIsDesktop] = useState(false);
    const [menuIsOpen, setMenuIsOpen] = useState(false);
    const sidebarRef = useOutsideClick(() => setMenuIsOpen(false));
+   const router = useRouter();
 
    useEffect(() => {
       const handleResize = () => {
@@ -42,11 +44,20 @@ const DashboardSidebar = ({ token }: Props) => {
       setMenuIsOpen(false);
    }, [pathname]);
 
-   // const handleLogOut = () => {
-   //    if(token) {
+   const handleLogOut = async () => {
+      if (token) {
+         const result = await sendRequest('POST', '/api/auth/logout');
 
-   //    }
-   // };
+         if (!result) {
+            console.log('Problème lors de la déconnexion');
+         }
+
+         if (result) {
+            console.log('Déconnexion réussie.');
+            router.push('/accueil');
+         }
+      }
+   };
 
    const renderPageName = useMemo(() => {
       if (!isDesktop) {
@@ -112,7 +123,7 @@ const DashboardSidebar = ({ token }: Props) => {
                </Link>
             </li>
             <li>
-               <button type="button">
+               <button type="button" onClick={handleLogOut}>
                   <SignOut weight="bold" />
                   Déconnexion
                </button>
