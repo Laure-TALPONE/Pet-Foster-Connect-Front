@@ -4,8 +4,9 @@ const fetchUpdateUser = async (request: NextRequest) => {
    try {
       const data = await request.json();
 
-      const response = await fetch('http://localhost/api/user/update', {
-         method: 'PUT',
+      const response = await fetch('http://localhost/api/update', {
+         method: 'PATCH',
+         credentials: 'include',
          headers: {
             'Content-Type': 'application/json',
          },

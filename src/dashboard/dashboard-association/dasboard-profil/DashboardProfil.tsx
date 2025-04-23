@@ -70,7 +70,7 @@ const DashboardProfil = () => {
 
       console.log(newData, 'ici les datas');
 
-      const result = await sendRequest('PUT', '/api/user/update', newData);
+      const result = await sendRequest('PATCH', '/api/user/update', newData);
 
       if (result) {
          console.log('Modification du profil réussie.');

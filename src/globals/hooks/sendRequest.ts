@@ -1,7 +1,7 @@
 'use client';
 
 const sendRequest = async (
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE',
+    method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
     url: string,
     data?: any,
 ) => {
@@ -26,7 +26,7 @@ const sendRequest = async (
             return result;
         }
     } catch (error) {
-        console.error('Erreur API :', error);
+        console.error(error);
     }
 }
 
