@@ -148,18 +148,22 @@ const SubcriptionAssociation = () => {
       }
    }, [watchPassword]);
 
+   const handleCloseModalLogin = useCallback(() => {
+      setOpenModalLogin(false);
+   }, [openModalLogin]);
+
    const renderModalLogin = useMemo(() => {
       if (openModalLogin) {
          return (
             <ModalComponent
-               onClose={setOpenModalLogin(false)}
+               onClose={handleCloseModalLogin}
                children={
-                  <ModalLoginComponent onClose={setOpenModalLogin(false)} />
+                  <ModalLoginComponent onClose={handleCloseModalLogin} />
                }
             />
          );
       }
-   }, [openModalLogin]);
+   }, [openModalLogin, handleCloseModalLogin]);
 
    return (
       <section className="container">

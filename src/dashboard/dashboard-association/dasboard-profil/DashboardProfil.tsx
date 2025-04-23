@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import styles from './DashboardProfil.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { Eye, EyeClosed } from '@phosphor-icons/react';
+import sendRequest from '@/globals/hooks/sendRequest';
 
 const DashboardProfil = () => {
    const {
@@ -69,30 +70,15 @@ const DashboardProfil = () => {
 
       console.log(newData, 'ici les datas');
 
-      // try {
-      //    const response = await fetch('/api/profile', {
-      //       method: 'PUT',
-      //       headers: {
-      //          'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify(newData),
-      //    });
+      const result = await sendRequest('PUT', '/api/user/update', newData);
 
-      //    const result = await response.json();
+      if (result) {
+         console.log('Modification du profil réussie.');
+      }
 
-      //    if (!response.ok) {
-      //       // setErrorEmailMessage(result.message);
-      //       throw new Error(result.message || 'Une erreur est survenue.');
-      //    }
-
-      //    if (response.ok) {
-      //       console.log('Inscription réussie :', result);
-      //       setOpenModalLogin(true);
-
-      //    }
-      // } catch (error) {
-      //    console.error('Erreur API :', error);
-      // }
+      if (!result) {
+         console.log('Erreur lors de la modification du profil.');
+      }
    };
 
    return (

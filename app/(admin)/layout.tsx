@@ -1,3 +1,4 @@
+import fetchGetUser from '@/api/user/get/route';
 import DashboardSidebar from '@/dashboard/dashboard-association/sidebar/DashboardSidebar';
 import FooterComponent from '@/globals/components/footer/FooterComponent';
 import HeaderComponent from '@/globals/components/header/HeaderComponent';

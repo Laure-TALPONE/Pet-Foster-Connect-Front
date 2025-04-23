@@ -5,7 +5,7 @@ const fetchPostLogOut = async (request: NextRequest) => {
       const data = await request.json();
 
       const response = await fetch(
-         // 'http://jeremyjacquette-server.eddi.cloud/api/login',
+         // 'http://jeremyjacquette-server.eddi.cloud/api/logout',
          'http://localhost/api/logout',
          {
             method: 'POST',
@@ -18,7 +18,7 @@ const fetchPostLogOut = async (request: NextRequest) => {
    } catch (error: any) {
       console.error('Erreur lors du POST vers NestJS :', error);
       return NextResponse.json(
-         { message: 'Erreur lors de la connexion', error: error.message },
+         { message: 'Erreur lors de la déconnexion', error: error.message },
          { status: 500 }
       );
    }
