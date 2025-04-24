@@ -1,3 +1,4 @@
+import { UserProvider } from '@/globals/utils/UserContext';
 import '../styles/globals.scss';
 import type { Metadata } from 'next';
 
@@ -14,7 +15,9 @@ export default function RootLayout({
 }) {
    return (
       <html lang="fr">
-         <body>{children}</body>
+         <UserProvider>
+            <body>{children}</body>
+         </UserProvider>
       </html>
    );
 }

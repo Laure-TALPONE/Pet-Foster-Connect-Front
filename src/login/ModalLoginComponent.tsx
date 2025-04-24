@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Eye, EyeClosed } from '@phosphor-icons/react';
 import { useRouter } from 'next/navigation';
 import sendRequest from '@/globals/hooks/sendRequest';
+import { useUser } from '@/globals/utils/UserContext';
 
 type Props = {
    onClose: any;
@@ -13,7 +14,8 @@ type Props = {
 const ModalLoginComponent = ({ onClose }: Props) => {
    const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
    const [errorMessage, setErrorMessage] = useState('');
-   const [user, setUser] = useState();
+   // const [user, setUser] = useState();
+   const { setUser } = useUser();
    const {
       register,
       setValue,

@@ -8,6 +8,8 @@ import DropdownComponent from '@/globals/components/dropdown/DropdownComponent';
 import { animals, genders } from '@/globals/constants/animals';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
 import dayjs from 'dayjs';
+import sendRequest from '@/globals/hooks/sendRequest';
+import { useUser } from '@/globals/utils/UserContext';
 
 type Props = {
    onClose: any;
@@ -24,6 +26,8 @@ const ModalPetForm = ({ onClose }: Props) => {
       watch,
       formState: { errors },
    } = useForm();
+   const user = useUser();
+   const organizationId = user.user.organizations[0].uuid;
 
    const handleOpenSelect = (item: string) => {
       setSelectOpen((prev) => (prev === item ? null : item));
@@ -34,7 +38,7 @@ const ModalPetForm = ({ onClose }: Props) => {
    };
 
    const handleSelectItem = useCallback(
-      (type: string, item: string) => {
+      (type: string, item: string | boolean) => {
          setValue(type, item);
          setSelectOpen('');
       },
@@ -43,41 +47,30 @@ const ModalPetForm = ({ onClose }: Props) => {
 
    const onSubmit = async (data: any) => {
       const newData = {
+         organization_id: organizationId,
          name: data.name,
-         species: data.species,
+         species_id: data.species,
          breed: data.breed,
-         date: dayjs(data.date).format('YYYY-MM-DD'),
-         gender: data.gender,
-         available: data.available,
-         vaccinated: data.vaccinated,
-         weaned: data.weaned,
-         sterilized: data.sterilized,
+         birthdate: dayjs(data.date).format('YYYY-MM-DD'),
+         gender: data.gender === 'Mâle' ? true : false,
+         is_available: data.available === 'Oui' ? true : false,
+         is_vaccinated: data.vaccinated === 'Oui' ? true : false,
+         is_weaned: data.weaned === 'Oui' ? true : false,
+         is_sterilized: data.sterilized === 'Oui' ? true : false,
          description: data.description,
       };
 
       console.log(newData, 'ici les datas');
 
-      // try {
-      //    const response = await fetch('/api/animals', {
-      //       method: 'POST',
-      //       headers: {
-      //          'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify(newData),
-      //    });
+      const result = await sendRequest('POST', '/api/animals/create', newData);
 
-      //    const result = await response.json();
+      if (result) {
+         console.log("Création d'un animal réussie.");
+      }
 
-      //    if (!response.ok) {
-      //       throw new Error(result.message || 'Une erreur est survenue.');
-      //    }
-
-      //    if (response.ok) {
-      //       console.log('Connexion réussie :', result);
-      //    }
-      // } catch (error) {
-      //    console.error('Erreur API :', error);
-      // }
+      if (!result) {
+         console.log("Echec de la création d'un animal.");
+      }
    };
 
    const renderTypesAnimal = useMemo(() => {
