@@ -10,21 +10,17 @@ const fetchGetAllAnimals = async () => {
          },
       });
 
-      const result = await response.json();
-
       if (!response.ok) {
-         return NextResponse.json(
-            { message: result.message || 'Erreur côté serveur NestJS' },
-            { status: response.status }
-         );
+         throw new Error('Erreur lors du fetch des animaux.');
       }
 
-      return NextResponse.json(result, { status: 200 });
+      const result = await response.json();
+      return result;
    } catch (error: any) {
       console.error('Erreur lors du GET vers NestJS :', error);
       return NextResponse.json(
          {
-            message: 'Erreur lors de la récupération des animaux.',
+            message: 'Erreur lors du fetch des animaux.',
             error: error.message,
          },
          { status: 500 }

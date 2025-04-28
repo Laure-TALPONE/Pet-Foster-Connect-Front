@@ -38,7 +38,7 @@ const DashboardPetsList = () => {
       const fetchAnimals = async () => {
          const animalsResult = await sendRequest(
             'GET',
-            `/api/animals/?uuid=${organizationId}`
+            `/api/animals/getByAssociation/?uuid=${organizationId}`
          );
          setPetsList(animalsResult);
          console.log(animalsResult, 'ici la liste des animaux');

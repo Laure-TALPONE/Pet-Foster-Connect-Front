@@ -2,7 +2,11 @@
 import styles from './AnimalsComponent.module.scss';
 import ListAnimals from './list-animals/ListAnimals';
 
-const AnimalsComponent = () => {
+type Props = {
+   animals?: any;
+};
+
+const AnimalsComponent = ({ animals }: Props) => {
    return (
       <section className="container">
          <div className={styles.animals}>
@@ -19,7 +23,7 @@ const AnimalsComponent = () => {
                   foyer. Offrez-leur une seconde chance !
                </p>
             </div>
-            <ListAnimals />
+            <ListAnimals listAnimals={animals} />
          </div>
       </section>
    );

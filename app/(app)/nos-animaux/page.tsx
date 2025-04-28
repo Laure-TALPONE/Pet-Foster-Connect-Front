@@ -1,5 +1,8 @@
 import AnimalsComponent from '@/animals/AnimalsComponent';
+import fetchGetAllAnimals from '@/api/animals/get/route';
 
-export default function AnimalsPage() {
-   return <AnimalsComponent />;
+export default async function AnimalsPage() {
+   const animals = await fetchGetAllAnimals();
+
+   return <AnimalsComponent animals={animals} />;
 }

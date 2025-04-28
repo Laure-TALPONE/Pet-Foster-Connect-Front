@@ -10,19 +10,19 @@ type Props = {
 };
 
 const ListAnimals = ({ listAnimals }: Props) => {
-   const [organizations, setOrganizations] = useState(associations);
+   // const [organizations, setOrganizations] = useState(associations);
 
-   const animals = useMemo(() => {
-      return organizations.flatMap((asso: any) => {
-         return asso.animals;
-      });
-   }, []);
+   // const animals = useMemo(() => {
+   //    return organizations.flatMap((asso: any) => {
+   //       return asso.animals;
+   //    });
+   // }, []);
 
    const renderAnimalsList = useMemo(() => {
-      return animals.map((pet: any, index: number) => {
+      return listAnimals.map((pet: any, index: number) => {
          return (
             <li key={index} className={styles.item}>
-               <Link href={'/nos-animaux/1'}>
+               <Link href={`/nos-animaux/${pet.uuid}`}>
                   <CardAnimal pet={pet} />
                </Link>
             </li>
