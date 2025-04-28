@@ -1,11 +1,5 @@
 import '../styles/globals.scss';
 
-// export const metadata: Metadata = {
-//    title: 'Pets Foster Connect',
-//    description:
-//       "L'application qui permet de mettre en relation des familles d’accueil pour les animaux et des associations de protection animale.",
-// };
-
 export default function RootLayout({
    children,
 }: {

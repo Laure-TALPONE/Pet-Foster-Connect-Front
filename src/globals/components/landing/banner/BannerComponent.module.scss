@@ -43,8 +43,12 @@
 
 .subtitle {
     font-weight: 600;
-    font-size: 25px;
+    font-size: 18px;
     text-align: center;
+
+    @include desktop {
+        font-size: 25px;
+    }
 }
 
 .search {

@@ -37,10 +37,14 @@
 
 .title {
     color: var(--Neutral-white);
-    font-size: 60px;
+    font-size: 40px;
     font-weight: 600;
     line-height: 120%;
     text-align: center;
+
+    @include desktop {
+        font-size: 60px;
+    }
 }
 
 .buttons {
