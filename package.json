@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "setup": "npm install && npm run dev"
   },
   "dependencies": {
     "@cloudinary/react": "^1.14.1",
