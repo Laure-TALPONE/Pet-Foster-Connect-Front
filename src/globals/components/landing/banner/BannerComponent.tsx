@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import styles from './BannerComponent.module.scss';
 import { CaretDown } from '@phosphor-icons/react';
-import { animals } from '@/globals/constants/animals';
+import { species } from '@/globals/constants/animals';
 import { departments } from '@/globals/constants/departments';
 import { useCallback, useMemo, useState } from 'react';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
@@ -44,7 +44,7 @@ const BannerComponent = () => {
       if (animalsDisplay) {
          return (
             <ul className={styles.dropdown}>
-               {animals.map((animal: string, index: number) => {
+               {species.map((animal: string, index: number) => {
                   return (
                      <li
                         key={index}

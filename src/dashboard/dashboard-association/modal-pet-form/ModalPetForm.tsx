@@ -5,7 +5,7 @@ import styles from './ModalPetForm.module.scss';
 import { CaretDown } from '@phosphor-icons/react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import DropdownComponent from '@/globals/components/dropdown/DropdownComponent';
-import { animals, genders } from '@/globals/constants/animals';
+import { genders } from '@/globals/constants/animals';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
 import dayjs from 'dayjs';
 import sendRequest from '@/globals/hooks/sendRequest';
@@ -19,6 +19,7 @@ const ModalPetForm = ({ onClose }: Props) => {
    const [selectOpen, setSelectOpen] = useState<string | null>('');
    const responses = ['Oui', 'Non'];
    const selectRef = useOutsideClick(() => setSelectOpen(null));
+   const [species, setSpecies] = useState<any>();
    const {
       register,
       setValue,
@@ -44,6 +45,18 @@ const ModalPetForm = ({ onClose }: Props) => {
       },
       [setValue]
    );
+
+   // on récupère les species du back
+   useEffect(() => {
+      async function fetchSpecies() {
+         const speciesResult = await sendRequest('GET', '/api/species');
+         console.log(speciesResult, 'ici les espèces !!!!');
+         setSpecies(speciesResult);
+         return speciesResult;
+      }
+
+      fetchSpecies();
+   }, []);
 
    const onSubmit = async (data: any) => {
       const newData = {
@@ -76,19 +89,19 @@ const ModalPetForm = ({ onClose }: Props) => {
    const renderTypesAnimal = useMemo(() => {
       return (
          <ul>
-            {animals.map((species: string, index: number) => (
+            {species?.map((specie: any, index: number) => (
                <li
                   key={index}
                   onClick={() => {
-                     handleSelectItem('species', species);
+                     handleSelectItem('species', specie);
                   }}
                >
-                  {species}
+                  {specie.name}
                </li>
             ))}
          </ul>
       );
-   }, [animals, handleSelectItem]);
+   }, [species, handleSelectItem]);
 
    const renderGenderAnimal = useMemo(() => {
       return (

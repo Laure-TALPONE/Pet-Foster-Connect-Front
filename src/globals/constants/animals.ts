@@ -1,4 +1,4 @@
-export const animals = [
+export const species = [
     "Chien",
     "Chat",
     "Oiseau",
