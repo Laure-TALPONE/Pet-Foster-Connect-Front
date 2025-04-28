@@ -4,8 +4,15 @@ import Image from 'next/image';
 import styles from './AnimalSingleComponent.module.scss';
 import Slider from 'react-slick';
 import Link from 'next/link';
+import dayjs from 'dayjs';
+import { useMemo } from 'react';
 
-const AnimalSingleComponent = () => {
+type Props = {
+   pet?: any;
+};
+
+const AnimalSingleComponent = ({ pet }: Props) => {
+   console.log(pet);
    const settings = {
       responsive: [
          {
@@ -37,13 +44,33 @@ const AnimalSingleComponent = () => {
       ],
    };
 
+   const renderBoolean = (value: boolean) => {
+      return value ? 'Oui' : 'Non';
+   };
+
+   const renderStatus = useMemo(() => {
+      if (pet.is_available) {
+         return (
+            <span style={{ background: '#F77748', color: '#FFF' }}>
+               Disponible
+            </span>
+         );
+      }
+
+      return (
+         <span style={{ background: '#82CCD5', color: 'rgb(0, 0, 0)' }}>
+            En famille d’accueil !
+         </span>
+      );
+   }, [pet.is_available]);
+
    return (
       <section className="container">
          <div className={styles.animalPage}>
             <section className={styles.presentation}>
                <div className={styles.text}>
                   <h2 className={styles.title}>
-                     Prêt à accueillir Milo ? <br /> Contactez-nous dès
+                     Prêt à accueillir {pet.name} ? <br /> Contactez-nous dès
                      maintenant !
                   </h2>
                   <p className={styles.info}>
@@ -55,6 +82,7 @@ const AnimalSingleComponent = () => {
                      temps et de l’attention. Actuellement en attente d’une
                      famille d’accueil, Milo cherche un foyer temporaire où il
                      pourra s’épanouir en toute sécurité.
+                     {pet.description}
                   </p>
                </div>
                <div className={styles.picture}>
@@ -69,20 +97,23 @@ const AnimalSingleComponent = () => {
 
             <section className={styles.informations}>
                <div className={styles.details}>
-                  <span>Disponible</span>
+                  {renderStatus}
                   <div className={styles.content}>
                      <ol className={styles.left}>
-                        <li>Nom : Milo</li>
+                        <li>Nom : {pet.name}</li>
                         <li>Espèce : Chien</li>
-                        <li>Race : Border Collie</li>
-                        <li>Vacciné : Oui</li>
-                        <li>Stérilisé : Oui</li>
+                        <li>Race : {pet.breed}</li>
+                        <li>Vacciné : {renderBoolean(pet.is_vaccinated)}</li>
+                        <li>Stérilisé : {renderBoolean(pet.is_sterilized)}</li>
                      </ol>
                      <ol className={styles.right}>
-                        <li>Date de naissance : 15/06/2022</li>
-                        <li>Genre : Mâle</li>
+                        <li>
+                           Date de naissance :{' '}
+                           {dayjs(pet.birthdate).format('DD-MM-YYYY')}
+                        </li>
+                        <li>Genre : {pet.gender ? 'Mâle' : 'Femelle'}</li>
                         <li>Localisation : Lyon</li>
-                        <li>Sevré : Non</li>
+                        <li>Sevré : {renderBoolean(pet.is_weaned)}</li>
                      </ol>
                   </div>
                </div>
@@ -145,7 +176,10 @@ const AnimalSingleComponent = () => {
                      offrir une seconde chance aux animaux abandonnés ou
                      maltraités.
                   </p>
-                  <Link href={'#'} className="m-button--square">
+                  <Link
+                     href={`/associations/${pet.organization_id}`}
+                     className="m-button--square"
+                  >
                      Voir la page de l’association
                   </Link>
                </div>
@@ -154,7 +188,7 @@ const AnimalSingleComponent = () => {
                      Souhaitez-vous l’accueillir ?
                   </h2>
                   <Link
-                     href={'/nos-animaux/1/demande-daccueil'}
+                     href={`/nos-animaux/${pet.uuid}/demande-daccueil`}
                      className="m-button"
                   >
                      Faire une demande
