@@ -1,4 +1,5 @@
 'use client';
+import useOutsideClick from '@/globals/hooks/useOutsideClick';
 import ModalLoginComponent from '@/login/ModalLoginComponent';
 import {
    Cat,
@@ -10,11 +11,10 @@ import {
 } from '@phosphor-icons/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import ModalComponent from '../modal/ModalComponent';
 import styles from './HeaderComponent.module.scss';
-import useOutsideClick from '@/globals/hooks/useOutsideClick';
-import { usePathname } from 'next/navigation';
 
 const HeaderComponent = () => {
    const [isDesktop, setIsDesktop] = useState(false);
@@ -114,7 +114,7 @@ const HeaderComponent = () => {
       return (
          <div className={styles.bugerMenu}>
             <div className={styles.menuWrapper}>
-               <button type="button" onClick={handleOpenMenuBurger}>
+               <button type="button" onClick={handleOpenMenuBurger} aria-label="Ouvrir le menu hamburger" >
                   <List weight="bold" />
                </button>
                {menuIsOpen && (
@@ -133,8 +133,8 @@ const HeaderComponent = () => {
             <div className={styles.content}>
                <Link href={'/accueil'} className={styles.logo}>
                   <Image
-                     src={'/images/globals/logo.webp'}
-                     alt="logo"
+                     src={"/images/globals/logo.webp"}
+                     alt="Logo"
                      width={120}
                      height={120}
                   />
@@ -145,6 +145,7 @@ const HeaderComponent = () => {
                      type="button"
                      className={styles.user}
                      onClick={handleOpenModal}
+                     aria-label="Ouvrir le modal de connexion"
                   >
                      <User weight="bold" />
                      <span>Mon espace</span>

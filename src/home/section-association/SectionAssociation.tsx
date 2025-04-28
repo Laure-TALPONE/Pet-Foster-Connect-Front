@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
-import styles from './SectionAssociation.module.scss';
 import Link from 'next/link';
+import styles from './SectionAssociation.module.scss';
 
 const SectionAssociation = () => {
    return (
@@ -10,8 +10,8 @@ const SectionAssociation = () => {
             <div className={styles.content}>
                <Image
                   src={'/images/DOG-VECTO.webp'}
-                  alt="dog"
-                  width={120}
+                  alt="dog-vecto"
+                  width={128}
                   height={130}
                />
                <div className={styles.text}>
