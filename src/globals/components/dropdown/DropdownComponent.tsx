@@ -5,11 +5,11 @@ import styles from './DropdownComponent.module.scss';
 import { useMemo } from 'react';
 
 type Props = {
-   chrildren: any;
+   children: any;
    search?: boolean;
 };
 
-const DropdownComponent = ({ chrildren, search }: Props) => {
+const DropdownComponent = ({ children, search }: Props) => {
    const renderSearchBar = useMemo(() => {
       if (!search) return;
 
@@ -30,7 +30,7 @@ const DropdownComponent = ({ chrildren, search }: Props) => {
    return (
       <div className={styles.dropdown}>
          {renderSearchBar}
-         {chrildren}
+         {children}
       </div>
    );
 };

@@ -29,6 +29,7 @@ const ModalPetForm = ({ onClose }: Props) => {
    } = useForm();
    const user = useUser();
    const organizationId = user.user.organizations[0].uuid;
+   const watchSpecies = watch('species');
 
    const handleOpenSelect = (item: string) => {
       setSelectOpen((prev) => (prev === item ? null : item));
@@ -50,7 +51,6 @@ const ModalPetForm = ({ onClose }: Props) => {
    useEffect(() => {
       async function fetchSpecies() {
          const speciesResult = await sendRequest('GET', '/api/species');
-         console.log(speciesResult, 'ici les espèces !!!!');
          setSpecies(speciesResult);
          return speciesResult;
       }
@@ -62,7 +62,7 @@ const ModalPetForm = ({ onClose }: Props) => {
       const newData = {
          organization_id: organizationId,
          name: data.name,
-         species_id: data.species,
+         species_id: watchSpecies.uuid,
          breed: data.breed,
          birthdate: dayjs(data.date).format('YYYY-MM-DD'),
          gender: data.gender === 'Mâle' ? true : false,
@@ -139,11 +139,11 @@ const ModalPetForm = ({ onClose }: Props) => {
 
    const renderSelect = useMemo(() => {
       if (selectOpen === 'species') {
-         return <DropdownComponent chrildren={renderTypesAnimal} />;
+         return <DropdownComponent children={renderTypesAnimal} />;
       }
 
       if (selectOpen === 'gender') {
-         return <DropdownComponent chrildren={renderGenderAnimal} />;
+         return <DropdownComponent children={renderGenderAnimal} />;
       }
 
       if (
@@ -152,7 +152,7 @@ const ModalPetForm = ({ onClose }: Props) => {
          selectOpen === 'weaned' ||
          selectOpen === 'sterilized'
       ) {
-         return <DropdownComponent chrildren={renderResponses} />;
+         return <DropdownComponent children={renderResponses} />;
       }
 
       return null;
@@ -187,6 +187,7 @@ const ModalPetForm = ({ onClose }: Props) => {
                   <input
                      type="text"
                      readOnly
+                     value={watchSpecies ? watchSpecies.name : ''}
                      onClick={() => handleOpenSelect('species')}
                      {...register('species', { required: true })}
                   />
