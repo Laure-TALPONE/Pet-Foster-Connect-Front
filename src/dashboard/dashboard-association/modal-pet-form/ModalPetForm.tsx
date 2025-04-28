@@ -16,7 +16,7 @@ type Props = {
 };
 
 const ModalPetForm = ({ onClose }: Props) => {
-   const [selectOpen, setSelectOpen] = useState<string | null>('');
+   const [selectOpen, setSelectOpen] = useState<string | null | any>('');
    const responses = ['Oui', 'Non'];
    const selectRef = useOutsideClick(() => setSelectOpen(null));
    const [species, setSpecies] = useState<any>();
@@ -27,12 +27,12 @@ const ModalPetForm = ({ onClose }: Props) => {
       watch,
       formState: { errors },
    } = useForm();
-   const user = useUser();
-   const organizationId = user.user.organizations[0].uuid;
+   const user = useUser().user;
+   const organizationId = user?.organizations[0].uuid;
    const watchSpecies = watch('species');
 
    const handleOpenSelect = (item: string) => {
-      setSelectOpen((prev) => (prev === item ? null : item));
+      setSelectOpen((prev: any) => (prev === item ? null : item));
    };
 
    const handleCloseModal = () => {
@@ -49,11 +49,11 @@ const ModalPetForm = ({ onClose }: Props) => {
 
    // on récupère les species du back
    useEffect(() => {
-      async function fetchSpecies() {
+      const fetchSpecies = async () => {
          const speciesResult = await sendRequest('GET', '/api/species');
          setSpecies(speciesResult);
          return speciesResult;
-      }
+      };
 
       fetchSpecies();
    }, []);

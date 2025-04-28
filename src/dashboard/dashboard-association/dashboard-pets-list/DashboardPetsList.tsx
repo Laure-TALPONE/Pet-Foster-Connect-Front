@@ -7,10 +7,15 @@ import Image from 'next/image';
 import { PencilSimple, Plus } from '@phosphor-icons/react';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalPetForm from '../modal-pet-form/ModalPetForm';
+import sendRequest from '@/globals/hooks/sendRequest';
+import { useUser } from '@/globals/utils/UserContext';
 
 const DashboardPetsList = () => {
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+   const [petsList, setPetsList] = useState();
+   const user = useUser().user;
+   const organizationId = user?.organizations[0].uuid;
 
    useEffect(() => {
       const handleResize = () => {
@@ -28,6 +33,20 @@ const DashboardPetsList = () => {
    const handleCloseModal = useCallback(() => {
       setModalIsOpen(false);
    }, []);
+
+   useEffect(() => {
+      const fetchAnimals = async () => {
+         const animalsResult = await sendRequest(
+            'GET',
+            `/api/animals/?uuid=${organizationId}`
+         );
+         setPetsList(animalsResult);
+         console.log(animalsResult, 'ici la liste des animaux');
+         return animalsResult;
+      };
+
+      fetchAnimals();
+   }, [organizationId]);
 
    const renderListPets = useMemo(() => {
       return associations[0].animals.map((pet: any, index: number) => {
