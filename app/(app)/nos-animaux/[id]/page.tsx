@@ -7,6 +7,7 @@ type Props = {
    };
 };
 
+// doc : https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes
 export default async function AnimalsSinglePage({ params }: Props) {
    const animal = await fetchGetAnimalById(params.id);
 

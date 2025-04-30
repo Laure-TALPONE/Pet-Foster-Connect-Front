@@ -6,9 +6,10 @@ import { useEffect } from 'react';
 
 type Props = {
    onSendConsent: any;
+   pet: any;
 };
 
-const SectionMotivations = ({ onSendConsent }: Props) => {
+const SectionMotivations = ({ onSendConsent, pet }: Props) => {
    const {
       register,
       setValue,
@@ -26,7 +27,7 @@ const SectionMotivations = ({ onSendConsent }: Props) => {
       <section className={styles.motivations}>
          <h3>Vos motivations*</h3>
          <p>
-            Pourquoi souhaitez-vous accueillir <span>Milo</span> ?
+            Pourquoi souhaitez-vous accueillir <span>{pet.name}</span> ?
          </p>
          <div
             className={`m-input ${errors.motivation ? 'm-input__error' : ''} ${styles.textarea}`}

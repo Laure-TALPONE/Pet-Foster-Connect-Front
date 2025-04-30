@@ -13,6 +13,7 @@ type Props = {
 
 const AnimalSingleComponent = ({ pet }: Props) => {
    console.log(pet);
+
    const settings = {
       responsive: [
          {
@@ -101,7 +102,7 @@ const AnimalSingleComponent = ({ pet }: Props) => {
                   <div className={styles.content}>
                      <ol className={styles.left}>
                         <li>Nom : {pet.name}</li>
-                        <li>Espèce : Chien</li>
+                        <li>Espèce : {pet.species.name}</li>
                         <li>Race : {pet.breed}</li>
                         <li>Vacciné : {renderBoolean(pet.is_vaccinated)}</li>
                         <li>Stérilisé : {renderBoolean(pet.is_sterilized)}</li>
@@ -112,7 +113,7 @@ const AnimalSingleComponent = ({ pet }: Props) => {
                            {dayjs(pet.birthdate).format('DD-MM-YYYY')}
                         </li>
                         <li>Genre : {pet.gender ? 'Mâle' : 'Femelle'}</li>
-                        <li>Localisation : Lyon</li>
+                        <li>Localisation : {pet.organization.city}</li>
                         <li>Sevré : {renderBoolean(pet.is_weaned)}</li>
                      </ol>
                   </div>
@@ -165,11 +166,12 @@ const AnimalSingleComponent = ({ pet }: Props) => {
             <section className={styles.assoInformations}>
                <div className={styles.infos}>
                   <h2 className={styles.title}>
-                     L’association Pattes Solidaires
+                     L’association {pet.organization.name}
                   </h2>
                   <p className={styles.text}>
-                     L’association Pattes Solidaires œuvre depuis 2015 pour la
-                     protection et le bien-être des animaux en détresse.
+                     L’association {pet.organization.name} œuvre depuis{' '}
+                     {dayjs(pet.organization.registration_date).format('YYYY ')}
+                     pour la protection et le bien-être des animaux en détresse.
                      Spécialisée dans le sauvetage, le placement en famille
                      d’accueil et l’adoption responsable, elle collabore avec un
                      large réseau de bénévoles et de foyers d’accueil pour

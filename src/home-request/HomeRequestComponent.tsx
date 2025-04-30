@@ -8,7 +8,12 @@ import SectionMotivations from './section-motivations/SectionMotivations';
 import SectionAdoption from './section-info-adoption/SectionAdoption';
 import { useState } from 'react';
 
-const HomeRequestComponent = () => {
+type Props = {
+   pet: any;
+};
+
+const HomeRequestComponent = ({ pet }: Props) => {
+   console.log(pet);
    const methods = useForm();
    const { handleSubmit } = methods;
    const [consent, setConsent] = useState<boolean>(false);
@@ -65,7 +70,7 @@ const HomeRequestComponent = () => {
                <form>
                   <SectionInformations />
                   <SectionLifestyle />
-                  <SectionMotivations onSendConsent={setConsent} />
+                  <SectionMotivations onSendConsent={setConsent} pet={pet} />
                   <SectionAdoption />
                   <button
                      type="submit"
