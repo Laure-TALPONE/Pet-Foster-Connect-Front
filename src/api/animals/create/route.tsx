@@ -1,6 +1,15 @@
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
 const fetchCreateAnimal = async (request: NextRequest) => {
+   const cookieStore = await cookies();
+   const token = cookieStore.get('token');
+
+   if (!token) {
+      console.error('Token JWT manquant');
+      throw new Error('Token JWT manquant');
+   }
+
    try {
       const data = await request.json();
 
@@ -9,6 +18,7 @@ const fetchCreateAnimal = async (request: NextRequest) => {
          credentials: 'include',
          headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token?.value}`,
          },
          body: JSON.stringify(data),
       });

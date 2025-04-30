@@ -18,13 +18,7 @@ const fetchGetAnimalById = async (id: string) => {
       return result;
    } catch (error: any) {
       console.error('Erreur lors du GET vers NestJS :', error);
-      return NextResponse.json(
-         {
-            message: "Erreur lors de la récupération de l'animal",
-            error: error.message,
-         },
-         { status: 500 }
-      );
+      return error;
    }
 };
 

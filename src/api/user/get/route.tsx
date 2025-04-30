@@ -1,15 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
-const fetchGetUser = async (request: NextRequest) => {
+const fetchGetUser = async () => {
    try {
-      const token = cookies().get('token');
+      const cookieStore = await cookies();
+      const token = cookieStore.get('token');
 
       if (!token) {
-         return NextResponse.json(
-            { message: 'Utilisateur non authentifié (token manquant).' },
-            { status: 401 }
-         );
+         console.error('Token JWT manquant');
+         throw new Error('Token JWT manquant');
       }
 
       const response = await fetch(`http://localhost/api/user/me`, {
@@ -20,25 +19,15 @@ const fetchGetUser = async (request: NextRequest) => {
          },
       });
 
-      const result = await response.json();
-
       if (!response.ok) {
-         return NextResponse.json(
-            { message: result.message || 'Erreur côté serveur NestJS' },
-            { status: response.status }
-         );
+         throw new Error("Erreur lors du get de l'utilisateur.");
       }
 
-      return NextResponse.json(result, { status: 200 });
+      const result = await response.json();
+      return result;
    } catch (error: any) {
       console.error('Erreur lors du GET vers NestJS :', error);
-      return NextResponse.json(
-         {
-            message: "Erreur lors de la recherche de l'utilisateur.",
-            error: error.message,
-         },
-         { status: 500 }
-      );
+      return error;
    }
 };
 

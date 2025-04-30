@@ -7,15 +7,18 @@ import Image from 'next/image';
 import { PencilSimple, Plus } from '@phosphor-icons/react';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalPetForm from '../modal-pet-form/ModalPetForm';
-import sendRequest from '@/globals/hooks/sendRequest';
 import { useUser } from '@/globals/utils/UserContext';
 
-const DashboardPetsList = () => {
+type Props = {
+   animals: any;
+};
+
+const DashboardPetsList = ({ animals }: Props) => {
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-   const [petsList, setPetsList] = useState();
    const user = useUser().user;
-   const organizationId = user?.organizations[0].uuid;
+   console.log(user);
+   console.log(animals, 'ici la liste des animaux par asso');
 
    useEffect(() => {
       const handleResize = () => {
@@ -34,22 +37,8 @@ const DashboardPetsList = () => {
       setModalIsOpen(false);
    }, []);
 
-   useEffect(() => {
-      const fetchAnimals = async () => {
-         const animalsResult = await sendRequest(
-            'GET',
-            `/api/animals/getByAssociation/?uuid=${organizationId}`
-         );
-         setPetsList(animalsResult);
-         console.log(animalsResult, 'ici la liste des animaux');
-         return animalsResult;
-      };
-
-      fetchAnimals();
-   }, [organizationId]);
-
    const renderListPets = useMemo(() => {
-      return associations[0].animals.map((pet: any, index: number) => {
+      return animals.map((pet: any, index: number) => {
          return (
             <li className={styles.petInfos} key={index}>
                <div className={styles.picture}>
@@ -61,9 +50,9 @@ const DashboardPetsList = () => {
                   />
                </div>
                <p className={styles.name}>{pet.name}</p>
-               <p>{pet.species}</p>
+               <p>{pet.species.name}</p>
                {isDesktop ? (
-                  <span>{pet.status}</span>
+                  <span>{pet.is_available ? 'en attente' : ''}</span>
                ) : (
                   <span className={styles.status}></span>
                )}
