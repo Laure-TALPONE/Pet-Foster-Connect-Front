@@ -7,7 +7,6 @@ import Image from 'next/image';
 import { PencilSimple, Plus } from '@phosphor-icons/react';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalPetForm from '../modal-pet-form/ModalPetForm';
-import { useUser } from '@/globals/utils/UserContext';
 
 type Props = {
    animals: any;
@@ -16,9 +15,6 @@ type Props = {
 const DashboardPetsList = ({ animals }: Props) => {
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-   const user = useUser().user;
-   console.log(user);
-   console.log(animals, 'ici la liste des animaux par asso');
 
    useEffect(() => {
       const handleResize = () => {
@@ -35,6 +31,11 @@ const DashboardPetsList = ({ animals }: Props) => {
 
    const handleCloseModal = useCallback(() => {
       setModalIsOpen(false);
+   }, []);
+
+   const handleRefreshSuccess = useCallback(() => {
+      // refresh la page après le fetch success
+      window.location.reload();
    }, []);
 
    const renderListPets = useMemo(() => {
@@ -103,11 +104,16 @@ const DashboardPetsList = ({ animals }: Props) => {
          return (
             <ModalComponent
                onClose={handleCloseModal}
-               children={<ModalPetForm onClose={handleCloseModal} />}
+               children={
+                  <ModalPetForm
+                     onClose={handleCloseModal}
+                     onSuccess={handleRefreshSuccess}
+                  />
+               }
             />
          );
       }
-   }, [modalIsOpen]);
+   }, [modalIsOpen, handleRefreshSuccess, handleCloseModal]);
 
    return (
       <section className={styles.petsList}>

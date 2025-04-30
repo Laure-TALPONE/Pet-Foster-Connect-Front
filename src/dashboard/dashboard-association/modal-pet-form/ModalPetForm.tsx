@@ -13,9 +13,10 @@ import { useUser } from '@/globals/utils/UserContext';
 
 type Props = {
    onClose: any;
+   onSuccess: any;
 };
 
-const ModalPetForm = ({ onClose }: Props) => {
+const ModalPetForm = ({ onClose, onSuccess }: Props) => {
    const [selectOpen, setSelectOpen] = useState<string | null | any>('');
    const responses = ['Oui', 'Non'];
    const selectRef = useOutsideClick(() => setSelectOpen(null));
@@ -79,6 +80,8 @@ const ModalPetForm = ({ onClose }: Props) => {
 
       if (result) {
          console.log("Création d'un animal réussie.");
+         handleCloseModal();
+         onSuccess();
       }
 
       if (!result) {

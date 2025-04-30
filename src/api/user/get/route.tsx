@@ -11,7 +11,7 @@ const fetchGetUser = async () => {
          throw new Error('Token JWT manquant');
       }
 
-      const response = await fetch(`http://localhost/api/user/me`, {
+      const response = await fetch(`http://localhost/api/me`, {
          method: 'GET',
          headers: {
             'Content-Type': 'application/json',
@@ -20,6 +20,9 @@ const fetchGetUser = async () => {
       });
 
       if (!response.ok) {
+         console.error('Statut erreur:', response.status);
+         const errorText = await response.text();
+         console.error('Erreur NestJS :', errorText);
          throw new Error("Erreur lors du get de l'utilisateur.");
       }
 

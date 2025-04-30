@@ -14,8 +14,6 @@ type Props = {
 const ModalLoginComponent = ({ onClose }: Props) => {
    const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
    const [errorMessage, setErrorMessage] = useState('');
-   // const [user, setUser] = useState();
-   const { setUser } = useUser();
    const {
       register,
       setValue,
@@ -44,7 +42,6 @@ const ModalLoginComponent = ({ onClose }: Props) => {
       const result = await sendRequest('POST', '/api/auth/login', newData);
 
       if (result) {
-         setUser(result?.user);
          router.push('/dashboard');
       }
 

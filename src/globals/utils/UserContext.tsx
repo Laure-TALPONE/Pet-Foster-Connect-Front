@@ -1,13 +1,6 @@
-// context/UserContext.tsx
 'use client';
 
-import {
-   createContext,
-   useContext,
-   useEffect,
-   useState,
-   ReactNode,
-} from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 
 export type User = {
    id: string;
@@ -16,37 +9,20 @@ export type User = {
 };
 
 type UserContextType = {
-   user: User | null;
-   setUser: (user: User | null) => void;
+   user: User;
 };
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-export const UserProvider = ({ children }: { children: ReactNode }) => {
-   const [user, setUserState] = useState<User | null>(null);
-
-   // Charger depuis localStorage au 1er rendu
-   useEffect(() => {
-      const savedUser = localStorage.getItem('user');
-      if (savedUser) {
-         setUserState(JSON.parse(savedUser));
-      }
-   }, []);
-
-   // Sauvegarder dans localStorage à chaque changement
-   const setUser = (user: User | null) => {
-      if (user) {
-         localStorage.setItem('user', JSON.stringify(user));
-      } else {
-         localStorage.removeItem('user');
-      }
-      setUserState(user);
-   };
-
+export const UserProvider = ({
+   children,
+   user,
+}: {
+   children: ReactNode;
+   user: User;
+}) => {
    return (
-      <UserContext.Provider value={{ user, setUser }}>
-         {children}
-      </UserContext.Provider>
+      <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
    );
 };
 

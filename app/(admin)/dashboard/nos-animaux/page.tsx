@@ -1,9 +1,19 @@
 import fetchGetAnimalsByAssociation from '@/api/animals/getByAssociation/route';
+import fetchGetUser from '@/api/user/get/route';
 import DashboardPetsList from '@/dashboard/dashboard-association/dashboard-pets-list/DashboardPetsList';
+import { cookies } from 'next/headers';
 
 export default async function DashboardPetsListPage() {
+   const cookieStore = await cookies();
+   const token = cookieStore.get('token');
+   let user;
+
+   if (token) {
+      user = await fetchGetUser();
+   }
+
    const animals = await fetchGetAnimalsByAssociation(
-      '3ea9a6a3-aea1-4552-94fe-35f28f470377'
+      user.organizations[0].uuid
    );
 
    return <DashboardPetsList animals={animals} />;
