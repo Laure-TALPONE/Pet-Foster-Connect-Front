@@ -1,14 +1,24 @@
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
-const fetchUpdateAnimal = async (request: NextRequest) => {
+const fetchUpdateAnimal = async (request: Request, id: string) => {
+   const cookieStore = await cookies();
+   const token = cookieStore.get('token');
+
+   if (!token) {
+      console.error('Token JWT manquant');
+      throw new Error('Token JWT manquant');
+   }
+
    try {
       const data = await request.json();
 
-      const response = await fetch('http://localhost/api/animals', {
+      const response = await fetch(`http://localhost/api/animals/${id}`, {
          method: 'PUT',
          credentials: 'include',
          headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token?.value}`,
          },
          body: JSON.stringify(data),
       });

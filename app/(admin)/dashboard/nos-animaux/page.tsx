@@ -1,4 +1,5 @@
 import fetchGetAnimalsByAssociation from '@/api/animals/getByAssociation/route';
+import fetchGetAllSpecies from '@/api/species/route';
 import fetchGetUser from '@/api/user/get/route';
 import DashboardPetsList from '@/dashboard/dashboard-association/dashboard-pets-list/DashboardPetsList';
 import { cookies } from 'next/headers';
@@ -16,5 +17,7 @@ export default async function DashboardPetsListPage() {
       user.organizations[0].uuid
    );
 
-   return <DashboardPetsList animals={animals} />;
+   const species = await fetchGetAllSpecies();
+
+   return <DashboardPetsList animals={animals} species={species} />;
 }

@@ -10,13 +10,14 @@ import ModalPetForm from '../modal-pet-form/ModalPetForm';
 
 type Props = {
    animals: any;
+   species: any;
 };
 
-const DashboardPetsList = ({ animals }: Props) => {
+const DashboardPetsList = ({ animals, species }: Props) => {
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
    const [isUpdating, setIsUpdating] = useState<boolean>(false);
-   const [petId, setPetId] = useState<string>('');
+   const [animalSelected, setAnimalSelected] = useState<any>();
    const [animalsList, setAnimalsList] = useState(animals);
 
    useEffect(() => {
@@ -28,10 +29,10 @@ const DashboardPetsList = ({ animals }: Props) => {
       return () => window.removeEventListener('resize', handleResize);
    }, []);
 
-   const handleOpenModal = useCallback((update: boolean, petId: string) => {
+   const handleOpenModal = useCallback((update: boolean, pet: any) => {
       setIsUpdating(update);
       setModalIsOpen(true);
-      setPetId(petId);
+      setAnimalSelected(pet);
    }, []);
 
    const handleCloseModal = useCallback(() => {
@@ -40,9 +41,16 @@ const DashboardPetsList = ({ animals }: Props) => {
 
    const handleUpdateListAnimals = useCallback(
       (animal: any, action: string) => {
-         if (animal && action === 'update') {
+         console.log(animal);
+         if (animal && action === 'create') {
             // met à jour la liste des animaux en ajoutant le nouvel animal
             setAnimalsList([...animalsList, animal]);
+         } else if (animal && action === 'update') {
+            // met à jour l'animal dans la liste
+            const updatedAnimalsList = animalsList.map((item: any) =>
+               item.uuid === animal.uuid ? animal : item
+            );
+            setAnimalsList(updatedAnimalsList);
          } else if (animal && action === 'delete') {
             // supprime l'animal via son uuid de la liste
             const updatedAnimalsList = animalsList.filter(
@@ -77,7 +85,7 @@ const DashboardPetsList = ({ animals }: Props) => {
                   <button
                      type="button"
                      className="m-button--square"
-                     onClick={() => handleOpenModal(true, pet.uuid)}
+                     onClick={() => handleOpenModal(true, pet)}
                   >
                      Modifier
                   </button>
@@ -85,7 +93,7 @@ const DashboardPetsList = ({ animals }: Props) => {
                   <button
                      type="button"
                      className={styles.edit}
-                     onClick={() => handleOpenModal(true, pet.uuid)}
+                     onClick={() => handleOpenModal(true, pet)}
                   >
                      <PencilSimple />
                   </button>
@@ -129,7 +137,8 @@ const DashboardPetsList = ({ animals }: Props) => {
                      onClose={handleCloseModal}
                      onSuccess={handleUpdateListAnimals}
                      update={isUpdating}
-                     petId={petId}
+                     animal={animalSelected}
+                     species={species}
                   />
                }
             />
@@ -140,7 +149,7 @@ const DashboardPetsList = ({ animals }: Props) => {
       handleUpdateListAnimals,
       handleCloseModal,
       isUpdating,
-      petId,
+      animalSelected,
    ]);
 
    return (

@@ -1,6 +1,6 @@
 'use client';
 
-import { Form, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import styles from './ModalPetForm.module.scss';
 import { CaretDown } from '@phosphor-icons/react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -15,21 +15,42 @@ type Props = {
    onClose: any;
    onSuccess: any;
    update?: boolean;
-   petId?: any;
+   animal: any;
+   species: any;
 };
 
-const ModalPetForm = ({ onClose, onSuccess, update, petId }: Props) => {
+const ModalPetForm = ({
+   onClose,
+   onSuccess,
+   update,
+   animal,
+   species,
+}: Props) => {
    const [selectOpen, setSelectOpen] = useState<string | null | any>('');
    const responses = ['Oui', 'Non'];
    const selectRef = useOutsideClick(() => setSelectOpen(null));
-   const [species, setSpecies] = useState<any>();
    const {
       register,
       setValue,
       handleSubmit,
       watch,
       formState: { errors },
-   } = useForm();
+   } = useForm(
+      animal && {
+         defaultValues: {
+            name: animal?.name,
+            species: animal?.species.name,
+            breed: animal?.breed,
+            birthdate: animal?.birthdate,
+            gender: animal?.gender ? 'Mâle' : 'Femelle',
+            available: animal?.is_available ? 'Oui' : 'Non',
+            vaccinated: animal?.is_vaccinated ? 'Oui' : 'Non',
+            weaned: animal?.is_weaned ? 'Oui' : 'Non',
+            sterilized: animal?.is_sterilized ? 'Oui' : 'Non',
+            description: animal?.description,
+         },
+      }
+   );
    const user = useUser().user;
    const organizationId = user?.organizations[0].uuid;
    const watchSpecies = watch('species');
@@ -50,24 +71,13 @@ const ModalPetForm = ({ onClose, onSuccess, update, petId }: Props) => {
       [setValue]
    );
 
-   // on récupère les species du back
-   useEffect(() => {
-      const fetchSpecies = async () => {
-         const speciesResult = await sendRequest('GET', '/api/species');
-         setSpecies(speciesResult);
-         return speciesResult;
-      };
-
-      fetchSpecies();
-   }, []);
-
    const onSubmit = async (data: any) => {
       const newData = {
          organization_id: organizationId,
          name: data.name,
          species_id: watchSpecies.uuid,
          breed: data.breed,
-         birthdate: dayjs(data.date).format('YYYY-MM-DD'),
+         birthdate: dayjs(data.birthdate).format('YYYY-MM-DD'),
          gender: data.gender === 'Mâle' ? true : false,
          is_available: data.available === 'Oui' ? true : false,
          is_vaccinated: data.vaccinated === 'Oui' ? true : false,
@@ -78,23 +88,40 @@ const ModalPetForm = ({ onClose, onSuccess, update, petId }: Props) => {
 
       console.log(newData, 'ici les datas');
 
-      const result = await sendRequest('POST', '/api/animals/create', newData);
+      let resultCreate = null;
+      let resultUpdate = null;
 
-      if (result) {
-         console.log("Création d'un animal réussie.");
-         handleCloseModal();
-         onSuccess(result, 'update');
+      if (update) {
+         resultUpdate = await sendRequest(
+            'PUT',
+            `/api/animals/update/${animal.uuid}`,
+            newData
+         );
+      } else {
+         resultCreate = await sendRequest(
+            'POST',
+            '/api/animals/create',
+            newData
+         );
       }
 
-      if (!result) {
-         console.log("Echec de la création d'un animal.");
+      if (resultCreate) {
+         console.log("Création d'un animal réussie.");
+         handleCloseModal();
+         onSuccess(resultCreate, 'create');
+      } else if (resultUpdate) {
+         console.log("Modification d'un animal réussie.");
+         handleCloseModal();
+         onSuccess(resultUpdate, 'update');
+      } else {
+         console.log("Echec de la création / modification d'un animal.");
       }
    };
 
    const handleDeleteAnimal = async () => {
       const resultRemove = await sendRequest(
          'DELETE',
-         `/api/animals/delete/${petId}`
+         `/api/animals/delete/${animal.uuid}`
       );
 
       if (resultRemove) {
@@ -231,13 +258,16 @@ const ModalPetForm = ({ onClose, onSuccess, update, petId }: Props) => {
             </div>
             <div
                className={
-                  errors.date
+                  errors.birthdate
                      ? 'm-input m-input__background m-input__label m-input__error'
                      : 'm-input m-input__background m-input__label'
                }
             >
                <label>Date de naissance de l’animal* :</label>
-               <input type="date" {...register('date', { required: true })} />
+               <input
+                  type="date"
+                  {...register('birthdate', { required: true })}
+               />
             </div>
             <section
                className={styles.gender}
