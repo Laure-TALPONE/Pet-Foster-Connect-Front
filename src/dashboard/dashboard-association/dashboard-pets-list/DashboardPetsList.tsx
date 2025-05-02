@@ -16,6 +16,8 @@ const DashboardPetsList = ({ animals }: Props) => {
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
    const [isUpdating, setIsUpdating] = useState<boolean>(false);
+   const [petId, setPetId] = useState<string>('');
+   const [animalsList, setAnimalsList] = useState(animals);
 
    useEffect(() => {
       const handleResize = () => {
@@ -26,22 +28,34 @@ const DashboardPetsList = ({ animals }: Props) => {
       return () => window.removeEventListener('resize', handleResize);
    }, []);
 
-   const handleOpenModal = useCallback((update: boolean) => {
+   const handleOpenModal = useCallback((update: boolean, petId: string) => {
       setIsUpdating(update);
       setModalIsOpen(true);
+      setPetId(petId);
    }, []);
 
    const handleCloseModal = useCallback(() => {
       setModalIsOpen(false);
    }, []);
 
-   const handleRefreshSuccess = useCallback(() => {
-      // refresh la page après le fetch success
-      window.location.reload();
-   }, []);
+   const handleUpdateListAnimals = useCallback(
+      (animal: any, action: string) => {
+         if (animal && action === 'update') {
+            // met à jour la liste des animaux en ajoutant le nouvel animal
+            setAnimalsList([...animalsList, animal]);
+         } else if (animal && action === 'delete') {
+            // supprime l'animal via son uuid de la liste
+            const updatedAnimalsList = animalsList.filter(
+               (item: any) => item.uuid !== animal.uuid
+            );
+            setAnimalsList(updatedAnimalsList);
+         }
+      },
+      [animalsList]
+   );
 
    const renderListPets = useMemo(() => {
-      return animals.map((pet: any, index: number) => {
+      return animalsList.map((pet: any, index: number) => {
          return (
             <li className={styles.petInfos} key={index}>
                <div className={styles.picture}>
@@ -63,7 +77,7 @@ const DashboardPetsList = ({ animals }: Props) => {
                   <button
                      type="button"
                      className="m-button--square"
-                     onClick={() => handleOpenModal(true)}
+                     onClick={() => handleOpenModal(true, pet.uuid)}
                   >
                      Modifier
                   </button>
@@ -71,7 +85,7 @@ const DashboardPetsList = ({ animals }: Props) => {
                   <button
                      type="button"
                      className={styles.edit}
-                     onClick={() => handleOpenModal(true)}
+                     onClick={() => handleOpenModal(true, pet.uuid)}
                   >
                      <PencilSimple />
                   </button>
@@ -79,7 +93,7 @@ const DashboardPetsList = ({ animals }: Props) => {
             </li>
          );
       });
-   }, [associations, isDesktop, handleOpenModal]);
+   }, [associations, isDesktop, handleOpenModal, animalsList]);
 
    const renderButtons = useMemo(() => {
       if (!isDesktop) {
@@ -113,14 +127,21 @@ const DashboardPetsList = ({ animals }: Props) => {
                children={
                   <ModalPetForm
                      onClose={handleCloseModal}
-                     onSuccess={handleRefreshSuccess}
+                     onSuccess={handleUpdateListAnimals}
                      update={isUpdating}
+                     petId={petId}
                   />
                }
             />
          );
       }
-   }, [modalIsOpen, handleRefreshSuccess, handleCloseModal, isUpdating]);
+   }, [
+      modalIsOpen,
+      handleUpdateListAnimals,
+      handleCloseModal,
+      isUpdating,
+      petId,
+   ]);
 
    return (
       <section className={styles.petsList}>

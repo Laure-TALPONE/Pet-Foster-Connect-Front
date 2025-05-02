@@ -15,9 +15,10 @@ type Props = {
    onClose: any;
    onSuccess: any;
    update?: boolean;
+   petId?: any;
 };
 
-const ModalPetForm = ({ onClose, onSuccess, update }: Props) => {
+const ModalPetForm = ({ onClose, onSuccess, update, petId }: Props) => {
    const [selectOpen, setSelectOpen] = useState<string | null | any>('');
    const responses = ['Oui', 'Non'];
    const selectRef = useOutsideClick(() => setSelectOpen(null));
@@ -82,11 +83,28 @@ const ModalPetForm = ({ onClose, onSuccess, update }: Props) => {
       if (result) {
          console.log("Création d'un animal réussie.");
          handleCloseModal();
-         onSuccess();
+         onSuccess(result, 'update');
       }
 
       if (!result) {
          console.log("Echec de la création d'un animal.");
+      }
+   };
+
+   const handleDeleteAnimal = async () => {
+      const resultRemove = await sendRequest(
+         'DELETE',
+         `/api/animals/delete/${petId}`
+      );
+
+      if (resultRemove) {
+         console.log("Suppression de l'animal réussie.");
+         handleCloseModal();
+         onSuccess(resultRemove, 'delete');
+      }
+
+      if (!resultRemove) {
+         console.log("Echec de la suppresion de l'animal.");
       }
    };
 
@@ -364,7 +382,7 @@ const ModalPetForm = ({ onClose, onSuccess, update }: Props) => {
                   <button
                      type="button"
                      className="m-button"
-                     // onClick={handleDeleteAnimal}
+                     onClick={handleDeleteAnimal}
                   >
                      Supprimer un animal
                   </button>
