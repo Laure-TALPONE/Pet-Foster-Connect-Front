@@ -15,6 +15,7 @@ type Props = {
 const DashboardPetsList = ({ animals }: Props) => {
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+   const [isUpdating, setIsUpdating] = useState<boolean>(false);
 
    useEffect(() => {
       const handleResize = () => {
@@ -25,7 +26,8 @@ const DashboardPetsList = ({ animals }: Props) => {
       return () => window.removeEventListener('resize', handleResize);
    }, []);
 
-   const handleOpenModal = useCallback(() => {
+   const handleOpenModal = useCallback((update: boolean) => {
+      setIsUpdating(update);
       setModalIsOpen(true);
    }, []);
 
@@ -61,7 +63,7 @@ const DashboardPetsList = ({ animals }: Props) => {
                   <button
                      type="button"
                      className="m-button--square"
-                     onClick={handleOpenModal}
+                     onClick={() => handleOpenModal(true)}
                   >
                      Modifier
                   </button>
@@ -69,7 +71,7 @@ const DashboardPetsList = ({ animals }: Props) => {
                   <button
                      type="button"
                      className={styles.edit}
-                     onClick={handleOpenModal}
+                     onClick={() => handleOpenModal(true)}
                   >
                      <PencilSimple />
                   </button>
@@ -85,7 +87,7 @@ const DashboardPetsList = ({ animals }: Props) => {
             <button
                type="button"
                className="m-button"
-               onClick={handleOpenModal}
+               onClick={() => handleOpenModal(false)}
             >
                Ajouter
             </button>
@@ -93,7 +95,11 @@ const DashboardPetsList = ({ animals }: Props) => {
       }
 
       return (
-         <button type="button" className="m-button" onClick={handleOpenModal}>
+         <button
+            type="button"
+            className="m-button"
+            onClick={() => handleOpenModal(false)}
+         >
             Ajouter un nouvel animal
          </button>
       );
@@ -108,12 +114,13 @@ const DashboardPetsList = ({ animals }: Props) => {
                   <ModalPetForm
                      onClose={handleCloseModal}
                      onSuccess={handleRefreshSuccess}
+                     update={isUpdating}
                   />
                }
             />
          );
       }
-   }, [modalIsOpen, handleRefreshSuccess, handleCloseModal]);
+   }, [modalIsOpen, handleRefreshSuccess, handleCloseModal, isUpdating]);
 
    return (
       <section className={styles.petsList}>

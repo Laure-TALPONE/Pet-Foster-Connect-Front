@@ -14,9 +14,10 @@ import { useUser } from '@/globals/utils/UserContext';
 type Props = {
    onClose: any;
    onSuccess: any;
+   update?: boolean;
 };
 
-const ModalPetForm = ({ onClose, onSuccess }: Props) => {
+const ModalPetForm = ({ onClose, onSuccess, update }: Props) => {
    const [selectOpen, setSelectOpen] = useState<string | null | any>('');
    const responses = ['Oui', 'Non'];
    const selectRef = useOutsideClick(() => setSelectOpen(null));
@@ -357,8 +358,17 @@ const ModalPetForm = ({ onClose, onSuccess }: Props) => {
                   className="m-button"
                   onClick={handleSubmit(onSubmit)}
                >
-                  Ajouter un animal
+                  {update ? 'Modifier un animal' : 'Ajouter un animal'}
                </button>
+               {update && (
+                  <button
+                     type="button"
+                     className="m-button"
+                     // onClick={handleDeleteAnimal}
+                  >
+                     Supprimer un animal
+                  </button>
+               )}
                <button
                   type="button"
                   className="m-button--square"
