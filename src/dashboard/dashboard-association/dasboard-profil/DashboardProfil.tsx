@@ -4,18 +4,30 @@ import styles from './DashboardProfil.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { Eye, EyeClosed } from '@phosphor-icons/react';
 import sendRequest from '@/globals/hooks/sendRequest';
+import { useUser } from '@/globals/utils/UserContext';
 
 const DashboardProfil = () => {
+   const [errorMessage, setErrorMessage] = useState('');
+   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+   const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
+   const user = useUser().user;
+   const organization = user?.organizations[0];
    const {
       register,
       setValue,
       handleSubmit,
       watch,
       formState: { errors },
-   } = useForm();
-   const [errorMessage, setErrorMessage] = useState('');
-   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-   const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
+   } = useForm({
+      defaultValues: {
+         email: user.email,
+         address: organization.address,
+         postcode: organization.postcode,
+         city: organization.city,
+         phone: organization.phone,
+         description: organization.description,
+      },
+   });
    const watchPassword = watch('password');
    const watchConfirm = watch('confirm');
 
@@ -142,7 +154,7 @@ const DashboardProfil = () => {
                   <input
                      type={confirmVisible ? 'text' : 'password'}
                      placeholder="Confirmer le nouveau mot de passe"
-                     {...register('confirm')}
+                     {...register('confirm', { required: true })}
                   />
                   <button
                      type="button"

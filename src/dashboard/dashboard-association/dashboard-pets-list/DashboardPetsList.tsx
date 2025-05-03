@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { PencilSimple, Plus } from '@phosphor-icons/react';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalPetForm from '../modal-pet-form/ModalPetForm';
+import { useUser } from '@/globals/utils/UserContext';
 
 type Props = {
    animals: any;

@@ -4,18 +4,14 @@ const fetchPostLogin = async (request: NextRequest) => {
    try {
       const data = await request.json();
 
-      const response = await fetch(
-         // 'http://jeremyjacquette-server.eddi.cloud/api/login',
-         'http://localhost/api/login',
-         {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-               'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-         }
-      );
+      const response = await fetch('http://localhost/api/login', {
+         method: 'POST',
+         credentials: 'include',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(data),
+      });
 
       const result = await response.json();
 
@@ -27,6 +23,7 @@ const fetchPostLogin = async (request: NextRequest) => {
       }
 
       // obtenir les cookies dans le headers
+      // https://developer.mozilla.org/en-US/docs/Web/API/Headers/getSetCookie
       const cookies = response.headers.getSetCookie();
       console.log(cookies, 'ici les cookies');
 

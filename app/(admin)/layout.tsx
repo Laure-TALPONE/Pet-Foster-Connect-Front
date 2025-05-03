@@ -12,11 +12,8 @@ export default async function AppRootLayout({
 }) {
    const cookieStore = await cookies();
    const token = cookieStore.get('token');
-   let user;
 
-   if (token) {
-      user = await fetchGetUser();
-   } else {
+   if (!token) {
       // si pas de token, redirection vers la page d'accueil
       redirect('/');
    }

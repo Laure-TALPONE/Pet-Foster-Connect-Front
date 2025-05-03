@@ -1,7 +1,16 @@
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
 const fetchUpdateUser = async (request: NextRequest) => {
    try {
+      const cookieStore = await cookies();
+      const token = cookieStore.get('token');
+
+      if (!token) {
+         console.error('Token JWT manquant');
+         throw new Error('Token JWT manquant');
+      }
+
       const data = await request.json();
 
       const response = await fetch('http://localhost/api/update', {
@@ -9,6 +18,7 @@ const fetchUpdateUser = async (request: NextRequest) => {
          credentials: 'include',
          headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token?.value}`,
          },
          body: JSON.stringify(data),
       });
@@ -24,7 +34,7 @@ const fetchUpdateUser = async (request: NextRequest) => {
 
       return NextResponse.json(result, { status: 200 });
    } catch (error: any) {
-      console.error('Erreur lors du PUT vers NestJS :', error);
+      console.error('Erreur lors du PATCH vers NestJS :', error);
       return NextResponse.json(
          {
             message: "Erreur lors de la modification de l'utilisateur.",

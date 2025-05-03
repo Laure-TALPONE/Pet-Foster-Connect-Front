@@ -26,7 +26,7 @@ export default async function RootLayout({
    return (
       <html lang="fr">
          <body>
-            <UserProvider user={user}>{children} </UserProvider>
+            <UserProvider user={user}>{children}</UserProvider>
          </body>
       </html>
    );

@@ -42,7 +42,8 @@ const ModalLoginComponent = ({ onClose }: Props) => {
       const result = await sendRequest('POST', '/api/auth/login', newData);
 
       if (result) {
-         router.push('/dashboard');
+         // méthode native de js pour rediriger et recharger la page
+         window.location.href = '/dashboard';
       }
 
       if (!result) {
