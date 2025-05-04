@@ -28,8 +28,8 @@ const DashboardProfil = () => {
          description: organization.description,
       },
    });
-   const watchPassword = watch('password');
-   const watchConfirm = watch('confirm');
+   const watchPassword: any = watch('password');
+   const watchConfirm: any = watch('confirm');
 
    const handleDisplayPassword = useCallback(
       (item: string) => {
@@ -70,9 +70,12 @@ const DashboardProfil = () => {
    }, [watchPassword]);
 
    const onSubmit = async (data: any) => {
-      const newData = {
+      const newDataUser = {
          email: data.email,
          password: watchPassword === watchConfirm && data.password,
+      };
+
+      const newDataAsso = {
          address: data.address,
          city: data.city,
          postcode: data.postcode,
@@ -80,15 +83,25 @@ const DashboardProfil = () => {
          description: data.description,
       };
 
-      console.log(newData, 'ici les datas');
+      console.log(newDataUser, newDataAsso, 'ici les datas');
 
-      const result = await sendRequest('PATCH', '/api/user/update', newData);
+      const resultUser = await sendRequest(
+         'PATCH',
+         `/api/user/update/${user.uuid}`,
+         newDataUser
+      );
 
-      if (result) {
+      const resultAsso = await sendRequest(
+         'PATCH',
+         `/api/associations/update/${organization.uuid}`,
+         newDataAsso
+      );
+
+      if (resultUser && resultAsso) {
          console.log('Modification du profil réussie.');
       }
 
-      if (!result) {
+      if (!resultUser && !resultAsso) {
          console.log('Erreur lors de la modification du profil.');
       }
    };

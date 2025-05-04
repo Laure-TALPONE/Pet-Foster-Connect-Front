@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
-const fetchUpdateUser = async (request: Request, id: string) => {
+const fetchUpdateAssociation = async (request: Request, id: string) => {
    try {
       const cookieStore = await cookies();
       const token = cookieStore.get('token');
@@ -13,7 +13,7 @@ const fetchUpdateUser = async (request: Request, id: string) => {
 
       const data = await request.json();
 
-      const response = await fetch(`http://localhost/api/${id}`, {
+      const response = await fetch(`http://localhost/api/organization/${id}`, {
          method: 'PATCH',
          credentials: 'include',
          headers: {
@@ -37,7 +37,7 @@ const fetchUpdateUser = async (request: Request, id: string) => {
       console.error('Erreur lors du PATCH vers NestJS :', error);
       return NextResponse.json(
          {
-            message: "Erreur lors de la modification de l'utilisateur.",
+            message: "Erreur lors de la modification de l'association.",
             error: error.message,
          },
          { status: 500 }
@@ -45,4 +45,4 @@ const fetchUpdateUser = async (request: Request, id: string) => {
    }
 };
 
-export default fetchUpdateUser;
+export default fetchUpdateAssociation;
