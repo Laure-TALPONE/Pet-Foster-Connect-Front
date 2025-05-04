@@ -1,10 +1,10 @@
-import fetchUpdateUser from '@/api/user/update/route';
+import fetchDeleteUser from '@/api/user/delete/route';
 
 // https://nextjs.org/docs/app/building-your-application/routing/route-handlers#dynamic-route-segments
-export async function PATCH(
+export async function DELETE(
    request: Request,
    { params }: { params: Promise<{ id: string }> }
 ) {
    const { id } = await params;
-   return await fetchUpdateUser(request, id);
+   return await fetchDeleteUser(id);
 }

@@ -1,29 +1,26 @@
 'use client';
 
+import sendRequest from '@/globals/hooks/sendRequest';
 import styles from './DashboardSettings.module.scss';
-import { useRouter } from 'next/navigation';
+import { useUser } from '@/globals/utils/UserContext';
 
 const DashboardSettings = () => {
-   const router = useRouter();
+   const user = useUser().user;
 
    const handleDeleteAccount = async () => {
-      //   try {
-      //      const response = await fetch('/api/auth/delete-account', {
-      //         method: 'DELETE',
-      //         headers: {
-      //            'Content-Type': 'application/json',
-      //         },
-      //         body: JSON.stringify(user),
-      //      });
-      //      const result = await response.json();
-      //      if (!response.ok) {
-      //         throw new Error(result.message || 'Une erreur est survenue.');
-      //      }
-      //      console.log('Compte supprimé avec succès :', result);
-      //      router.push('/accueil');
-      //   } catch (error) {
-      //      console.error('Erreur lors de la suppression du compte :', error);
-      //   }
+      const result = await sendRequest(
+         'DELETE',
+         `/api/user/delete/${user.uuid}`
+      );
+
+      if (result) {
+         console.log("L'utilisateur a bien été supprimé.");
+         window.location.href = '/accueil';
+      }
+
+      if (!result) {
+         console.log("Erreur lors de la suppression de l'utilisateur.");
+      }
    };
 
    return (
