@@ -20,6 +20,8 @@ const ListAnimals = ({ listAnimals, association }: Props) => {
    // }, []);
 
    const renderAnimalsList = useMemo(() => {
+      if (!listAnimals || listAnimals.lenght === 0) return;
+
       return listAnimals.map((pet: any, index: number) => {
          return (
             <li key={index} className={styles.item}>

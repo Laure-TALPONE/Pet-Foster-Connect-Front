@@ -7,13 +7,19 @@ import { useMemo, useState } from 'react';
 import styles from './FosterFamilySingleComponent.module.scss';
 import ListAnimals from '@/animals/list-animals/ListAnimals';
 
-const FosterFamilySingleComponent = () => {
+type Props = {
+   family: any;
+};
+
+const FosterFamilySingleComponent = ({ family }: Props) => {
+   console.log(family);
+
    return (
       <section className="container">
          <div className={styles.familyPage}>
             <section className={styles.presentation}>
                <div className={styles.text}>
-                  <h2 className={styles.title}>Fammille Martin</h2>
+                  <h2 className={styles.title}>Famille {family.name}</h2>
                   <h3 className={styles.subtitle}>Mes infos</h3>
                   <p className={styles.info}>
                      Accueillir un animal en attente d’adoption, c’est lui
@@ -24,7 +30,8 @@ const FosterFamilySingleComponent = () => {
                      m’ont apporté énormément d’amour. Être famille d’accueil,
                      c’est un engagement du cœur. Ce n’est pas toujours facile
                      de les laisser partir, mais savoir qu’on a contribué à leur
-                     bonheur, ça n’a pas de prix.
+                     bonheur, ça n’a pas de prix. <br />
+                     {family.description}
                   </p>
                </div>
                <div className={styles.picture}>
@@ -41,7 +48,9 @@ const FosterFamilySingleComponent = () => {
                <div className={styles.details}>
                   <span>Disponible</span>
                   <div className={styles.content}>
-                     <p>Ville : Bordeaux ( 33 )</p>
+                     <p>
+                        Ville : {family.city} ( {family.postcode} )
+                     </p>
                   </div>
                </div>
                <Image
@@ -54,7 +63,7 @@ const FosterFamilySingleComponent = () => {
 
             <section className={styles.listingAnimals}>
                <h2 className={styles.title}>
-                  Les protégés de la Famille Martin en ce moment 🐾
+                  Les protégés de la Famille {family.name} en ce moment 🐾
                </h2>
                <p className={styles.info}>
                   Voici les compagnons actuellement en famille d’accueil,

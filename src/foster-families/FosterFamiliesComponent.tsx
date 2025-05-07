@@ -3,7 +3,11 @@
 import styles from './FosterFamiliesComponent.module.scss';
 import ListFosterFamilies from './list-families/ListFosterFamilies';
 
-const FosterFamiliesComponent = () => {
+type Props = {
+   fosterFamilies: any;
+};
+
+const FosterFamiliesComponent = ({ fosterFamilies }: Props) => {
    return (
       <section className="container">
          <div className={styles.families}>
@@ -19,7 +23,7 @@ const FosterFamiliesComponent = () => {
                   sans elles, rien ne serait possible.
                </p>
             </div>
-            <ListFosterFamilies />
+            <ListFosterFamilies fosterFamilies={fosterFamilies} />
          </div>
       </section>
    );
