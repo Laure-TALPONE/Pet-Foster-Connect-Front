@@ -25,6 +25,11 @@ const SubcriptionFamily = () => {
    const [openModalLogin, setOpenModalLogin] = useState<boolean>(false);
    const watchPassword = watch('password');
    const watchConfirm = watch('confirm');
+   console.log(openModalLogin);
+
+   const handleCloseModaleLogin = useCallback(() => {
+      setOpenModalLogin(false);
+   }, []);
 
    const handleDisplayPassword = useCallback(
       (item: string) => {
@@ -104,9 +109,9 @@ const SubcriptionFamily = () => {
       if (openModalLogin) {
          return (
             <ModalComponent
-               onClose={setOpenModalLogin(false)}
+               onClose={handleCloseModaleLogin}
                children={
-                  <ModalLoginComponent onClose={setOpenModalLogin(false)} />
+                  <ModalLoginComponent onClose={handleCloseModaleLogin} />
                }
             />
          );

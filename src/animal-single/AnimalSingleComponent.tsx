@@ -12,7 +12,7 @@ type Props = {
 };
 
 const AnimalSingleComponent = ({ pet }: Props) => {
-   console.log(pet);
+   // console.log(pet);
 
    const settings = {
       responsive: [
@@ -82,7 +82,7 @@ const AnimalSingleComponent = ({ pet }: Props) => {
                      parfaitement à une famille active prête à lui offrir du
                      temps et de l’attention. Actuellement en attente d’une
                      famille d’accueil, Milo cherche un foyer temporaire où il
-                     pourra s’épanouir en toute sécurité.
+                     pourra s’épanouir en toute sécurité. <br />
                      {pet.description}
                   </p>
                </div>
