@@ -7,9 +7,10 @@ import Link from 'next/link';
 
 type Props = {
    listAnimals?: any;
+   association?: any;
 };
 
-const ListAnimals = ({ listAnimals }: Props) => {
+const ListAnimals = ({ listAnimals, association }: Props) => {
    // const [organizations, setOrganizations] = useState(associations);
 
    // const animals = useMemo(() => {
@@ -23,7 +24,7 @@ const ListAnimals = ({ listAnimals }: Props) => {
          return (
             <li key={index} className={styles.item}>
                <Link href={`/nos-animaux/${pet.uuid}`}>
-                  <CardAnimal pet={pet} />
+                  <CardAnimal pet={pet} association={association} />
                </Link>
             </li>
          );

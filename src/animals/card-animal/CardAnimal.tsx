@@ -6,9 +6,10 @@ import { GenderFemale, GenderMale } from '@phosphor-icons/react';
 
 type Props = {
    pet: any;
+   association: any;
 };
 
-const CardAnimal = ({ pet }: Props) => {
+const CardAnimal = ({ pet, association }: Props) => {
    const renderGenger = useMemo(() => {
       if (pet?.gender) {
          return <GenderMale weight="bold" />;
@@ -32,7 +33,9 @@ const CardAnimal = ({ pet }: Props) => {
          <div className={styles.informations}>
             <div className={styles.infoNames}>
                <p className={styles.animalName}>{pet.name}</p>
-               <p className={styles.assoName}>{pet.organization.name}</p>
+               <p className={styles.assoName}>
+                  {association.name ? association.name : pet.organization.name}
+               </p>
             </div>
             <span className={styles.gender}>{renderGenger}</span>
          </div>

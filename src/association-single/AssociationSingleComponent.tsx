@@ -7,18 +7,22 @@ import { useMemo, useState } from 'react';
 import styles from './AssociationSingleComponent.module.scss';
 import ListAnimals from '@/animals/list-animals/ListAnimals';
 
-const AssociationSingleComponent = () => {
+type Props = {
+   association: any;
+};
+
+const AssociationSingleComponent = ({ association }: Props) => {
    return (
       <section className="container">
          <div className={styles.associationPage}>
             <section className={styles.presentation}>
                <div className={styles.text}>
                   <h2 className={styles.title}>
-                     Cœur de Patte <br /> Association de Protection Animale
+                     {association.name} <br /> Association de Protection Animale
                   </h2>
                   <p className={styles.info}>
-                     Cœur de Patte est une association bordelaise dédiée à la
-                     protection des animaux abandonnés ou maltraités. Nous
+                     {association.name} est une association bordelaise dédiée à
+                     la protection des animaux abandonnés ou maltraités. Nous
                      œuvrons chaque jour pour leur offrir une seconde chance
                      grâce à un réseau de familles d’accueil bienveillantes.
                      Chats, chiens et petits animaux trouvent ainsi un foyer
@@ -27,7 +31,8 @@ const AssociationSingleComponent = () => {
                      l'engagement de ses bénévoles. Rejoindre Cœur de Patte en
                      tant que famille d'accueil, c'est offrir du réconfort, du
                      temps, et beaucoup d’amour à ceux qui en ont le plus
-                     besoin.
+                     besoin. <br />
+                     {association.description}
                   </p>
                </div>
                <div className={styles.picture}>
@@ -44,9 +49,9 @@ const AssociationSingleComponent = () => {
                <div className={styles.details}>
                   <div className={styles.content}>
                      <ol className={styles.left}>
-                        <li>Adresse : 25 rue des Lilas 33000 Bordeaux</li>
-                        <li>E-mail : contact@coeurdepatte.org</li>
-                        <li>Téléphone : 05 56 90 12 34</li>
+                        <li>Adresse : {association.address}</li>
+                        <li>E-mail : </li>
+                        <li>Téléphone : {association.phone}</li>
                      </ol>
                   </div>
                </div>
@@ -69,7 +74,10 @@ const AssociationSingleComponent = () => {
                   est une nouvelle chance de leur offrir une vie pleine de
                   bonheur.
                </p>
-               <ListAnimals />
+               <ListAnimals
+                  listAnimals={association.animals}
+                  association={association}
+               />
             </section>
          </div>
       </section>
