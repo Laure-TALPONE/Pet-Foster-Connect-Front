@@ -6,7 +6,7 @@ import { GenderFemale, GenderMale } from '@phosphor-icons/react';
 
 type Props = {
    pet: any;
-   association: any;
+   association?: any;
 };
 
 const CardAnimal = ({ pet, association }: Props) => {
@@ -34,7 +34,7 @@ const CardAnimal = ({ pet, association }: Props) => {
             <div className={styles.infoNames}>
                <p className={styles.animalName}>{pet.name}</p>
                <p className={styles.assoName}>
-                  {association.name ? association.name : pet.organization.name}
+                  {association?.name ? association.name : pet.organization.name}
                </p>
             </div>
             <span className={styles.gender}>{renderGenger}</span>

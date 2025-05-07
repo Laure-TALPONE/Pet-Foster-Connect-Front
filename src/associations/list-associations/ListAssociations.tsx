@@ -11,6 +11,8 @@ type Props = {
 
 const ListAssociations = ({ associations }: Props) => {
    const renderAssociationList = useMemo(() => {
+      if (!associations || associations.length === 0) return;
+
       return associations.map((asso: any, index: number) => {
          return (
             <li key={index} className={styles.item}>
@@ -20,7 +22,7 @@ const ListAssociations = ({ associations }: Props) => {
             </li>
          );
       });
-   }, []);
+   }, [associations]);
 
    return <ul className={styles.list}>{renderAssociationList}</ul>;
 };

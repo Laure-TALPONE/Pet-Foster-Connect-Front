@@ -20,7 +20,7 @@ const ListAnimals = ({ listAnimals, association }: Props) => {
    // }, []);
 
    const renderAnimalsList = useMemo(() => {
-      if (!listAnimals || listAnimals.lenght === 0) return;
+      if (!listAnimals || listAnimals.length === 0) return;
 
       return listAnimals.map((pet: any, index: number) => {
          return (
@@ -31,7 +31,7 @@ const ListAnimals = ({ listAnimals, association }: Props) => {
             </li>
          );
       });
-   }, []);
+   }, [listAnimals, association]);
 
    return <ul className={styles.list}>{renderAnimalsList}</ul>;
 };

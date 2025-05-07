@@ -19,6 +19,8 @@ const ListFosterFamilies = ({ fosterFamilies }: Props) => {
    // }, []);
 
    const renderFamiliesList = useMemo(() => {
+      if (!fosterFamilies || fosterFamilies.length === 0) return;
+
       return fosterFamilies.map((family: any, index: number) => {
          return (
             <li key={index} className={styles.item}>
@@ -28,7 +30,7 @@ const ListFosterFamilies = ({ fosterFamilies }: Props) => {
             </li>
          );
       });
-   }, []);
+   }, [fosterFamilies]);
 
    return <ul className={styles.list}>{renderFamiliesList}</ul>;
 };

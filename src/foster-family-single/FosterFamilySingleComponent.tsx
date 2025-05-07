@@ -51,6 +51,7 @@ const FosterFamilySingleComponent = ({ family }: Props) => {
                      <p>
                         Ville : {family.city} ( {family.postcode} )
                      </p>
+                     <p>Places disponibles : {family.slots}</p>
                   </div>
                </div>
                <Image
