@@ -1,6 +1,6 @@
-import fetchPostRegister from '@/api/auth/register/route';
+import fetchPostRegisterAssociation from '@/api/auth/register/association/route';
 import { NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest) {
-   return await fetchPostRegister(request);
+   return await fetchPostRegisterAssociation(request);
 }

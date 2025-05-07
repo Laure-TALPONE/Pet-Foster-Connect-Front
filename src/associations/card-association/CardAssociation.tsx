@@ -7,7 +7,6 @@ type Props = {
 };
 
 const CardAssociation = ({ asso }: Props) => {
-
    return (
       <div className={styles.card}>
          <div className={styles.top}>
@@ -21,7 +20,9 @@ const CardAssociation = ({ asso }: Props) => {
          <div className={styles.informations}>
             <div className={styles.names}>
                <p className={styles.assoName}>{asso.name}</p>
-               <p className={styles.city}>{asso.location} ({asso.postalcode.slice(0, 2)})</p>
+               <p className={styles.city}>
+                  {asso.city} ({asso.postcode})
+               </p>
             </div>
          </div>
       </div>

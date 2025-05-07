@@ -2,7 +2,13 @@
 import styles from './AssociationsComponent.module.scss';
 import ListAssociations from './list-associations/ListAssociations';
 
-const AssociationsComponent = () => {
+type Props = {
+   associations?: any;
+};
+
+const AssociationsComponent = ({ associations }: Props) => {
+   console.log(associations);
+
    return (
       <section className="container">
          <div className={styles.association}>
@@ -21,7 +27,7 @@ const AssociationsComponent = () => {
                   changer une vie !
                </p>
             </div>
-            <ListAssociations />
+            <ListAssociations associations={associations} />
          </div>
       </section>
    );

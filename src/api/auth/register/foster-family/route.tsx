@@ -1,20 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const fetchPostRegister = async (request: NextRequest) => {
+const fetchPostRegisterFamily = async (request: NextRequest) => {
    try {
       const data = await request.json();
 
-      const response = await fetch(
-         // 'http://jeremyjacquette-server.eddi.cloud/api/organization/register',
-         'http://localhost/api/organization/register',
-         {
-            method: 'POST',
-            headers: {
-               'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-         }
-      );
+      const response = await fetch('http://localhost/api/foster/register', {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(data),
+      });
 
       const result = await response.json();
 
@@ -35,4 +31,4 @@ const fetchPostRegister = async (request: NextRequest) => {
    }
 };
 
-export default fetchPostRegister;
+export default fetchPostRegisterFamily;

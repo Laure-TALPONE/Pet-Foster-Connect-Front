@@ -5,20 +5,16 @@ import { useMemo, useState } from 'react';
 import CardAssociation from '../card-association/CardAssociation';
 import styles from './ListAssociations.module.scss';
 
-const ListAssociations = () => {
-   const [organizations, setOrganizations] = useState(associations);
+type Props = {
+   associations?: any;
+};
 
-   const association = useMemo(() => {
-      return organizations.flatMap((asso: any) => {
-         return asso;
-      });
-   }, []);
-
+const ListAssociations = ({ associations }: Props) => {
    const renderAssociationList = useMemo(() => {
-      return association.map((asso: any, index: number) => {
+      return associations.map((asso: any, index: number) => {
          return (
             <li key={index} className={styles.item}>
-               <Link href={'/associations/1'}>
+               <Link href={`/associations/${asso.uuid}`}>
                   <CardAssociation asso={asso} />
                </Link>
             </li>

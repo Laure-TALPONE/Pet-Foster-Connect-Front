@@ -71,8 +71,9 @@ const SubcriptionFamily = () => {
             password: watchPassword === watchConfirm && data.password,
          },
          foster: {
-            lastname: data.lastname,
-            firstname: data.firstname,
+            name: data.lastname,
+            // firstname: data.firstname,
+            slots: 2,
             address: data.address,
             city: data.city,
             postcode: data.postcode,
@@ -163,11 +164,6 @@ const SubcriptionFamily = () => {
                               {...register('email', { required: true })}
                            />
                         </div>
-                        {errorEmailMessage && (
-                           <p className={styles.emailError}>
-                              {errorEmailMessage}
-                           </p>
-                        )}
                      </section>
                      <section className={errorMessage ? styles.password : ''}>
                         <div
