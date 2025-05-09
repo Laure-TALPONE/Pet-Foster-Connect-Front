@@ -1,10 +1,17 @@
+@import '../../../styles/_bases/mixins';
+
 .list {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 340px));
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     grid-gap: 20px;
     row-gap: 30px;
-    justify-content: start;
+    place-items: center;
+
+    @include tablet {
+        grid-template-columns: repeat(auto-fit, minmax(340px, 340px));
+        justify-content: start;
+    }
 
     .item {
         width: 100%;
