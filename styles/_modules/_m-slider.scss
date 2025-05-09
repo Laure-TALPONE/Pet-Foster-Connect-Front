@@ -1,20 +1,21 @@
+@import '../_bases/mixins';
+
 .slick-slider {
     display: flex;
     flex-direction: column;
     gap: 20px;
 
-    .slick-track {
-        display: flex;
-        gap: 24px;
-
-        >:last-child {
-            margin-right: 16px;
-        }
-    }
-
     .slick-list {
         overflow: hidden;
         transform: translateZ(0);
+    }
+
+    .slick-track {
+        display: flex;
+
+        @include tablet {
+            gap: 24px;
+        }
     }
 
     .slick-slide {
