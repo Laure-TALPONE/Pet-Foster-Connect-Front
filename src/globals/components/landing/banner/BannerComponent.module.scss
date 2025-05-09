@@ -35,10 +35,25 @@
 .title {
     @include desktop-title-l;
     text-align: center;
+    display: flex;
+    flex-wrap: nowrap;
+
+    span {
+        display: none;
+
+        @include tablet {
+            display: block;
+        }
+    }
 }
 
 .subtitle {
     @include desktop-title-m;
+    display: none;
+
+    @include tablet {
+        display: block;
+    }
 }
 
 .subtitle {
@@ -48,7 +63,6 @@
 }
 
 .search {
-    margin-top: 30px;
     display: flex;
     width: 100%;
     align-items: center;
@@ -63,6 +77,7 @@
 
     @include tablet {
         flex-direction: row;
+        margin-top: 30px;
     }
 }
 
