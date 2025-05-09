@@ -13,7 +13,6 @@ type Props = {
 };
 
 const AssociationSingleComponent = ({ association }: Props) => {
-   console.log(association);
    return (
       <section className="container">
          <div className={styles.associationPage}>

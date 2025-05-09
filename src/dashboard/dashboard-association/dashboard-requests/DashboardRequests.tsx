@@ -38,14 +38,14 @@ const DashboardRequests = () => {
                      <User />
                   </div>
                   <p className={styles.name}>{family.name}</p>
-               </div>
-               <div className={styles.infosRequest}>
-                  <p>
-                     <span>Nom :</span> <span>Bobby</span>
-                  </p>
-                  <p>
-                     <span>Espèce :</span> <span>Chien</span>
-                  </p>
+                  <div className={styles.infosRequest}>
+                     <p>
+                        <span>Nom :</span> <span>Bobby</span>
+                     </p>
+                     <p>
+                        <span>Espèce :</span> <span>Chien</span>
+                     </p>
+                  </div>
                </div>
                <button
                   type="button"

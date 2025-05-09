@@ -23,8 +23,8 @@ const LandingComponent = ({ buttons }: Props) => {
          return (
             <div className={styles.text}>
                <h1 className={styles.title}>
-                  Rejoignez notre réseau et offrez un <br /> nouveau départ aux
-                  animaux !
+                  Rejoignez notre réseau et offrez un nouveau départ aux animaux
+                  !
                </h1>
                {buttons && (
                   <div className={styles.buttons}>

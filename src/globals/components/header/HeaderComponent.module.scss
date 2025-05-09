@@ -4,7 +4,7 @@
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    top: 30px;
+    top: 15px;
     width: 90%;
     border-radius: 12px;
     background-color: white;
@@ -17,6 +17,10 @@
 
     svg {
         flex-shrink: 0;
+    }
+
+    @include tablet {
+        top: 30px;
     }
 }
 

@@ -63,6 +63,28 @@ const DashboardPetsList = ({ animals, species }: Props) => {
       [animalsList]
    );
 
+   const renderStatus = (pet: any) => {
+      if (pet.is_available) {
+         return (
+            <span
+               className={styles.status}
+               style={{ color: '#FFF', background: '#F77748' }}
+            >
+               en attente
+            </span>
+         );
+      } else {
+         return (
+            <span
+               className={styles.status}
+               style={{ color: '#000', background: '#82CCD5' }}
+            >
+               en famille
+            </span>
+         );
+      }
+   };
+
    const renderListPets = useMemo(() => {
       return animalsList.map((pet: any, index: number) => {
          return (
@@ -75,34 +97,34 @@ const DashboardPetsList = ({ animals, species }: Props) => {
                      height={80}
                   />
                </div>
-               <p className={styles.name}>{pet.name}</p>
-               <p>{pet.species.name}</p>
-               {isDesktop ? (
-                  <span>{pet.is_available ? 'en attente' : ''}</span>
-               ) : (
-                  <span className={styles.status}></span>
-               )}
-               {isDesktop ? (
-                  <button
-                     type="button"
-                     className="m-button--square"
-                     onClick={() => handleOpenModal(true, pet)}
-                  >
-                     Modifier
-                  </button>
-               ) : (
-                  <button
-                     type="button"
-                     className={styles.edit}
-                     onClick={() => handleOpenModal(true, pet)}
-                  >
-                     <PencilSimple />
-                  </button>
-               )}
+               <div className={styles.left}>
+                  <p className={styles.name}>{pet.name}</p>
+                  <p>{pet.species.name}</p>
+               </div>
+               <div className={styles.right}>
+                  {renderStatus(pet)}
+                  {isDesktop ? (
+                     <button
+                        type="button"
+                        className="m-button--square"
+                        onClick={() => handleOpenModal(true, pet)}
+                     >
+                        Modifier
+                     </button>
+                  ) : (
+                     <button
+                        type="button"
+                        className={styles.edit}
+                        onClick={() => handleOpenModal(true, pet)}
+                     >
+                        <PencilSimple />
+                     </button>
+                  )}
+               </div>
             </li>
          );
       });
-   }, [associations, isDesktop, handleOpenModal, animalsList]);
+   }, [associations, isDesktop, handleOpenModal, animalsList, renderStatus]);
 
    const renderButtons = useMemo(() => {
       if (!isDesktop) {

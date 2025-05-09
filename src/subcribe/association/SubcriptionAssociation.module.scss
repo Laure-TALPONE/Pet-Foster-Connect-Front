@@ -124,14 +124,6 @@
     flex-direction: column;
     gap: 10px;
 
-    // >:nth-child(3) {
-    //     margin-top: 10px;
-
-    //     @include tablet {
-    //         margin-top: 0;
-    //     }
-    // }
-
     >:nth-child(10),
     :nth-child(11) {
         cursor: pointer;
