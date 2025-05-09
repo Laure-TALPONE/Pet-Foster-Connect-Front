@@ -115,6 +115,11 @@
             @include text-l;
          }
       }
+
+      .right {
+         color: var(--Neutral-white);
+         @include text-l;
+      }
    }
 }
 
@@ -129,6 +134,7 @@
    .title {
       @include desktop-title-l;
       color: var(--Blue-secondary);
+      text-align: center;
    }
 
    .info {

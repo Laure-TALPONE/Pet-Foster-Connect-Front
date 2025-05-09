@@ -6,12 +6,14 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import styles from './AssociationSingleComponent.module.scss';
 import ListAnimals from '@/animals/list-animals/ListAnimals';
+import dayjs from 'dayjs';
 
 type Props = {
    association: any;
 };
 
 const AssociationSingleComponent = ({ association }: Props) => {
+   console.log(association);
    return (
       <section className="container">
          <div className={styles.associationPage}>
@@ -50,9 +52,17 @@ const AssociationSingleComponent = ({ association }: Props) => {
                   <div className={styles.content}>
                      <ol className={styles.left}>
                         <li>Adresse : {association.address}</li>
-                        <li>E-mail : </li>
+                        <li>
+                           Ville : {association.city} ( {association.postcode} )
+                        </li>
                         <li>Téléphone : {association.phone}</li>
                      </ol>
+                     <p className={styles.right}>
+                        Date de création :{' '}
+                        {dayjs(association.registration_date).format(
+                           'DD-MM-YYYY'
+                        )}
+                     </p>
                   </div>
                </div>
                <Image
