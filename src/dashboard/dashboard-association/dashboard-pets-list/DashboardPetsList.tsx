@@ -70,7 +70,7 @@ const DashboardPetsList = ({ animals, species }: Props) => {
                className={styles.status}
                style={{ color: '#FFF', background: '#F77748' }}
             >
-               en attente
+               {isDesktop ? 'en attente' : ''}
             </span>
          );
       } else {
@@ -79,7 +79,7 @@ const DashboardPetsList = ({ animals, species }: Props) => {
                className={styles.status}
                style={{ color: '#000', background: '#82CCD5' }}
             >
-               en famille
+               {isDesktop ? 'en famille' : ''}
             </span>
          );
       }
