@@ -7,59 +7,55 @@ import SectionLifestyle from './section-lifestyle/SectionLifestyle';
 import SectionMotivations from './section-motivations/SectionMotivations';
 import SectionAdoption from './section-info-adoption/SectionAdoption';
 import { useState } from 'react';
+import sendRequest from '@/globals/hooks/sendRequest';
 
 type Props = {
    pet: any;
 };
 
 const HomeRequestComponent = ({ pet }: Props) => {
-   console.log(pet);
+   // console.log(pet);
    const methods = useForm();
    const { handleSubmit } = methods;
    const [consent, setConsent] = useState<boolean>(false);
 
    const onSubmit = async (data: any) => {
       const newData = {
-         civility: data.civility,
-         firstname: data.firstname,
-         lastname: data.lastname,
-         email: data.email,
-         phone: data.phone,
-         address: data.address,
-         postcode: data.postcode,
-         city: data.city,
-         house: data.house,
-         has_children: data.has_children,
-         children_age: data.children_age,
-         has_animal: data.has_animal,
-         animals_infos: data.animals_infos,
+         animalId: pet.uuid,
+         // civility: data.civility,
+         // firstname: data.firstname,
+         // lastname: data.lastname,
+         // email: data.email,
+         // phone: data.phone,
+         // address: data.address,
+         // postcode: data.postcode,
+         // city: data.city,
+         // house: data.house,
+         // has_children: data.has_children,
+         childs: data.has_children === 'true' ? true : false,
+         // children_age: data.children_age,
+         has_animals: data.has_animal === 'true' ? true : false,
+         animals: data.animals_infos,
          motivation: data.motivation,
-         consent: data.consent,
+         family_type: 'dynamic',
+         // consent: data.consent,
       };
 
       console.log(newData, 'ici les datas');
 
-      // try {
-      //    const response = await fetch('/api/home-request', {
-      //       method: 'POST',
-      //       headers: {
-      //          'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify(newData),
-      //    });
+      const result = await sendRequest(
+         'POST',
+         '/api/home-request/create',
+         newData
+      );
 
-      //    const result = await response.json();
+      if (result) {
+         console.log("Création d'une demande d'adoption réussie.");
+      }
 
-      //    if (!response.ok) {
-      //       throw new Error(result.message || 'Une erreur est survenue.');
-      //    }
-
-      //    if (response.ok) {
-      //       console.log('Demande d'accueil réussie :', result);
-      //    }
-      // } catch (error) {
-      //    console.error('Erreur API :', error);
-      // }
+      if (!result) {
+         console.log("Création d'une demande d'adoption échouée.");
+      }
    };
 
    return (

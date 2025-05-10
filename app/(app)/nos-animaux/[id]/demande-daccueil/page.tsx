@@ -8,7 +8,8 @@ type Props = {
 };
 
 export default async function HomeRequestPage({ params }: Props) {
-   const animal = await fetchGetAnimalById(params.id);
+   const { id } = await params;
+   const animal = await fetchGetAnimalById(id);
 
    return <HomeRequestComponent pet={animal} />;
 }
