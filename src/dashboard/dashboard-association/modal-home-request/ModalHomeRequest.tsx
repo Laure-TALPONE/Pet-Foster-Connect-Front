@@ -78,10 +78,10 @@ const ModalHomeRequest = () => {
             </div>
             <div className={styles.btnResponse}>
                <button type="button" className="m-button">
-                  Valider de la demande
+                  Valider<span>&nbsp;la demande</span>
                </button>
                <button type="button" className=" m-button--square">
-                  Refuser de la demande
+                  Refuser<span>&nbsp;la demande</span>
                </button>
             </div>
          </section>

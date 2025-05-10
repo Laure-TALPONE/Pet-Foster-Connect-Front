@@ -156,19 +156,25 @@
     .btnResponse {
         margin-top: 10px;
         display: inline-flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
         gap: 20px;
 
         button {
+            display: inline-flex;
+            flex-wrap: nowrap;
+
             &:hover {
                 transform: none;
             }
-        }
 
-        @include tablet {
-            flex-direction: row;
-            align-items: inherit;
+            span {
+                display: none;
+
+                @include tablet {
+                    display: block;
+                }
+            }
         }
     }
 }
