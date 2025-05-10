@@ -20,6 +20,7 @@ const DashboardPetsList = ({ animals, species }: Props) => {
    const [isUpdating, setIsUpdating] = useState<boolean>(false);
    const [animalSelected, setAnimalSelected] = useState<any>();
    const [animalsList, setAnimalsList] = useState(animals);
+   const [searchPet, setSearchPet] = useState('');
 
    useEffect(() => {
       const handleResize = () => {
@@ -86,7 +87,17 @@ const DashboardPetsList = ({ animals, species }: Props) => {
    };
 
    const renderListPets = useMemo(() => {
-      return animalsList.map((pet: any, index: number) => {
+      let filteredAnimals;
+
+      if (searchPet) {
+         filteredAnimals = animalsList.filter((item: any) =>
+            item?.name.toLowerCase().startsWith(searchPet.toLowerCase())
+         );
+      } else {
+         filteredAnimals = animalsList;
+      }
+
+      return filteredAnimals.map((pet: any, index: number) => {
          return (
             <li className={styles.petInfos} key={index}>
                <div className={styles.picture}>
@@ -180,7 +191,11 @@ const DashboardPetsList = ({ animals, species }: Props) => {
          <div className={styles.content}>
             <section className={styles.search}>
                <div className="m-input m-input__background">
-                  <input type="text" placeholder="Rechercher un animal" />
+                  <input
+                     type="text"
+                     placeholder="Rechercher un animal"
+                     onChange={(e) => setSearchPet(e.target.value)}
+                  />
                </div>
                {renderButtons}
             </section>

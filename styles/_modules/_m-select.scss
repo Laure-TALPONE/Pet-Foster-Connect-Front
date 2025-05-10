@@ -17,6 +17,7 @@
         cursor: pointer;
         color: var(--Blue-secondary);
         @include text-l;
+        z-index: 3;
 
         &::placeholder {
             font-size: 14px;
