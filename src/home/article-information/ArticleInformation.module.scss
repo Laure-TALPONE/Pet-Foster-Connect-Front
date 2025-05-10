@@ -45,18 +45,20 @@
 .title {
     @include desktop-title-l;
     color: var(--Blue-secondary);
+    text-align: center;
+
+    @include desktop {
+        text-align: left;
+    }
 }
 
 .details {
     @include text-l;
     color: var(--Blue-secondary);
+    text-align: center;
 
-    ul {
-        padding-left: 20px;
-
-        li {
-            list-style-type: disc;
-        }
+    @include desktop {
+        text-align: left;
     }
 }
 

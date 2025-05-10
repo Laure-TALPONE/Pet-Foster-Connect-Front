@@ -24,6 +24,11 @@
 .title {
     @include desktop-title-l;
     color: var(--Blue-secondary);
+    text-align: center;
+
+    @include desktop {
+        text-align: left;
+    }
 }
 
 .details {

@@ -8,7 +8,7 @@ const ArticleFoster = () => {
          <div className={styles.article}>
             <div className={styles.text}>
                <h2 className={styles.title}>
-                  Un foyer temporaire <br /> pour chaque animal
+                  Un foyer temporaire pour chaque animal
                </h2>
                <div className={styles.details}>
                   <p>
