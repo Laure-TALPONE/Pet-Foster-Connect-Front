@@ -8,9 +8,14 @@ import { foster_families } from '@/globals/constants/data';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalHomeRequest from '../modal-home-request/ModalHomeRequest';
 
-const DashboardRequests = () => {
+type Props = {
+   animals: any;
+};
+
+const DashboardRequests = ({ animals }: Props) => {
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+   const [adoptionsRequest, setAdoptionsRequest] = useState([]);
 
    const handleOpenModal = useCallback(() => {
       setModalIsOpen(true);
@@ -29,21 +34,44 @@ const DashboardRequests = () => {
       return () => window.removeEventListener('resize', handleResize);
    }, []);
 
+   useEffect(() => {
+      if (!animals || animals.length === 0) return;
+
+      const adoptions = animals.flatMap((pet: any, index: number) => {
+         return pet.adoptionRequests;
+      });
+      setAdoptionsRequest(adoptions);
+   }, [animals]);
+   console.log(adoptionsRequest);
+
    const renderListPets = useMemo(() => {
-      return foster_families.map((family: any, index: number) => {
+      if (!adoptionsRequest || adoptionsRequest.length === 0) return;
+
+      return adoptionsRequest.map((adoption: any, index: number) => {
          return (
             <li className={styles.item} key={index}>
                <div className={styles.infos}>
                   <div className={styles.picture}>
-                     <User />
+                     {adoption.fosterCare.image ? (
+                        <img
+                           src={adoption.fosterCare.image}
+                           alt="foster-family-picture"
+                           className={styles.familyPicture}
+                        />
+                     ) : (
+                        <User />
+                     )}
                   </div>
-                  <p className={styles.name}>{family.name}</p>
+                  <p className={styles.name}>
+                     Famille {adoption.fosterCare.name}
+                  </p>
                   <div className={styles.infosRequest}>
                      <p>
-                        <span>Nom :</span> <span>Bobby</span>
+                        <span>Nom :</span> <span>{adoption.animal.name}</span>
                      </p>
                      <p>
-                        <span>Espèce :</span> <span>Chien</span>
+                        <span>Espèce :</span>{' '}
+                        <span>{adoption.animal.species.name}</span>
                      </p>
                   </div>
                </div>
@@ -57,7 +85,7 @@ const DashboardRequests = () => {
             </li>
          );
       });
-   }, [foster_families, isDesktop, handleOpenModal]);
+   }, [isDesktop, handleOpenModal]);
 
    const renderModal = useMemo(() => {
       if (modalIsOpen) {

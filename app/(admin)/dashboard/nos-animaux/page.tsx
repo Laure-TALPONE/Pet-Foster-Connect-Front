@@ -5,6 +5,7 @@ import DashboardPetsList from '@/dashboard/dashboard-association/dashboard-pets-
 import { cookies } from 'next/headers';
 
 export default async function DashboardPetsListPage() {
+   // https://nextjs.org/docs/app/api-reference/functions/cookies
    const cookieStore = await cookies();
    const token = cookieStore.get('token');
    let user;

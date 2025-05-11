@@ -8,20 +8,22 @@ import SectionMotivations from './section-motivations/SectionMotivations';
 import SectionAdoption from './section-info-adoption/SectionAdoption';
 import { useState } from 'react';
 import sendRequest from '@/globals/hooks/sendRequest';
+import { useUser } from '@/globals/utils/UserContext';
 
 type Props = {
    pet: any;
 };
 
 const HomeRequestComponent = ({ pet }: Props) => {
-   // console.log(pet);
    const methods = useForm();
    const { handleSubmit } = methods;
    const [consent, setConsent] = useState<boolean>(false);
+   const user = useUser().user;
 
    const onSubmit = async (data: any) => {
       const newData = {
          animalId: pet.uuid,
+         fosterCareId: user.fosterCares[0].uuid,
          // civility: data.civility,
          // firstname: data.firstname,
          // lastname: data.lastname,
@@ -31,14 +33,13 @@ const HomeRequestComponent = ({ pet }: Props) => {
          // postcode: data.postcode,
          // city: data.city,
          // house: data.house,
-         // has_children: data.has_children,
-         childs: data.has_children === 'true' ? true : false,
+         // children: data.has_children === 'true' ? true : false,
          // children_age: data.children_age,
+         childs: data.has_children === 'true' ? true : false,
          has_animals: data.has_animal === 'true' ? true : false,
          animals: data.animals_infos,
          motivation: data.motivation,
          family_type: 'dynamic',
-         // consent: data.consent,
       };
 
       console.log(newData, 'ici les datas');

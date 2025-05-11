@@ -86,8 +86,8 @@
         height: 50px;
         background: var(--Blue-secondary);
         border-radius: 100%;
-        padding: 15px;
         grid-column: auto;
+        overflow: hidden;
 
         @include tablet {
             width: 80px;
@@ -95,8 +95,17 @@
         }
 
         svg {
-            font-size: 40px;
+            font-size: 30px;
             color: var(--Neutral-white);
+
+            @include tablet {
+                font-size: 40px;
+            }
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
         }
     }
 
