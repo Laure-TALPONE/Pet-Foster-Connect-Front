@@ -16,9 +16,12 @@ const DashboardRequests = ({ animals }: Props) => {
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
    const [adoptionsRequest, setAdoptionsRequest] = useState([]);
+   const [adoption, setAdoption] = useState();
+   console.log(adoption);
 
-   const handleOpenModal = useCallback(() => {
+   const handleOpenModal = useCallback((adopt: any) => {
       setModalIsOpen(true);
+      setAdoption(adopt);
    }, []);
 
    const handleCloseModal = useCallback(() => {
@@ -42,7 +45,7 @@ const DashboardRequests = ({ animals }: Props) => {
       });
       setAdoptionsRequest(adoptions);
    }, [animals]);
-   console.log(adoptionsRequest);
+   // console.log(adoptionsRequest);
 
    const renderListPets = useMemo(() => {
       if (!adoptionsRequest || adoptionsRequest.length === 0) return;
@@ -70,7 +73,7 @@ const DashboardRequests = ({ animals }: Props) => {
                         <span>Nom :</span> <span>{adoption.animal.name}</span>
                      </p>
                      <p>
-                        <span>Espèce :</span>{' '}
+                        <span>Espèce :</span>
                         <span>{adoption.animal.species.name}</span>
                      </p>
                   </div>
@@ -78,21 +81,21 @@ const DashboardRequests = ({ animals }: Props) => {
                <button
                   type="button"
                   className="m-button"
-                  onClick={handleOpenModal}
+                  onClick={() => handleOpenModal(adoption)}
                >
                   Voir la demande
                </button>
             </li>
          );
       });
-   }, [isDesktop, handleOpenModal]);
+   }, [isDesktop, handleOpenModal, adoptionsRequest]);
 
    const renderModal = useMemo(() => {
       if (modalIsOpen) {
          return (
             <ModalComponent
                onClose={handleCloseModal}
-               children={<ModalHomeRequest />}
+               children={<ModalHomeRequest adoptionRequest={adoption} />}
             />
          );
       }

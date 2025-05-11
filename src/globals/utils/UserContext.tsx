@@ -3,6 +3,7 @@
 import { createContext, useContext, ReactNode } from 'react';
 
 export type User = {
+   fosterCares: any;
    uuid: string;
    name: string;
    email: string;

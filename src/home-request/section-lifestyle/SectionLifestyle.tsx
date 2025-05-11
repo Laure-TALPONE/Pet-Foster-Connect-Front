@@ -74,7 +74,7 @@ const SectionLifestyle = () => {
                   <li className="m-radio">
                      <input
                         type="radio"
-                        value={true}
+                        value="Oui"
                         {...register('has_children', { required: true })}
                      />
                      <span></span>
@@ -83,7 +83,7 @@ const SectionLifestyle = () => {
                   <li className="m-radio">
                      <input
                         type="radio"
-                        value={false}
+                        value="Non"
                         {...register('has_children', { required: true })}
                      />
                      <span></span>
@@ -110,7 +110,7 @@ const SectionLifestyle = () => {
                   <li className="m-radio">
                      <input
                         type="radio"
-                        value={true}
+                        value="Oui"
                         {...register('has_animal', { required: true })}
                      />
                      <span></span>
@@ -119,7 +119,7 @@ const SectionLifestyle = () => {
                   <li className="m-radio">
                      <input
                         type="radio"
-                        value={false}
+                        value="Non"
                         {...register('has_animal', { required: true })}
                      />
                      <span></span>

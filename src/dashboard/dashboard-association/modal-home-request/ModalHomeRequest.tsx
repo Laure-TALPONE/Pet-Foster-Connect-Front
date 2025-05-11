@@ -3,22 +3,35 @@
 import { User } from '@phosphor-icons/react';
 import styles from './ModalHomeRequest.module.scss';
 
-const ModalHomeRequest = () => {
+type Props = {
+   adoptionRequest?: any;
+};
+
+const ModalHomeRequest = ({ adoptionRequest }: Props) => {
    return (
       <div className={styles.content}>
          <section className={styles.top}>
             <div className={styles.name}>
                <div className={styles.picture}>
-                  <User />
+                  {adoptionRequest.fosterCare.image ? (
+                     <img
+                        src={adoptionRequest.fosterCare.image}
+                        alt="foster-family-picture"
+                        className={styles.familyPicture}
+                     />
+                  ) : (
+                     <User />
+                  )}
                </div>
-               <h2>La famille Dupont</h2>
+               <h2>La famille {adoptionRequest.fosterCare.name}</h2>
             </div>
             <div className={styles.infoPet}>
                <p>
-                  <span>Nom :</span> <span>Bobby</span>
+                  <span>Nom :</span> <span>{adoptionRequest.animal.name}</span>
                </p>
                <p>
-                  <span>Espèce :</span> <span>Chien</span>
+                  <span>Espèce :</span>
+                  <span>{adoptionRequest.animal.species.name}</span>
                </p>
             </div>
          </section>
@@ -26,10 +39,14 @@ const ModalHomeRequest = () => {
          <section className={styles.infosRequest}>
             <h2>La demande</h2>
             <div className={styles.infosFamily}>
-               <p>Mr André Dupont</p>
+               <p>Mr {adoptionRequest.fosterCare.name}</p>
                <p>andredupont@gmail.com</p>
-               <p>123 Rue des Pattes Heureuses, 69001 Lyon, France</p>
-               <p>01 23 45 67 89</p>
+               <p>
+                  {adoptionRequest.fosterCare.address},{' '}
+                  {adoptionRequest.fosterCare.postcode}{' '}
+                  {adoptionRequest.fosterCare.city}, France
+               </p>
+               <p>{adoptionRequest.fosterCare.phone}</p>
             </div>
             <div className={styles.lifestyle}>
                <div className={styles.item}>
@@ -42,11 +59,11 @@ const ModalHomeRequest = () => {
                <div className={styles.item}>
                   <p>Avez vous des enfants :</p>
                   <div className={styles.list}>
-                     <span>Oui</span>
+                     <span>{adoptionRequest.childs ? 'Oui' : 'Non'}</span>
                   </div>
                </div>
                <div className={styles.item}>
-                  <p>Votre Famille :</p>
+                  <p>Votre habitation :</p>
                   <div className={styles.list}>
                      <span>Aventureux</span>
                      <span>Urbain</span>
@@ -56,7 +73,7 @@ const ModalHomeRequest = () => {
          </section>
 
          <section className={styles.motivations}>
-            <h2>Motivation :</h2>
+            <h2>Motivations :</h2>
             <p className={styles.text}>
                Depuis toujours, j’ai eu un profond amour pour les animaux et
                l’envie de m’engager pour leur bien-être. Devenir famille
@@ -67,7 +84,8 @@ const ModalHomeRequest = () => {
                l’attention, tout en contribuant à la belle mission des
                associations de protection animale. Accueillir temporairement un
                compagnon est une expérience enrichissante, à la fois pour lui et
-               pour moi. 💙
+               pour moi. 💙 <br />
+               {adoptionRequest.motivation}
             </p>
          </section>
 
