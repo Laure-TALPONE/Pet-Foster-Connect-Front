@@ -88,6 +88,7 @@
 
         p {
             @include text-l;
+            color: var(--Blue-secondary);
         }
 
         @include tablet {
@@ -125,6 +126,7 @@
 
             .list {
                 display: inline-flex;
+                align-items: center;
                 gap: 10px;
             }
 

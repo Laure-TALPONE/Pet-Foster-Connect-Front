@@ -30,7 +30,7 @@ const SectionLifestyle = () => {
                   <li className="m-checkbox m-checkbox--label">
                      <input
                         type="checkbox"
-                        value="maison"
+                        value="Maison"
                         {...register('house')}
                      />
                      <span></span>
@@ -39,7 +39,7 @@ const SectionLifestyle = () => {
                   <li className="m-checkbox m-checkbox--label">
                      <input
                         type="checkbox"
-                        value="appartement"
+                        value="Appartement"
                         {...register('house')}
                      />
                      <span></span>
@@ -49,7 +49,7 @@ const SectionLifestyle = () => {
                   <li className="m-checkbox m-checkbox--label">
                      <input
                         type="checkbox"
-                        value="jardin"
+                        value="Jardin"
                         {...register('house')}
                      />
                      <span></span>
@@ -58,7 +58,7 @@ const SectionLifestyle = () => {
                   <li className="m-checkbox m-checkbox--label">
                      <input
                         type="checkbox"
-                        value="balcon"
+                        value="Balcon"
                         {...register('house')}
                      />
                      <span></span>

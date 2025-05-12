@@ -2,12 +2,19 @@
 
 import { User } from '@phosphor-icons/react';
 import styles from './ModalHomeRequest.module.scss';
+import { useMemo } from 'react';
 
 type Props = {
    adoptionRequest?: any;
 };
 
 const ModalHomeRequest = ({ adoptionRequest }: Props) => {
+   const renderFamilyHome = useMemo(() => {
+      return adoptionRequest.family_home.map((info: any, index: number) => {
+         return <span key={index}>{info}</span>;
+      });
+   }, [adoptionRequest]);
+
    return (
       <div className={styles.content}>
          <section className={styles.top}>
@@ -23,7 +30,7 @@ const ModalHomeRequest = ({ adoptionRequest }: Props) => {
                      <User />
                   )}
                </div>
-               <h2>La famille {adoptionRequest.fosterCare.name}</h2>
+               <h2>La famille {adoptionRequest.lastname}</h2>
             </div>
             <div className={styles.infoPet}>
                <p>
@@ -39,35 +46,34 @@ const ModalHomeRequest = ({ adoptionRequest }: Props) => {
          <section className={styles.infosRequest}>
             <h2>La demande</h2>
             <div className={styles.infosFamily}>
-               <p>Mr {adoptionRequest.fosterCare.name}</p>
-               <p>andredupont@gmail.com</p>
                <p>
-                  {adoptionRequest.fosterCare.address},{' '}
-                  {adoptionRequest.fosterCare.postcode}{' '}
-                  {adoptionRequest.fosterCare.city}, France
+                  Mr {adoptionRequest.firstname} {adoptionRequest.lastname}
                </p>
-               <p>{adoptionRequest.fosterCare.phone}</p>
+               <p>{adoptionRequest.email}</p>
+               <p>
+                  {adoptionRequest.address}, {adoptionRequest.postcode}{' '}
+                  {adoptionRequest.city}, France
+               </p>
+               <p>{adoptionRequest.phone}</p>
             </div>
             <div className={styles.lifestyle}>
                <div className={styles.item}>
                   <p>Je possède un animal :</p>
                   <div className={styles.list}>
-                     <span>Chien</span>
-                     <span>Chat</span>
+                     <span>{adoptionRequest.has_animals ? 'Oui' : 'Non'}</span>
+                     <p>{adoptionRequest.animals}</p>
                   </div>
                </div>
                <div className={styles.item}>
                   <p>Avez vous des enfants :</p>
                   <div className={styles.list}>
-                     <span>{adoptionRequest.childs ? 'Oui' : 'Non'}</span>
+                     <span>{adoptionRequest.has_children ? 'Oui' : 'Non'}</span>
+                     <p>{adoptionRequest.children_age}</p>
                   </div>
                </div>
                <div className={styles.item}>
                   <p>Votre habitation :</p>
-                  <div className={styles.list}>
-                     <span>Aventureux</span>
-                     <span>Urbain</span>
-                  </div>
+                  <div className={styles.list}>{renderFamilyHome}</div>
                </div>
             </div>
          </section>
