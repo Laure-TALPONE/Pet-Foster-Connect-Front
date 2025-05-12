@@ -17,7 +17,6 @@ const DashboardRequests = ({ animals }: Props) => {
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
    const [adoptionsRequest, setAdoptionsRequest] = useState([]);
    const [adoption, setAdoption] = useState();
-   console.log(adoption);
 
    const handleOpenModal = useCallback((adopt: any) => {
       setModalIsOpen(true);
@@ -45,7 +44,6 @@ const DashboardRequests = ({ animals }: Props) => {
       });
       setAdoptionsRequest(adoptions);
    }, [animals]);
-   // console.log(adoptionsRequest);
 
    const renderListPets = useMemo(() => {
       if (!adoptionsRequest || adoptionsRequest.length === 0) return;

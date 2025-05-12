@@ -2,13 +2,36 @@
 
 import { User } from '@phosphor-icons/react';
 import styles from './ModalHomeRequest.module.scss';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import sendRequest from '@/globals/hooks/sendRequest';
 
 type Props = {
    adoptionRequest?: any;
 };
 
 const ModalHomeRequest = ({ adoptionRequest }: Props) => {
+   const handleUpdateStatusAdoptionRequest = async (status: string) => {
+      if (status) {
+         const result = await sendRequest(
+            'PATCH',
+            `/api/home-request/update/${adoptionRequest.uuid}`,
+            { status: status }
+         );
+
+         if (result) {
+            console.log(
+               "Modification du status de la requête d'adoption réussie."
+            );
+         }
+
+         if (!result) {
+            console.log(
+               "Modification du status de la requête d'adoption échouée."
+            );
+         }
+      }
+   };
+
    const renderFamilyHome = useMemo(() => {
       return adoptionRequest.family_home.map((info: any, index: number) => {
          return <span key={index}>{info}</span>;
@@ -101,10 +124,18 @@ const ModalHomeRequest = ({ adoptionRequest }: Props) => {
                <textarea />
             </div>
             <div className={styles.btnResponse}>
-               <button type="button" className="m-button">
+               <button
+                  type="button"
+                  className="m-button"
+                  onClick={() => handleUpdateStatusAdoptionRequest('accepted')}
+               >
                   Valider<span>&nbsp;la demande</span>
                </button>
-               <button type="button" className=" m-button--square">
+               <button
+                  type="button"
+                  className=" m-button--square"
+                  onClick={() => handleUpdateStatusAdoptionRequest('refused')}
+               >
                   Refuser<span>&nbsp;la demande</span>
                </button>
             </div>
