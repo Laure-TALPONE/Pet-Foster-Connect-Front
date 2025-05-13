@@ -36,7 +36,7 @@ const FosterFamilySingleComponent = ({ family }: Props) => {
                </div>
                <div className={styles.picture}>
                   <Image
-                     src={'/images/home/foster-family.webp'}
+                     src={family.image}
                      alt="foster-family-picture"
                      width={504}
                      height={393}

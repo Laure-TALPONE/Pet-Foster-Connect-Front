@@ -11,7 +11,7 @@ const CardFosterFamily = ({ family }: Props) => {
       <div className={styles.card}>
          <div className={styles.top}>
             <Image
-               src={'/images/home/foster-family.webp'}
+               src={family.image}
                alt="family-picture"
                width={335}
                height={239}
