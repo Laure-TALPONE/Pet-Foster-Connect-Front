@@ -11,7 +11,7 @@ const CardAssociation = ({ asso }: Props) => {
       <div className={styles.card}>
          <div className={styles.top}>
             <Image
-               src={'/images/logo-association.webp'}
+               src={asso.logo}
                alt="association-picture"
                width={335}
                height={239}

@@ -38,7 +38,7 @@ const AssociationSingleComponent = ({ association }: Props) => {
                </div>
                <div className={styles.picture}>
                   <Image
-                     src={'/images/logo-association.webp'}
+                     src={association.logo}
                      alt="association-logo"
                      width={504}
                      height={393}
