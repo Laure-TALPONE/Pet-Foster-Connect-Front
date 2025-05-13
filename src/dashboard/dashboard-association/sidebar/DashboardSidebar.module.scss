@@ -20,7 +20,7 @@
     }
 }
 
-.infosAsso {
+.infos {
     display: flex;
     flex-direction: row;
     gap: 20px;
@@ -44,6 +44,8 @@
     flex-shrink: 0;
     width: 100px;
     height: 100px;
+    border-radius: 100%;
+    overflow: hidden;
 
     img {
         width: 100%;

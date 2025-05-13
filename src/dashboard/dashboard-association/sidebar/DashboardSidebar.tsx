@@ -15,6 +15,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
 import sendRequest from '@/globals/hooks/sendRequest';
+import { useUser } from '@/globals/utils/UserContext';
 
 type Props = {
    token: any;
@@ -26,6 +27,8 @@ const DashboardSidebar = ({ token }: Props) => {
    const [menuIsOpen, setMenuIsOpen] = useState(false);
    const sidebarRef = useOutsideClick(() => setMenuIsOpen(false));
    const router = useRouter();
+   const user = useUser().user;
+   console.log(user);
 
    useEffect(() => {
       const handleResize = () => {
@@ -78,31 +81,39 @@ const DashboardSidebar = ({ token }: Props) => {
    const renderSidebarItems = () => {
       return (
          <ul className={styles.sidebarList}>
+            {user?.role === 'organization' && (
+               <>
+                  <li>
+                     <Link
+                        href="/dashboard/nos-animaux"
+                        className={
+                           pathname === '/dashboard/nos-animaux'
+                              ? styles.actif
+                              : ''
+                        }
+                     >
+                        <PawPrint weight="bold" />
+                        Nos animaux
+                     </Link>
+                  </li>
+                  <li>
+                     <Link
+                        href="/dashboard/nos-demandes"
+                        className={
+                           pathname === '/dashboard/nos-demandes'
+                              ? styles.actif
+                              : ''
+                        }
+                     >
+                        <Siren weight="bold" />
+                        Nos demandes
+                     </Link>
+                  </li>
+               </>
+            )}
             <li>
                <Link
-                  href={'/dashboard/nos-animaux'}
-                  className={
-                     pathname === '/dashboard/nos-animaux' ? styles.actif : ''
-                  }
-               >
-                  <PawPrint weight="bold" />
-                  Nos animaux
-               </Link>
-            </li>
-            <li>
-               <Link
-                  href={'/dashboard/nos-demandes'}
-                  className={
-                     pathname === '/dashboard/nos-demandes' ? styles.actif : ''
-                  }
-               >
-                  <Siren weight="bold" />
-                  Nos demandes
-               </Link>
-            </li>
-            <li>
-               <Link
-                  href={'/dashboard/profil'}
+                  href="/dashboard/profil"
                   className={
                      pathname === '/dashboard/profil' ? styles.actif : ''
                   }
@@ -113,7 +124,7 @@ const DashboardSidebar = ({ token }: Props) => {
             </li>
             <li>
                <Link
-                  href={'/dashboard/parametres'}
+                  href="/dashboard/parametres"
                   className={
                      pathname === '/dashboard/parametres' ? styles.actif : ''
                   }
@@ -131,6 +142,44 @@ const DashboardSidebar = ({ token }: Props) => {
          </ul>
       );
    };
+
+   const renderTopSidebar = useMemo(() => {
+      if (user.role === 'organization') {
+         return (
+            <section className={styles.infos}>
+               <div className={styles.logo}>
+                  <Image
+                     src={user.organizations[0].logo}
+                     alt="logo-association"
+                     width={200}
+                     height={200}
+                  />
+               </div>
+               <h3 className={styles.name}>
+                  L’association {user.organizations[0].name}
+               </h3>
+            </section>
+         );
+      }
+
+      if (user.role === 'foster') {
+         return (
+            <section className={styles.infos}>
+               <div className={styles.logo}>
+                  <Image
+                     src={user.fosterCares[0].image}
+                     alt="logo-association"
+                     width={200}
+                     height={200}
+                  />
+               </div>
+               <h3 className={styles.name}>
+                  Famille {user.fosterCares[0].name}
+               </h3>
+            </section>
+         );
+      }
+   }, [user]);
 
    const renderSidebar = useMemo(() => {
       if (isDesktop)
@@ -152,17 +201,7 @@ const DashboardSidebar = ({ token }: Props) => {
 
    return (
       <div className={styles.main}>
-         <section className={styles.infosAsso}>
-            <div className={styles.logo}>
-               <Image
-                  src={'/images/logo-asso.webp'}
-                  alt="logo-association"
-                  width={200}
-                  height={200}
-               />
-            </div>
-            <h3 className={styles.name}>L’association Pattes Solidaires</h3>
-         </section>
+         {renderTopSidebar}
          {renderPageName}
          {renderSidebar}
       </div>

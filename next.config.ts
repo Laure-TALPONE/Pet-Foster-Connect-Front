@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  images: {
+    domains: [
+      "www.solidarite-peuple-animal.com",
+      "www.la-spa.fr"
+    ],
+  },
 };
 
 export default nextConfig;
