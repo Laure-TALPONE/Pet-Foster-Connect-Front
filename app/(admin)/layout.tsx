@@ -17,7 +17,6 @@ export default async function AppRootLayout({
    if (token) {
       user = await fetchGetUser();
    }
-   console.log(user);
 
    if (!token || !user) {
       // si pas de token ou user, redirection vers la page d'accueil

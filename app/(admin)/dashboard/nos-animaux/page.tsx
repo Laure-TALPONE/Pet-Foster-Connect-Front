@@ -15,6 +15,10 @@ export default async function DashboardPetsListPage() {
       user = await fetchGetUser();
    }
 
+   if (user.role === 'foster') {
+      redirect('/error');
+   }
+
    const animals = await fetchGetAnimalsByAssociation(
       user.organizations[0].uuid
    );

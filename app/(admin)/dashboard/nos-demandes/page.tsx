@@ -2,6 +2,7 @@ import fetchGetAnimalsByAssociation from '@/api/animals/getByAssociation/route';
 import fetchGetUser from '@/api/user/get/route';
 import DashboardRequests from '@/dashboard/dashboard-association/dashboard-requests/DashboardRequests';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export default async function DashboardRequestsPage() {
    // https://nextjs.org/docs/app/api-reference/functions/cookies
@@ -11,6 +12,10 @@ export default async function DashboardRequestsPage() {
 
    if (token) {
       user = await fetchGetUser();
+   }
+
+   if (user.role === 'foster') {
+      redirect('/error');
    }
 
    const animals = await fetchGetAnimalsByAssociation(
