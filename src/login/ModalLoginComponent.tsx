@@ -42,8 +42,12 @@ const ModalLoginComponent = ({ onClose }: Props) => {
       const result = await sendRequest('POST', '/api/auth/login', newData);
 
       if (result) {
-         // méthode native de js pour rediriger et recharger la page
-         window.location.href = '/dashboard';
+         if (result.user.fosterCares.length > 0) {
+            // méthode native de js pour rediriger et recharger la page
+            window.location.href = '/dashboard/profil';
+         } else {
+            window.location.href = '/dashboard';
+         }
       }
 
       if (!result) {

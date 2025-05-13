@@ -11,7 +11,8 @@ const DashboardProfil = () => {
    const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
    const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
    const user = useUser().user;
-   const organization = user?.organizations[0];
+   const organization = user.organizations[0];
+   const fosterCares = user.fosterCares[0];
    const {
       register,
       setValue,
@@ -21,11 +22,13 @@ const DashboardProfil = () => {
    } = useForm({
       defaultValues: {
          email: user.email,
-         address: organization.address,
-         postcode: organization.postcode,
-         city: organization.city,
-         phone: organization.phone,
-         description: organization.description,
+         address: organization ? organization.address : fosterCares.address,
+         postcode: organization ? organization.postcode : fosterCares.postcode,
+         city: organization ? organization.city : fosterCares.city,
+         phone: organization ? organization.phone : fosterCares.phone,
+         description: organization
+            ? organization.description
+            : fosterCares.description,
       },
    });
    const watchPassword: any = watch('password');
@@ -75,7 +78,7 @@ const DashboardProfil = () => {
          password: watchPassword === watchConfirm && data.password,
       };
 
-      const newDataAsso = {
+      const newDatas = {
          address: data.address,
          city: data.city,
          postcode: data.postcode,
@@ -83,7 +86,7 @@ const DashboardProfil = () => {
          description: data.description,
       };
 
-      console.log(newDataUser, newDataAsso, 'ici les datas');
+      console.log(newDataUser, newDatas, 'ici les datas');
 
       const resultUser = await sendRequest(
          'PATCH',
@@ -91,17 +94,27 @@ const DashboardProfil = () => {
          newDataUser
       );
 
-      const resultAsso = await sendRequest(
-         'PATCH',
-         `/api/associations/update/${organization.uuid}`,
-         newDataAsso
-      );
+      let resultRole;
 
-      if (resultUser && resultAsso) {
+      if (user.role === 'foster') {
+         resultRole = await sendRequest(
+            'PATCH',
+            `/api/foster-family/update/${fosterCares.uuid}`,
+            newDatas
+         );
+      } else if (user.role === 'organization') {
+         resultRole = await sendRequest(
+            'PATCH',
+            `/api/associations/update/${organization.uuid}`,
+            newDatas
+         );
+      }
+
+      if (resultUser && resultRole) {
          console.log('Modification du profil réussie.');
       }
 
-      if (!resultUser && !resultAsso) {
+      if (!resultUser && !resultRole) {
          console.log('Erreur lors de la modification du profil.');
       }
    };
