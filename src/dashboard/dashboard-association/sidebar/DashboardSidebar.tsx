@@ -28,7 +28,6 @@ const DashboardSidebar = ({ token }: Props) => {
    const sidebarRef = useOutsideClick(() => setMenuIsOpen(false));
    const router = useRouter();
    const user = useUser().user;
-   console.log(user);
 
    useEffect(() => {
       const handleResize = () => {

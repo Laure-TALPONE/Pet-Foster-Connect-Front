@@ -22,7 +22,13 @@ const fetchDeleteUser = async (id: string) => {
 
       const result = await response.json();
 
+      if (result) {
+         // suppression du token dans les cookies en front
+         (await cookies()).delete('token');
+      }
+
       if (!response.ok) {
+         console.log('response pas ok');
          return NextResponse.json(
             { message: result.message || 'Erreur côté serveur NestJS' },
             { status: response.status }

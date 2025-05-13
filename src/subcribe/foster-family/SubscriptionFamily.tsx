@@ -25,7 +25,6 @@ const SubcriptionFamily = () => {
    const [openModalLogin, setOpenModalLogin] = useState<boolean>(false);
    const watchPassword = watch('password');
    const watchConfirm = watch('confirm');
-   console.log(openModalLogin);
 
    const handleCloseModaleLogin = useCallback(() => {
       setOpenModalLogin(false);

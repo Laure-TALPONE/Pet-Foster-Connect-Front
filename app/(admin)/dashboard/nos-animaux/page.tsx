@@ -3,6 +3,7 @@ import fetchGetAllSpecies from '@/api/species/route';
 import fetchGetUser from '@/api/user/get/route';
 import DashboardPetsList from '@/dashboard/dashboard-association/dashboard-pets-list/DashboardPetsList';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export default async function DashboardPetsListPage() {
    // https://nextjs.org/docs/app/api-reference/functions/cookies

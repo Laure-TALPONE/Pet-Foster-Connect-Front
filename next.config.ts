@@ -16,6 +16,9 @@ const nextConfig: NextConfig = {
       "www.la-spa.fr"
     ],
   },
+  sassOptions: {
+    silenceDeprecations: ['legacy-js-api'],
+  }
 };
 
 export default nextConfig;

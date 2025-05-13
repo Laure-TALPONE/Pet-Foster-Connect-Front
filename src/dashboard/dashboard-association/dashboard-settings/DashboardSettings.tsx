@@ -13,6 +13,8 @@ const DashboardSettings = () => {
          `/api/user/delete/${user.uuid}`
       );
 
+      console.log(result);
+
       if (result) {
          console.log("L'utilisateur a bien été supprimé.");
          window.location.href = '/accueil';
