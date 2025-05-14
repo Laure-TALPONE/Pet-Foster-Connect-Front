@@ -14,6 +14,7 @@ const DashboardAdoptionsRequest = ({ adoptionsRequest }: Props) => {
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
    const [adoption, setAdoption] = useState();
+   const [searchAdoption, setSearchAdoption] = useState('');
 
    const handleOpenModal = useCallback((adopt: any) => {
       setModalIsOpen(true);
@@ -45,7 +46,19 @@ const DashboardAdoptionsRequest = ({ adoptionsRequest }: Props) => {
    const renderListAdoptionsRequest = useMemo(() => {
       if (!adoptionsRequest || adoptionsRequest.length === 0) return;
 
-      return adoptionsRequest.map((adoption: any, index: number) => {
+      let filteredAdoptions;
+
+      if (searchAdoption) {
+         filteredAdoptions = adoptionsRequest.filter((item: any) =>
+            item?.animal.name
+               .toLowerCase()
+               .startsWith(searchAdoption.toLowerCase())
+         );
+      } else {
+         filteredAdoptions = adoptionsRequest;
+      }
+
+      return filteredAdoptions.map((adoption: any, index: number) => {
          return (
             <li className={styles.item} key={index}>
                <div className={styles.infos}>
@@ -83,7 +96,7 @@ const DashboardAdoptionsRequest = ({ adoptionsRequest }: Props) => {
             </li>
          );
       });
-   }, [isDesktop, handleOpenModal, adoptionsRequest]);
+   }, [isDesktop, handleOpenModal, adoptionsRequest, searchAdoption]);
 
    //    const renderModal = useMemo(() => {
    //       if (modalIsOpen) {
@@ -103,7 +116,8 @@ const DashboardAdoptionsRequest = ({ adoptionsRequest }: Props) => {
                <div className="m-input m-input__background">
                   <input
                      type="text"
-                     placeholder="Rechercher une demande d'adoption"
+                     placeholder="Rechercher le nom d'un animal"
+                     onChange={(e) => setSearchAdoption(e.target.value)}
                   />
                </div>
             </section>
