@@ -4,13 +4,13 @@ import styles from './DashboardAdoptionsRequest.module.scss';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { PawPrint } from '@phosphor-icons/react';
+import ModaleAdoptionRequest from '../modal-adoption-request/ModaleAdoptionRequest';
 
 type Props = {
    adoptionsRequest?: any;
 };
 
 const DashboardAdoptionsRequest = ({ adoptionsRequest }: Props) => {
-   console.log(adoptionsRequest);
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
    const [adoption, setAdoption] = useState();
@@ -73,16 +73,19 @@ const DashboardAdoptionsRequest = ({ adoptionsRequest }: Props) => {
                         <PawPrint />
                      )}
                   </div>
-                  <p className={styles.name}>
-                     Association {adoption.animal.organization.name}
-                  </p>
                   <div className={styles.infosRequest}>
-                     <p>
-                        <span>Nom :</span> <span>{adoption.animal.name}</span>
-                     </p>
-                     <p>
-                        <span>Espèce :</span>
-                        <span>{adoption.animal.species.name}</span>
+                     <div className={styles.infosAnimal}>
+                        <p>
+                           <span>Nom :</span>{' '}
+                           <span>{adoption.animal.name}</span>
+                        </p>
+                        <p>
+                           <span>Espèce :</span>
+                           <span>{adoption.animal.species.name}</span>
+                        </p>
+                     </div>
+                     <p className={styles.name}>
+                        Association {adoption.animal.organization.name}
                      </p>
                   </div>
                </div>
@@ -98,16 +101,16 @@ const DashboardAdoptionsRequest = ({ adoptionsRequest }: Props) => {
       });
    }, [isDesktop, handleOpenModal, adoptionsRequest, searchAdoption]);
 
-   //    const renderModal = useMemo(() => {
-   //       if (modalIsOpen) {
-   //          return (
-   //             <ModalComponent
-   //                onClose={handleCloseModal}
-   //                children={<ModalHomeRequest adoptionRequest={adoption} />}
-   //             />
-   //          );
-   //       }
-   //    }, [modalIsOpen]);
+   const renderModal = useMemo(() => {
+      if (modalIsOpen) {
+         return (
+            <ModalComponent
+               onClose={handleCloseModal}
+               children={<ModaleAdoptionRequest adoption={adoption} />}
+            />
+         );
+      }
+   }, [modalIsOpen]);
 
    return (
       <section className={styles.adoptions}>
@@ -123,7 +126,7 @@ const DashboardAdoptionsRequest = ({ adoptionsRequest }: Props) => {
             </section>
             <ul className={styles.list}>{renderListAdoptionsRequest}</ul>
          </div>
-         {/* {renderModal} */}
+         {renderModal}
       </section>
    );
 };
