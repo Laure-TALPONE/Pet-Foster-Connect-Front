@@ -1,5 +1,5 @@
 import fetchGetUser from '@/api/user/get/route';
-import DashboardSidebar from '@/dashboard/dashboard-association/sidebar/DashboardSidebar';
+import DashboardSidebar from '@/dashboard/sidebar/DashboardSidebar';
 import FooterComponent from '@/globals/components/footer/FooterComponent';
 import HeaderComponent from '@/globals/components/header/HeaderComponent';
 import { cookies } from 'next/headers';

@@ -110,6 +110,21 @@ const DashboardSidebar = ({ token }: Props) => {
                   </li>
                </>
             )}
+            {user.role === 'foster' && (
+               <li>
+                  <Link
+                     href="/dashboard/mes-demandes-adoption"
+                     className={
+                        pathname === '/dashboard/mes-demandes-adoption'
+                           ? styles.actif
+                           : ''
+                     }
+                  >
+                     <PawPrint weight="bold" />
+                     Mes demandes d'adoption
+                  </Link>
+               </li>
+            )}
             <li>
                <Link
                   href="/dashboard/profil"

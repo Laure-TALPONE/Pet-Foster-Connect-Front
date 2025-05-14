@@ -14,6 +14,6 @@ export default async function DashboardPage() {
    if (user?.role === 'organization') {
       redirect('/dashboard/nos-animaux');
    } else if (user?.role === 'foster') {
-      redirect('/dashboard/profil');
+      redirect('/dashboard/mes-demandes-adoption');
    }
 }
