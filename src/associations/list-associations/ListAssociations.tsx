@@ -10,6 +10,18 @@ type Props = {
 };
 
 const ListAssociations = ({ associations }: Props) => {
+   const renderButtonViewMore = useMemo(() => {
+      if (associations && associations.length > 9) {
+         return (
+            <div className={styles.viewMore}>
+               <button type="button" className="m-button">
+                  Voire Plus
+               </button>
+            </div>
+         );
+      }
+   }, [associations]);
+
    const renderAssociationList = useMemo(() => {
       if (!associations || associations.length === 0) return;
 
@@ -24,7 +36,12 @@ const ListAssociations = ({ associations }: Props) => {
       });
    }, [associations]);
 
-   return <ul className={styles.list}>{renderAssociationList}</ul>;
+   return (
+      <section className={styles.content}>
+         <ul className={styles.list}>{renderAssociationList}</ul>
+         {renderButtonViewMore}
+      </section>
+   );
 };
 
 export default ListAssociations;

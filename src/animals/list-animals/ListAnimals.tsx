@@ -19,6 +19,18 @@ const ListAnimals = ({ listAnimals, association }: Props) => {
    //    });
    // }, []);
 
+   const renderButtonViewMore = useMemo(() => {
+      if (listAnimals && listAnimals.length > 9) {
+         return (
+            <div className={styles.viewMore}>
+               <button type="button" className="m-button">
+                  Voire Plus
+               </button>
+            </div>
+         );
+      }
+   }, [listAnimals]);
+
    const renderAnimalsList = useMemo(() => {
       if (!listAnimals || listAnimals.length === 0) return;
 
@@ -33,7 +45,12 @@ const ListAnimals = ({ listAnimals, association }: Props) => {
       });
    }, [listAnimals, association]);
 
-   return <ul className={styles.list}>{renderAnimalsList}</ul>;
+   return (
+      <section className={styles.content}>
+         <ul className={styles.list}>{renderAnimalsList}</ul>
+         {renderButtonViewMore}
+      </section>
+   );
 };
 
 export default ListAnimals;

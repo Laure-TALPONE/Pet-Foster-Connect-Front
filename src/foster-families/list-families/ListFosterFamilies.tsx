@@ -18,6 +18,18 @@ const ListFosterFamilies = ({ fosterFamilies }: Props) => {
    //    });
    // }, []);
 
+   const renderButtonViewMore = useMemo(() => {
+      if (fosterFamilies && fosterFamilies.length > 9) {
+         return (
+            <div className={styles.viewMore}>
+               <button type="button" className="m-button">
+                  Voire Plus
+               </button>
+            </div>
+         );
+      }
+   }, [fosterFamilies]);
+
    const renderFamiliesList = useMemo(() => {
       if (!fosterFamilies || fosterFamilies.length === 0) return;
 
@@ -32,7 +44,12 @@ const ListFosterFamilies = ({ fosterFamilies }: Props) => {
       });
    }, [fosterFamilies]);
 
-   return <ul className={styles.list}>{renderFamiliesList}</ul>;
+   return (
+      <section className={styles.content}>
+         <ul className={styles.list}>{renderFamiliesList}</ul>
+         {renderButtonViewMore}
+      </section>
+   );
 };
 
 export default ListFosterFamilies;
