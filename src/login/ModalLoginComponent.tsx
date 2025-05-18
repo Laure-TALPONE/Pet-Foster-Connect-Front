@@ -40,13 +40,14 @@ const ModalLoginComponent = ({ onClose }: Props) => {
       console.log(newData, 'ici les datas');
 
       const result = await sendRequest('POST', '/api/auth/login', newData);
+      console.log(result);
 
       if (result) {
-         if (result.user.fosterCares.length > 0) {
+         if (result.user.role === 'foster') {
             // méthode native de js pour rediriger et recharger la page
-            window.location.href = '/dashboard/profil';
+            window.location.href = '/dashboard/mes-demandes-adoption';
          } else {
-            window.location.href = '/dashboard';
+            window.location.href = '/dashboard/nos-animaux';
          }
       }
 
