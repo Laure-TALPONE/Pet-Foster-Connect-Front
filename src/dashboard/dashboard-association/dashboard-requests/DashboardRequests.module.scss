@@ -134,6 +134,20 @@
         width: fit-content;
         margin-top: -5px;
     }
+
+    .accepted {
+        svg {
+            color: green;
+            margin-top: 3px;
+        }
+    }
+
+    .refused {
+        svg {
+            color: red;
+            margin-top: 5px;
+        }
+    }
 }
 
 .add {

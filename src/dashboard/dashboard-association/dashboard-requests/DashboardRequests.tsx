@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './DashboardRequests.module.scss';
 import Image from 'next/image';
-import { User } from '@phosphor-icons/react';
+import { Check, User, X } from '@phosphor-icons/react';
 import { foster_families } from '@/globals/constants/data';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalHomeRequest from '../modal-home-request/ModalHomeRequest';
@@ -17,7 +17,7 @@ const DashboardRequests = ({ animals }: Props) => {
    const [isDesktop, setIsDesktop] = useState<boolean>(false);
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
    const [adoptionsRequest, setAdoptionsRequest] = useState([]);
-   const [adoption, setAdoption] = useState();
+   const [adoption, setAdoption] = useState<any>();
    const [searchFamily, setSearchFamily] = useState('');
    const [openModalResponse, setOpenModalResponse] = useState<boolean>(false);
    const [textResponseModal, setTextResponseModal] = useState<string>('');
@@ -40,18 +40,28 @@ const DashboardRequests = ({ animals }: Props) => {
       setSearchFamily(search);
    };
 
-   const handleChangeStatusRequest = useCallback((response: string) => {
-      setOpenModalResponse(true);
-      if (response === 'success') {
-         setTextResponseModal('Votre décision a bien été pris en compte.');
-         setColor('#55B048');
-      }
+   const handleUpdateRequest = useCallback(
+      (response: string, status: string) => {
+         setOpenModalResponse(true);
+         if (response === 'success') {
+            // Met à jour le status de chaque requête de la liste
+            setAdoptionsRequest((prevList: any) =>
+               prevList.map((item: any) =>
+                  item.uuid === adoption?.uuid ? { ...item, status } : item
+               )
+            );
 
-      if (response === 'echec') {
-         setTextResponseModal('Une erreur est survenue.');
-         setColor('#DD4F3A');
-      }
-   }, []);
+            setTextResponseModal('Votre décision a bien été pris en compte.');
+            setColor('#55B048');
+         }
+
+         if (response === 'echec') {
+            setTextResponseModal('Une erreur est survenue.');
+            setColor('#DD4F3A');
+         }
+      },
+      [adoption?.uuid]
+   );
 
    useEffect(() => {
       const handleResize = () => {
@@ -70,6 +80,26 @@ const DashboardRequests = ({ animals }: Props) => {
       });
       setAdoptionsRequest(adoptions);
    }, [animals]);
+
+   const renderStatus = (status: string) => {
+      if (status === 'pending') return null;
+
+      if (status === 'accepted') {
+         return (
+            <span className={styles.accepted}>
+               <Check weight="bold" />
+            </span>
+         );
+      }
+
+      if (status === 'refused') {
+         return (
+            <span className={styles.refused}>
+               <X weight="bold" />
+            </span>
+         );
+      }
+   };
 
    const renderListPets = useMemo(() => {
       if (!adoptionsRequest || adoptionsRequest.length === 0) return;
@@ -110,6 +140,7 @@ const DashboardRequests = ({ animals }: Props) => {
                         <span>Espèce :</span>
                         <span>{adoption.animal.species.name}</span>
                      </p>
+                     {renderStatus(adoption.status)}
                   </div>
                </div>
                <button
@@ -132,14 +163,14 @@ const DashboardRequests = ({ animals }: Props) => {
                children={
                   <ModalHomeRequest
                      adoptionRequest={adoption}
-                     onSuccess={handleChangeStatusRequest}
+                     onSuccess={handleUpdateRequest}
                      onClose={handleCloseModal}
                   />
                }
             />
          );
       }
-   }, [modalIsOpen]);
+   }, [modalIsOpen, handleUpdateRequest, handleCloseModal, adoption]);
 
    const renderModalResponse = useMemo(() => {
       if (openModalResponse) {

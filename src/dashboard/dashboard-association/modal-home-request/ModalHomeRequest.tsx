@@ -26,7 +26,7 @@ const ModalHomeRequest = ({ adoptionRequest, onSuccess, onClose }: Props) => {
             console.log(
                "Modification du status de la requête d'adoption réussie."
             );
-            onSuccess('success');
+            onSuccess('success', status);
          }
 
          if (!result) {
