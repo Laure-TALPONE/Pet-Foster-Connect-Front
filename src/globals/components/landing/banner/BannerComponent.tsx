@@ -2,12 +2,15 @@
 import Image from 'next/image';
 import styles from './BannerComponent.module.scss';
 import { CaretDown } from '@phosphor-icons/react';
-import { species } from '@/globals/constants/animals';
 import { departments } from '@/globals/constants/departments';
 import { useCallback, useMemo, useState } from 'react';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
 
-const BannerComponent = () => {
+type Props = {
+   species: any;
+};
+
+const BannerComponent = ({ species }: Props) => {
    const [animalsDisplay, setAnimalsDisplay] = useState(false);
    const [departmentsDisplay, setDepartmentsDisplay] = useState(false);
    const [animalValue, setAnimalValue] = useState('');
@@ -23,10 +26,10 @@ const BannerComponent = () => {
       }
    };
 
-   const handleSelectItem = useCallback((type: string, item: string) => {
-      if (type === 'animal') {
+   const handleSelectItem = useCallback((type: string, item: string | any) => {
+      if (type === 'specie') {
          setAnimalsDisplay(false);
-         setAnimalValue(item);
+         setAnimalValue(item.name);
       }
 
       if (type === 'department') {
@@ -40,26 +43,25 @@ const BannerComponent = () => {
 
    const renderDropdownAnimals = useMemo(() => {
       if (!animalsDisplay) return;
+      if (!species || species.length === 0) return;
 
-      if (animalsDisplay) {
-         return (
-            <ul className={styles.dropdown}>
-               {species.map((animal: string, index: number) => {
-                  return (
-                     <li
-                        key={index}
-                        onClick={() => {
-                           handleSelectItem('animal', animal);
-                        }}
-                     >
-                        {animal}
-                     </li>
-                  );
-               })}
-            </ul>
-         );
-      }
-   }, [animalsDisplay, handleSelectItem]);
+      return (
+         <ul className={styles.dropdown}>
+            {species.map((specie: any, index: number) => {
+               return (
+                  <li
+                     key={index}
+                     onClick={() => {
+                        handleSelectItem('specie', specie);
+                     }}
+                  >
+                     {specie.name}
+                  </li>
+               );
+            })}
+         </ul>
+      );
+   }, [animalsDisplay, handleSelectItem, species]);
 
    const renderDropdownDepartments = useMemo(() => {
       if (!departmentsDisplay) return;

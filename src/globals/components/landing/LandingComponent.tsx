@@ -8,9 +8,10 @@ import BannerComponent from './banner/BannerComponent';
 type Props = {
    banner?: boolean;
    buttons?: boolean;
+   species: any;
 };
 
-const LandingComponent = ({ buttons }: Props) => {
+const LandingComponent = ({ buttons, species }: Props) => {
    const pathName = usePathname();
    const bannerDisplay =
       pathName === '/accueil' ||
@@ -42,7 +43,7 @@ const LandingComponent = ({ buttons }: Props) => {
       }
 
       if (bannerDisplay) {
-         return <BannerComponent />;
+         return <BannerComponent species={species} />;
       }
    }, [bannerDisplay, buttons]);
 

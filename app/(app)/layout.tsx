@@ -4,6 +4,7 @@ import HeaderComponent from '@/globals/components/header/HeaderComponent';
 import { cookies } from 'next/headers';
 import '../../styles/_bases/_main.scss';
 import fetchGetUser from '@/api/user/get/route';
+import fetchGetAllSpecies from '@/api/species/route';
 
 export default async function AppRootLayout({
    children,
@@ -13,6 +14,7 @@ export default async function AppRootLayout({
    const cookieStore = await cookies();
    const token = cookieStore.get('token');
    let user;
+   const species = await fetchGetAllSpecies();
 
    if (token) {
       user = await fetchGetUser();
@@ -21,7 +23,7 @@ export default async function AppRootLayout({
    return (
       <div className="layout">
          <HeaderComponent token={token} />
-         <LandingComponent banner />
+         <LandingComponent banner species={species} />
          <div>{children}</div>
          <FooterComponent />
       </div>
