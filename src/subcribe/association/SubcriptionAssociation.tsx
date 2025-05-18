@@ -15,6 +15,7 @@ import dayjs from 'dayjs';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalLoginComponent from '@/login/ModalLoginComponent';
 import sendRequest from '@/globals/hooks/sendRequest';
+import ModalRequestApi from '@/globals/components/modal-request-api/ModalRequestApi';
 
 const SubcriptionAssociation = () => {
    const {
@@ -31,8 +32,10 @@ const SubcriptionAssociation = () => {
    const watchConfirm = watch('confirm');
    const watchDateAsso = watch('registration_date');
    const [errorMessage, setErrorMessage] = useState('');
-   const [errorEmailMessage, setErrorEmailMessage] = useState('');
    const [openModalLogin, setOpenModalLogin] = useState<boolean>(false);
+   const [openModalResponse, setOpenModalResponse] = useState<boolean>(false);
+   const [textResponseModal, setTextResponseModal] = useState<string>('');
+   const [color, setColor] = useState('');
 
    const handleDisplayPassword = useCallback(
       (item: string) => {
@@ -79,12 +82,18 @@ const SubcriptionAssociation = () => {
          newData
       );
 
+      setOpenModalResponse(true);
+
       if (result) {
-         setOpenModalLogin(true);
+         setTextResponseModal('Votre compte a bien été créé');
+         setColor('#55B048');
       }
 
       if (!result) {
-         setErrorEmailMessage('E-mail déjà existant.');
+         setTextResponseModal(
+            "Une erreur est survenue lors de la création de votre compte. L'email est peut-être déjà existant."
+         );
+         setColor('#DD4F3A');
       }
    };
 
@@ -148,26 +157,43 @@ const SubcriptionAssociation = () => {
       }
    }, [watchPassword]);
 
-   const handleCloseModalLogin = useCallback(() => {
-      setOpenModalLogin(false);
-   }, [openModalLogin]);
+   const handleCloseModaleResponse = useCallback(() => {
+      setOpenModalResponse(false);
+      setOpenModalLogin(true);
+   }, []);
 
-   const renderModalLogin = useMemo(() => {
-      if (openModalLogin) {
+   const handleCloseModaleLogin = useCallback(() => {
+      setOpenModalLogin(false);
+   }, []);
+
+   const renderModalResponse = useMemo(() => {
+      if (openModalResponse) {
          return (
             <ModalComponent
-               onClose={handleCloseModalLogin}
+               onClose={handleCloseModaleResponse}
                children={
-                  <ModalLoginComponent onClose={handleCloseModalLogin} />
+                  <ModalRequestApi color={color} text={textResponseModal} />
                }
             />
          );
       }
-   }, [openModalLogin, handleCloseModalLogin]);
+   }, [openModalResponse, handleCloseModaleResponse]);
+
+   const renderModalLogin = useMemo(() => {
+      if (openModalLogin) {
+         return (
+            <ModalComponent onClose={handleCloseModaleLogin}>
+               <ModalLoginComponent onClose={handleCloseModaleLogin} />
+            </ModalComponent>
+         );
+      }
+      return null;
+   }, [openModalLogin, handleCloseModaleLogin]);
 
    return (
       <section className="container">
          <div className={styles.content}>
+            {renderModalResponse}
             {renderModalLogin}
             <section className={styles.informations}>
                <div className={styles.infos}>
@@ -216,9 +242,6 @@ const SubcriptionAssociation = () => {
                            {...register('email', { required: true })}
                         />
                      </div>
-                     {errorEmailMessage && (
-                        <p className={styles.emailError}>{errorEmailMessage}</p>
-                     )}
                   </section>
                   <section className={errorMessage ? styles.password : ''}>
                      <div
