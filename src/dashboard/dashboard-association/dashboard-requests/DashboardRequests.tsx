@@ -7,6 +7,7 @@ import { User } from '@phosphor-icons/react';
 import { foster_families } from '@/globals/constants/data';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalHomeRequest from '../modal-home-request/ModalHomeRequest';
+import ModalRequestApi from '@/globals/components/modal-request-api/ModalRequestApi';
 
 type Props = {
    animals: any;
@@ -18,6 +19,9 @@ const DashboardRequests = ({ animals }: Props) => {
    const [adoptionsRequest, setAdoptionsRequest] = useState([]);
    const [adoption, setAdoption] = useState();
    const [searchFamily, setSearchFamily] = useState('');
+   const [openModalResponse, setOpenModalResponse] = useState<boolean>(false);
+   const [textResponseModal, setTextResponseModal] = useState<string>('');
+   const [color, setColor] = useState('');
 
    const handleOpenModal = useCallback((adopt: any) => {
       setModalIsOpen(true);
@@ -28,9 +32,26 @@ const DashboardRequests = ({ animals }: Props) => {
       setModalIsOpen(false);
    }, []);
 
+   const handleCloseModaleResponse = useCallback(() => {
+      setOpenModalResponse(false);
+   }, []);
+
    const handleSearchFamily = (search: string) => {
       setSearchFamily(search);
    };
+
+   const handleChangeStatusRequest = useCallback((response: string) => {
+      setOpenModalResponse(true);
+      if (response === 'success') {
+         setTextResponseModal('Votre décision a bien été pris en compte.');
+         setColor('#55B048');
+      }
+
+      if (response === 'echec') {
+         setTextResponseModal('Une erreur est survenue.');
+         setColor('#DD4F3A');
+      }
+   }, []);
 
    useEffect(() => {
       const handleResize = () => {
@@ -108,11 +129,30 @@ const DashboardRequests = ({ animals }: Props) => {
          return (
             <ModalComponent
                onClose={handleCloseModal}
-               children={<ModalHomeRequest adoptionRequest={adoption} />}
+               children={
+                  <ModalHomeRequest
+                     adoptionRequest={adoption}
+                     onSuccess={handleChangeStatusRequest}
+                     onClose={handleCloseModal}
+                  />
+               }
             />
          );
       }
    }, [modalIsOpen]);
+
+   const renderModalResponse = useMemo(() => {
+      if (openModalResponse) {
+         return (
+            <ModalComponent
+               onClose={handleCloseModaleResponse}
+               children={
+                  <ModalRequestApi color={color} text={textResponseModal} />
+               }
+            />
+         );
+      }
+   }, [openModalResponse, handleCloseModaleResponse]);
 
    return (
       <section className={styles.request}>
@@ -129,6 +169,7 @@ const DashboardRequests = ({ animals }: Props) => {
             <ul className={styles.list}>{renderListPets}</ul>
          </div>
          {renderModal}
+         {renderModalResponse}
       </section>
    );
 };

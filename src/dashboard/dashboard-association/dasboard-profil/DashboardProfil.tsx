@@ -1,10 +1,12 @@
 'use client';
 import { useForm } from 'react-hook-form';
 import styles from './DashboardProfil.module.scss';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Eye, EyeClosed } from '@phosphor-icons/react';
 import sendRequest from '@/globals/hooks/sendRequest';
 import { useUser } from '@/globals/utils/UserContext';
+import ModalComponent from '@/globals/components/modal/ModalComponent';
+import ModalRequestApi from '@/globals/components/modal-request-api/ModalRequestApi';
 
 const DashboardProfil = () => {
    const [errorMessage, setErrorMessage] = useState('');
@@ -13,6 +15,9 @@ const DashboardProfil = () => {
    const user = useUser().user;
    const organization = user.organizations[0];
    const fosterCares = user.fosterCares[0];
+   const [openModalResponse, setOpenModalResponse] = useState<boolean>(false);
+   const [textResponseModal, setTextResponseModal] = useState<string>('');
+   const [color, setColor] = useState('');
    const {
       register,
       setValue,
@@ -46,6 +51,10 @@ const DashboardProfil = () => {
       },
       [passwordVisible, confirmVisible]
    );
+
+   const handleCloseModaleResponse = useCallback(() => {
+      setOpenModalResponse(false);
+   }, []);
 
    useEffect(() => {
       if (watchPassword && watchPassword.length >= 2) {
@@ -110,17 +119,35 @@ const DashboardProfil = () => {
          );
       }
 
+      setOpenModalResponse(true);
+
       if (resultUser && resultRole) {
-         console.log('Modification du profil réussie.');
+         setTextResponseModal('Modification du profil réussie.');
+         setColor('#55B048');
       }
 
       if (!resultUser && !resultRole) {
-         console.log('Erreur lors de la modification du profil.');
+         setTextResponseModal('Erreur lors de la modification du profil.');
+         setColor('#DD4F3A');
       }
    };
 
+   const renderModalResponse = useMemo(() => {
+      if (openModalResponse) {
+         return (
+            <ModalComponent
+               onClose={handleCloseModaleResponse}
+               children={
+                  <ModalRequestApi color={color} text={textResponseModal} />
+               }
+            />
+         );
+      }
+   }, [openModalResponse, handleCloseModaleResponse]);
+
    return (
       <section className={styles.profil}>
+         {renderModalResponse}
          <form className={styles.form}>
             <div className={styles.inputs}>
                <section className={styles.email}>
@@ -137,9 +164,6 @@ const DashboardProfil = () => {
                         {...register('email', { required: true })}
                      />
                   </div>
-                  {/* {errorEmailMessage && (
-                        <p className={styles.emailError}>{errorEmailMessage}</p>
-                     )} */}
                </section>
                <section className={errorMessage ? styles.password : ''}>
                   <div

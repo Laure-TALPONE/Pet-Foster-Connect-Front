@@ -7,9 +7,11 @@ import sendRequest from '@/globals/hooks/sendRequest';
 
 type Props = {
    adoptionRequest?: any;
+   onSuccess: any;
+   onClose: any;
 };
 
-const ModalHomeRequest = ({ adoptionRequest }: Props) => {
+const ModalHomeRequest = ({ adoptionRequest, onSuccess, onClose }: Props) => {
    const handleUpdateStatusAdoptionRequest = async (status: string) => {
       if (status) {
          const result = await sendRequest(
@@ -18,16 +20,20 @@ const ModalHomeRequest = ({ adoptionRequest }: Props) => {
             { status: status }
          );
 
+         onClose(true);
+
          if (result) {
             console.log(
                "Modification du status de la requête d'adoption réussie."
             );
+            onSuccess('success');
          }
 
          if (!result) {
             console.log(
                "Modification du status de la requête d'adoption échouée."
             );
+            onSuccess('echec');
          }
       }
    };
