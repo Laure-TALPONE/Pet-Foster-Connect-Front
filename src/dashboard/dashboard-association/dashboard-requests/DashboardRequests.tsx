@@ -17,6 +17,7 @@ const DashboardRequests = ({ animals }: Props) => {
    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
    const [adoptionsRequest, setAdoptionsRequest] = useState([]);
    const [adoption, setAdoption] = useState();
+   const [searchFamily, setSearchFamily] = useState('');
 
    const handleOpenModal = useCallback((adopt: any) => {
       setModalIsOpen(true);
@@ -26,6 +27,10 @@ const DashboardRequests = ({ animals }: Props) => {
    const handleCloseModal = useCallback(() => {
       setModalIsOpen(false);
    }, []);
+
+   const handleSearchFamily = (search: string) => {
+      setSearchFamily(search);
+   };
 
    useEffect(() => {
       const handleResize = () => {
@@ -48,7 +53,17 @@ const DashboardRequests = ({ animals }: Props) => {
    const renderListPets = useMemo(() => {
       if (!adoptionsRequest || adoptionsRequest.length === 0) return;
 
-      return adoptionsRequest.map((adoption: any, index: number) => {
+      let filteredFamily;
+
+      if (searchFamily) {
+         filteredFamily = adoptionsRequest.filter((item: any) =>
+            item?.lastname.toLowerCase().startsWith(searchFamily.toLowerCase())
+         );
+      } else {
+         filteredFamily = adoptionsRequest;
+      }
+
+      return filteredFamily.map((adoption: any, index: number) => {
          return (
             <li className={styles.item} key={index}>
                <div className={styles.infos}>
@@ -86,7 +101,7 @@ const DashboardRequests = ({ animals }: Props) => {
             </li>
          );
       });
-   }, [isDesktop, handleOpenModal, adoptionsRequest]);
+   }, [isDesktop, handleOpenModal, adoptionsRequest, searchFamily]);
 
    const renderModal = useMemo(() => {
       if (modalIsOpen) {
@@ -104,7 +119,11 @@ const DashboardRequests = ({ animals }: Props) => {
          <div className={styles.content}>
             <section className={styles.search}>
                <div className="m-input m-input__background">
-                  <input type="text" placeholder="Rechercher une famille" />
+                  <input
+                     type="text"
+                     placeholder="Rechercher une famille"
+                     onChange={(e) => handleSearchFamily(e.target.value)}
+                  />
                </div>
             </section>
             <ul className={styles.list}>{renderListPets}</ul>
