@@ -8,6 +8,7 @@ import { PencilSimple, Plus } from '@phosphor-icons/react';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalPetForm from '../modal-pet-form/ModalPetForm';
 import { useUser } from '@/globals/utils/UserContext';
+import ModalRequestApi from '@/globals/components/modal-request-api/ModalRequestApi';
 
 type Props = {
    animals: any;
@@ -21,6 +22,9 @@ const DashboardPetsList = ({ animals, species }: Props) => {
    const [animalSelected, setAnimalSelected] = useState<any>();
    const [animalsList, setAnimalsList] = useState(animals);
    const [searchPet, setSearchPet] = useState('');
+   const [openModalResponse, setOpenModalResponse] = useState<boolean>(false);
+   const [textResponseModal, setTextResponseModal] = useState<string>('');
+   const [color, setColor] = useState('');
 
    useEffect(() => {
       const handleResize = () => {
@@ -41,27 +45,42 @@ const DashboardPetsList = ({ animals, species }: Props) => {
       setModalIsOpen(false);
    }, []);
 
+   const handleCloseModaleResponse = useCallback(() => {
+      setOpenModalResponse(false);
+   }, []);
+
    const handleUpdateListAnimals = useCallback(
       (animal: any, action: string) => {
-         console.log(animal);
+         setOpenModalResponse(true);
          if (animal && action === 'create') {
             // met à jour la liste des animaux en ajoutant le nouvel animal
             setAnimalsList([...animalsList, animal]);
+            setTextResponseModal(`${animal.name} a bien été ajouté(e).`);
+            setColor('#55B048');
          } else if (animal && action === 'update') {
             // met à jour l'animal dans la liste
             const updatedAnimalsList = animalsList.map((item: any) =>
                item.uuid === animal.uuid ? animal : item
             );
             setAnimalsList(updatedAnimalsList);
+            setTextResponseModal(
+               `Les informations de ${animal.name} ont bien été modifiées.`
+            );
+            setColor('#55B048');
          } else if (animal && action === 'delete') {
             // supprime l'animal via son uuid de la liste
             const updatedAnimalsList = animalsList.filter(
                (item: any) => item.uuid !== animal.uuid
             );
             setAnimalsList(updatedAnimalsList);
+            setTextResponseModal(`${animal.name} a bien été supprimé(e).`);
+            setColor('#55B048');
+         } else {
+            setTextResponseModal('Une erreur est survenue.');
+            setColor('#DD4F3A');
          }
       },
-      [animalsList]
+      [animalsList, setTextResponseModal, setColor, setOpenModalResponse]
    );
 
    const renderStatus = (pet: any) => {
@@ -186,6 +205,19 @@ const DashboardPetsList = ({ animals, species }: Props) => {
       animalSelected,
    ]);
 
+   const renderModalResponse = useMemo(() => {
+      if (openModalResponse) {
+         return (
+            <ModalComponent
+               onClose={handleCloseModaleResponse}
+               children={
+                  <ModalRequestApi color={color} text={textResponseModal} />
+               }
+            />
+         );
+      }
+   }, [openModalResponse, handleCloseModaleResponse]);
+
    return (
       <section className={styles.petsList}>
          <div className={styles.content}>
@@ -202,6 +234,7 @@ const DashboardPetsList = ({ animals, species }: Props) => {
             <ul className={styles.list}>{renderListPets}</ul>
          </div>
          {renderModal}
+         {renderModalResponse}
       </section>
    );
 };
