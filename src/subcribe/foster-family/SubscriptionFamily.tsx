@@ -9,6 +9,7 @@ import Link from 'next/link';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalLoginComponent from '@/login/ModalLoginComponent';
 import sendRequest from '@/globals/hooks/sendRequest';
+import ModalRequestApi from '@/globals/components/modal-request-api/ModalRequestApi';
 
 const SubcriptionFamily = () => {
    const {
@@ -19,12 +20,19 @@ const SubcriptionFamily = () => {
       formState: { errors },
    } = useForm();
    const [errorMessage, setErrorMessage] = useState('');
-   const [errorEmailMessage, setErrorEmailMessage] = useState('');
    const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
    const [confirmVisible, setConfirmVisible] = useState<boolean>(false);
    const [openModalLogin, setOpenModalLogin] = useState<boolean>(false);
+   const [openModalResponse, setOpenModalResponse] = useState<boolean>(false);
+   const [textResponseModal, setTextResponseModal] = useState<string>('');
+   const [color, setColor] = useState('');
    const watchPassword = watch('password');
    const watchConfirm = watch('confirm');
+
+   const handleCloseModaleResponse = useCallback(() => {
+      setOpenModalResponse(false);
+      setOpenModalLogin(true);
+   }, []);
 
    const handleCloseModaleLogin = useCallback(() => {
       setOpenModalLogin(false);
@@ -95,31 +103,49 @@ const SubcriptionFamily = () => {
          newData
       );
 
+      setOpenModalResponse(true);
+
       if (result) {
-         setOpenModalLogin(true);
+         setTextResponseModal('Votre compte a bien été créé');
+         setColor('#55B048');
       }
 
       if (!result) {
-         setErrorEmailMessage('E-mail déjà existant.');
+         setTextResponseModal(
+            "Une erreur est survenue lors de la création de votre compte. L'email est peut-être déjà existant."
+         );
+         setColor('#DD4F3A');
       }
    };
 
-   const renderModalLogin = useMemo(() => {
-      if (openModalLogin) {
+   const renderModalResponse = useMemo(() => {
+      if (openModalResponse) {
          return (
             <ModalComponent
-               onClose={handleCloseModaleLogin}
+               onClose={handleCloseModaleResponse}
                children={
-                  <ModalLoginComponent onClose={handleCloseModaleLogin} />
+                  <ModalRequestApi color={color} text={textResponseModal} />
                }
             />
          );
       }
-   }, [openModalLogin]);
+   }, [openModalResponse, handleCloseModaleResponse]);
+
+   const renderModalLogin = useMemo(() => {
+      if (openModalLogin) {
+         return (
+            <ModalComponent onClose={handleCloseModaleLogin}>
+               <ModalLoginComponent onClose={handleCloseModaleLogin} />
+            </ModalComponent>
+         );
+      }
+      return null;
+   }, [openModalLogin, handleCloseModaleLogin]);
 
    return (
       <section className="container">
          <div className={styles.content}>
+            {renderModalResponse}
             {renderModalLogin}
             <section className={styles.informations}>
                <div className={styles.infos}>

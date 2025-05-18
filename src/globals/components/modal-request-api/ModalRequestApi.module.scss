@@ -1,0 +1,9 @@
+@import '../../../../styles/_bases/mixins';
+
+.contentModal {
+    text-align: center;
+
+    p {
+        @include text-l;
+    }
+}
