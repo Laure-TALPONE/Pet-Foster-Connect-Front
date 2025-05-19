@@ -4,19 +4,20 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 30px;
 }
 
 .list {
+    max-width: calc(340px * 3 + 20px * 2);
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-    grid-gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
     row-gap: 30px;
-    place-items: center;
+    justify-content: center;
 
     @include tablet {
-        grid-template-columns: repeat(auto-fit, minmax(340px, 340px));
         justify-content: start;
     }
 

@@ -6,9 +6,11 @@ import SectionInformations from './section-informations/SectionInformations';
 import SectionLifestyle from './section-lifestyle/SectionLifestyle';
 import SectionMotivations from './section-motivations/SectionMotivations';
 import SectionAdoption from './section-info-adoption/SectionAdoption';
-import { useState } from 'react';
+import { useCallback, useMemo, useState, useTransition } from 'react';
 import sendRequest from '@/globals/hooks/sendRequest';
 import { useUser } from '@/globals/utils/UserContext';
+import ModalComponent from '@/globals/components/modal/ModalComponent';
+import ModalRequestApi from '@/globals/components/modal-request-api/ModalRequestApi';
 
 type Props = {
    pet: any;
@@ -20,6 +22,9 @@ const HomeRequestComponent = ({ pet }: Props) => {
    const [consent, setConsent] = useState<boolean>(false);
    const user = useUser().user;
    const fosterFamily = user.fosterCares[0];
+   const [openModale, setOpenModale] = useState(false);
+   const [textResponseModale, setTextResponseModale] = useState('');
+   const [color, setColor] = useState('');
 
    const onSubmit = async (data: any) => {
       const newData = {
@@ -41,17 +46,43 @@ const HomeRequestComponent = ({ pet }: Props) => {
          newData
       );
 
+      setOpenModale(true);
+
       if (result) {
          console.log("Création d'une demande d'adoption réussie.");
+         setTextResponseModale(
+            "Votre demande d'adoption a bien été prise en compte."
+         );
+         setColor('#55B048');
       }
 
       if (!result) {
          console.log("Création d'une demande d'adoption échouée.");
+         setTextResponseModale('Une erreur est survenue.');
+         setColor('#DD4F3A');
       }
    };
 
+   const handleCloseModale = useCallback(() => {
+      setOpenModale(false);
+   }, []);
+
+   const renderModaleResponse = useMemo(() => {
+      if (openModale) {
+         return (
+            <ModalComponent
+               onClose={handleCloseModale}
+               children={
+                  <ModalRequestApi text={textResponseModale} color={color} />
+               }
+            />
+         );
+      }
+   }, [openModale, handleCloseModale]);
+
    return (
       <section className="container">
+         {renderModaleResponse}
          <div className={styles.request}>
             <h2 className={styles.title}>Demande d’accueil</h2>
             <FormProvider {...methods}>
