@@ -1,20 +1,16 @@
 'use client';
 
-import Image from 'next/image';
-import styles from './SubcriptionAssociation.module.scss';
-import {
-   CalendarBlank,
-   Eye,
-   EyeClosed,
-   FileArrowDown,
-} from '@phosphor-icons/react';
-import Link from 'next/link';
-import { useForm } from 'react-hook-form';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import dayjs from 'dayjs';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
-import ModalLoginComponent from '@/login/ModalLoginComponent';
 import sendRequest from '@/globals/hooks/sendRequest';
+import ModalLoginComponent from '@/login/ModalLoginComponent';
+import { Eye, EyeClosed, FileArrowDown } from '@phosphor-icons/react';
+import dayjs from 'dayjs';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import styles from './SubcriptionAssociation.module.scss';
+
 
 const SubcriptionAssociation = () => {
    const {
@@ -142,11 +138,13 @@ const SubcriptionAssociation = () => {
             setErrorMessage(
                'Votre mot de passe doit contenir un caratère spécial : @#! !'
             );
+         } else if (watchConfirm && watchPassword !== watchConfirm) {
+            setErrorMessage('Les mots de passe ne correspondent pas.');
          } else {
             setErrorMessage('');
          }
       }
-   }, [watchPassword]);
+   }, [watchPassword, watchConfirm]);
 
    const handleCloseModalLogin = useCallback(() => {
       setOpenModalLogin(false);
@@ -237,6 +235,7 @@ const SubcriptionAssociation = () => {
                            type="button"
                            className="m-input__suffix"
                            onClick={() => handleDisplayPassword('password')}
+                           aria-label="afficher/masquer le mot de passe"
                         >
                            {passwordVisible ? (
                               <EyeClosed weight="bold" />
@@ -265,6 +264,7 @@ const SubcriptionAssociation = () => {
                         type="button"
                         className="m-input__suffix"
                         onClick={() => handleDisplayPassword('confirm')}
+                        aria-label="afficher/masquer le mot de passe"
                      >
                         {confirmVisible ? (
                            <EyeClosed weight="bold" />
@@ -356,6 +356,7 @@ const SubcriptionAssociation = () => {
                   >
                      <input
                         type="date"
+                        data-testid="registration-date"
                         {...register('registration_date', { required: true })}
                      />
                      <span className="m-input__suffix">
@@ -374,6 +375,7 @@ const SubcriptionAssociation = () => {
                         accept=".pdf"
                         readOnly
                         onChange={handleUploadFile}
+                        data-testid="file-pdf"
                         style={{ opacity: watchFileUpload ? 1 : 0 }}
                      />
                      <button type="button" className="m-input__suffix">
