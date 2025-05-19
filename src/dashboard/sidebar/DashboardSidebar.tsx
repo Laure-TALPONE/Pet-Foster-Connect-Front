@@ -187,9 +187,9 @@ const DashboardSidebar = ({ token }: Props) => {
                      height={200}
                   />
                </div>
-               <h3 className={styles.name}>
-                  Famille {user.fosterCares[0].name}
-               </h3>
+               <h1 className={styles.name}>
+                  Famille {user.fosterCares[0].lastname}
+               </h1>
             </section>
          );
       }

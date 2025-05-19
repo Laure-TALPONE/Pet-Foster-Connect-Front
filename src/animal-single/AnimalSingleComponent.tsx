@@ -5,14 +5,20 @@ import styles from './AnimalSingleComponent.module.scss';
 import Slider from 'react-slick';
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { useUser } from '@/globals/utils/UserContext';
+import ModalComponent from '@/globals/components/modal/ModalComponent';
+import ModalRequestApi from '@/globals/components/modal-request-api/ModalRequestApi';
 
 type Props = {
    pet?: any;
 };
 
 const AnimalSingleComponent = ({ pet }: Props) => {
+   const [modaleOpen, setModaleOpen] = useState(false);
    // console.log(pet);
+   const user = useUser().user;
+   console.log(user);
 
    const settings = {
       responsive: [
@@ -45,6 +51,14 @@ const AnimalSingleComponent = ({ pet }: Props) => {
       ],
    };
 
+   const handleOpenModal = useCallback(() => {
+      setModaleOpen(true);
+   }, []);
+
+   const handleCloseModal = useCallback(() => {
+      setModaleOpen(false);
+   }, []);
+
    const renderBoolean = (value: boolean) => {
       return value ? 'Oui' : 'Non';
    };
@@ -65,8 +79,49 @@ const AnimalSingleComponent = ({ pet }: Props) => {
       );
    }, [pet.is_available]);
 
+   const renderButtonAction = useMemo(() => {
+      if (!user || user.role !== 'foster') {
+         return (
+            <button
+               type="button"
+               className="m-button"
+               onClick={handleOpenModal}
+            >
+               Faire une demande
+            </button>
+         );
+      }
+
+      if (user && user.role === 'foster') {
+         return (
+            <Link
+               href={`/nos-animaux/${pet.uuid}/demande-daccueil`}
+               className="m-button"
+            >
+               Faire une demande
+            </Link>
+         );
+      }
+   }, [user, handleOpenModal]);
+
+   const renderModale = useMemo(() => {
+      if (!modaleOpen) return null;
+
+      if (modaleOpen) {
+         return (
+            <ModalComponent
+               onClose={handleCloseModal}
+               children={
+                  <ModalRequestApi text="Vous devez être connecté en tant que Famille d'accueil." />
+               }
+            />
+         );
+      }
+   }, [modaleOpen]);
+
    return (
       <section className="container">
+         {renderModale}
          <div className={styles.animalPage}>
             <section className={styles.presentation}>
                <div className={styles.text}>
@@ -189,12 +244,7 @@ const AnimalSingleComponent = ({ pet }: Props) => {
                   <h2 className={styles.title}>
                      Souhaitez-vous l’accueillir ?
                   </h2>
-                  <Link
-                     href={`/nos-animaux/${pet.uuid}/demande-daccueil`}
-                     className="m-button"
-                  >
-                     Faire une demande
-                  </Link>
+                  {renderButtonAction}
                </div>
             </section>
          </div>

@@ -4,7 +4,7 @@ import styles from './ModalRequestApi.module.scss';
 
 type Props = {
    text: string;
-   color: string;
+   color?: string;
 };
 
 const ModalRequestApi = ({ text, color }: Props) => {
