@@ -7,7 +7,13 @@ import { civilities } from '@/globals/constants/civility';
 import { CaretDown } from '@phosphor-icons/react';
 import { useFormContext } from 'react-hook-form';
 
-const SectionInformations = () => {
+type Props = {
+   fosterFamily: any;
+   user: any;
+};
+
+const SectionInformations = ({ fosterFamily, user }: Props) => {
+   console.log(fosterFamily);
    const [civilityDisplay, setCivilityDisplay] = useState(false);
    const {
       register,
@@ -45,7 +51,7 @@ const SectionInformations = () => {
 
    return (
       <section className={styles.informations}>
-         <div
+         {/* <div
             className={
                errors.civility ? 'm-select m-select__error' : 'm-select'
             }
@@ -62,14 +68,15 @@ const SectionInformations = () => {
                <CaretDown weight="bold" />
             </span>
             {renderSelectCivility}
-         </div>
+         </div> */}
          <div
             className={errors.firstname ? 'm-input m-input__error' : 'm-input'}
          >
             <input
                type="text"
                placeholder="Prénom*"
-               {...register('firstname', { required: true })}
+               disabled
+               value={fosterFamily.firstname}
             />
          </div>
          <div
@@ -78,28 +85,32 @@ const SectionInformations = () => {
             <input
                type="text"
                placeholder="Nom*"
-               {...register('lastname', { required: true })}
+               disabled
+               value={fosterFamily.lastname}
             />
          </div>
          <div className={errors.email ? 'm-input m-input__error' : 'm-input'}>
             <input
                type="email"
                placeholder="E-mail*"
-               {...register('email', { required: true })}
+               disabled
+               value={user.email}
             />
          </div>
          <div className={errors.phone ? 'm-input m-input__error' : 'm-input'}>
             <input
                type="text"
                placeholder="Téléphone*"
-               {...register('phone', { required: true })}
+               disabled
+               value={fosterFamily.phone}
             />
          </div>
          <div className={errors.address ? 'm-input m-input__error' : 'm-input'}>
             <input
                type="text"
                placeholder="Numéro et nom de voie*"
-               {...register('address', { required: true })}
+               disabled
+               value={fosterFamily.address}
             />
          </div>
          <div
@@ -108,14 +119,16 @@ const SectionInformations = () => {
             <input
                type="text"
                placeholder="Code postal*"
-               {...register('postcode', { required: true })}
+               disabled
+               value={fosterFamily.postcode}
             />
          </div>
          <div className={errors.city ? 'm-input m-input__error' : 'm-input'}>
             <input
                type="text"
                placeholder="Ville*"
-               {...register('city', { required: true })}
+               disabled
+               value={fosterFamily.city}
             />
          </div>
       </section>

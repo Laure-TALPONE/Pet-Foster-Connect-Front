@@ -25,6 +25,10 @@
         }
     }
 
+    &:has(input:disabled) {
+        background-color: #f0f0f0;
+    }
+
     textarea {
         width: 100%;
         color: var(--Blue-secondary);

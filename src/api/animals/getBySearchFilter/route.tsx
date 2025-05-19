@@ -1,7 +1,7 @@
 const fetchGetAnimalsByFilters = async (specie: string, department: string) => {
    try {
       const response = await fetch(
-         `http://localhost/api/animals?specie=${specie}&department=${department}`,
+         `http://localhost/api/animals/search?specie=${specie}&department=${department}`,
          {
             method: 'GET',
             credentials: 'include',

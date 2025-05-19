@@ -169,9 +169,9 @@ const DashboardSidebar = ({ token }: Props) => {
                      height={200}
                   />
                </div>
-               <h3 className={styles.name}>
+               <h1 className={styles.name}>
                   L’association {user.organizations[0].name}
-               </h3>
+               </h1>
             </section>
          );
       }

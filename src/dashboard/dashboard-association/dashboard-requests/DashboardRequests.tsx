@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './DashboardRequests.module.scss';
 import Image from 'next/image';
 import { Check, User, X } from '@phosphor-icons/react';
-import { foster_families } from '@/globals/constants/data';
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import ModalHomeRequest from '../modal-home-request/ModalHomeRequest';
 import ModalRequestApi from '@/globals/components/modal-request-api/ModalRequestApi';
@@ -22,6 +21,7 @@ const DashboardRequests = ({ animals }: Props) => {
    const [openModalResponse, setOpenModalResponse] = useState<boolean>(false);
    const [textResponseModal, setTextResponseModal] = useState<string>('');
    const [color, setColor] = useState('');
+   console.log(adoptionsRequest);
 
    const handleOpenModal = useCallback((adopt: any) => {
       setModalIsOpen(true);
@@ -120,10 +120,12 @@ const DashboardRequests = ({ animals }: Props) => {
                <div className={styles.infos}>
                   <div className={styles.picture}>
                      {adoption.fosterCare.image ? (
-                        <img
+                        <Image
                            src={adoption.fosterCare.image}
                            alt="foster-family-picture"
                            className={styles.familyPicture}
+                           width={80}
+                           height={80}
                         />
                      ) : (
                         <User />

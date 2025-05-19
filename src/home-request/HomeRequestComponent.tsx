@@ -19,19 +19,12 @@ const HomeRequestComponent = ({ pet }: Props) => {
    const { handleSubmit } = methods;
    const [consent, setConsent] = useState<boolean>(false);
    const user = useUser().user;
+   const fosterFamily = user.fosterCares[0];
 
    const onSubmit = async (data: any) => {
       const newData = {
          animalId: pet.uuid,
          fosterCareId: user.fosterCares[0].uuid,
-         civility: data.civility,
-         firstname: data.firstname,
-         lastname: data.lastname,
-         email: data.email,
-         phone: data.phone,
-         address: data.address,
-         postcode: data.postcode,
-         city: data.city,
          family_home: data.house,
          has_children: data.has_children === 'Oui' ? true : false,
          children_age: data.children_age,
@@ -63,7 +56,10 @@ const HomeRequestComponent = ({ pet }: Props) => {
             <h2 className={styles.title}>Demande d’accueil</h2>
             <FormProvider {...methods}>
                <form>
-                  <SectionInformations />
+                  <SectionInformations
+                     fosterFamily={fosterFamily}
+                     user={user}
+                  />
                   <SectionLifestyle />
                   <SectionMotivations onSendConsent={setConsent} pet={pet} />
                   <SectionAdoption />
