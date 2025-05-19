@@ -20,7 +20,7 @@ const CardFosterFamily = ({ family }: Props) => {
          <div className={styles.informations}>
             <div className={styles.names}>
                <span className={styles.available}>Disponible</span>
-               <p className={styles.familyName}>{family.name}</p>
+               <p className={styles.familyName}>{family.lastname}</p>
                <p className={styles.city}>
                   {family.city} ({family.postcode})
                </p>

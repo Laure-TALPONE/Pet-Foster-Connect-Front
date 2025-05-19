@@ -21,7 +21,7 @@ const DashboardRequests = ({ animals }: Props) => {
    const [openModalResponse, setOpenModalResponse] = useState<boolean>(false);
    const [textResponseModal, setTextResponseModal] = useState<string>('');
    const [color, setColor] = useState('');
-   console.log(adoptionsRequest);
+   // console.log(adoptionsRequest);
 
    const handleOpenModal = useCallback((adopt: any) => {
       setModalIsOpen(true);
@@ -108,7 +108,9 @@ const DashboardRequests = ({ animals }: Props) => {
 
       if (searchFamily) {
          filteredFamily = adoptionsRequest.filter((item: any) =>
-            item?.lastname.toLowerCase().startsWith(searchFamily.toLowerCase())
+            item?.fosterCare.lastname
+               .toLowerCase()
+               .startsWith(searchFamily.toLowerCase())
          );
       } else {
          filteredFamily = adoptionsRequest;
@@ -132,7 +134,7 @@ const DashboardRequests = ({ animals }: Props) => {
                      )}
                   </div>
                   <p className={styles.name}>
-                     Famille {adoption.fosterCare.name}
+                     Famille {adoption.fosterCare.lastname}
                   </p>
                   <div className={styles.infosRequest}>
                      <p>

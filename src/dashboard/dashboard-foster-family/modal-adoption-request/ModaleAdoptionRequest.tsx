@@ -7,7 +7,7 @@ type Props = {
 };
 
 const ModaleAdoptionRequest = ({ adoption }: Props) => {
-   console.log(adoption);
+   // console.log(adoption);
    return (
       <div className={styles.content}>
          <p>Coming soon</p>

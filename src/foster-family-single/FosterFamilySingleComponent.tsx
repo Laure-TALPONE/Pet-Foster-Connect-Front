@@ -19,10 +19,10 @@ const FosterFamilySingleComponent = ({ family }: Props) => {
          <div className={styles.familyPage}>
             <section className={styles.presentation}>
                <div className={styles.text}>
-                  <h2 className={styles.title}>Famille {family.name}</h2>
+                  <h2 className={styles.title}>Famille {family.lastname}</h2>
                   <h3 className={styles.subtitle}>Mes infos</h3>
                   <p className={styles.info}>
-                     Accueillir un animal en attente d’adoption, c’est lui
+                     {/* Accueillir un animal en attente d’adoption, c’est lui
                      offrir une pause douce et rassurante entre deux étapes de
                      vie. Chez moi, j’ai déjà eu le bonheur d’héberger 6 chats
                      et 2 chiens, tous avec des histoires différentes. Certains
@@ -30,7 +30,7 @@ const FosterFamilySingleComponent = ({ family }: Props) => {
                      m’ont apporté énormément d’amour. Être famille d’accueil,
                      c’est un engagement du cœur. Ce n’est pas toujours facile
                      de les laisser partir, mais savoir qu’on a contribué à leur
-                     bonheur, ça n’a pas de prix. <br />
+                     bonheur, ça n’a pas de prix. <br /> */}
                      {family.description}
                   </p>
                </div>
@@ -73,6 +73,7 @@ const FosterFamilySingleComponent = ({ family }: Props) => {
                   pourront s’épanouir pleinement.
                </p>
                <ListAnimals />
+               <p>Coming Soon</p>
             </section>
          </div>
       </section>

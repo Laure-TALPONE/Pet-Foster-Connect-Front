@@ -12,6 +12,7 @@ type Props = {
 };
 
 const ModalHomeRequest = ({ adoptionRequest, onSuccess, onClose }: Props) => {
+   console.log(adoptionRequest);
    const handleUpdateStatusAdoptionRequest = async (status: string) => {
       if (status) {
          const result = await sendRequest(
@@ -59,7 +60,7 @@ const ModalHomeRequest = ({ adoptionRequest, onSuccess, onClose }: Props) => {
                      <User />
                   )}
                </div>
-               <h2>La famille {adoptionRequest.lastname}</h2>
+               <h2>La famille {adoptionRequest.fosterCare.lastname}</h2>
             </div>
             <div className={styles.infoPet}>
                <p>
@@ -76,12 +77,14 @@ const ModalHomeRequest = ({ adoptionRequest, onSuccess, onClose }: Props) => {
             <h2>La demande</h2>
             <div className={styles.infosFamily}>
                <p>
-                  Mr {adoptionRequest.firstname} {adoptionRequest.lastname}
+                  {adoptionRequest.fosterCare.firstname}{' '}
+                  {adoptionRequest.fosterCare.lastname}
                </p>
-               <p>{adoptionRequest.email}</p>
+               <p>{adoptionRequest.fosterCare.user.email}</p>
                <p>
-                  {adoptionRequest.address}, {adoptionRequest.postcode}{' '}
-                  {adoptionRequest.city}, France
+                  {adoptionRequest.fosterCare.address},{' '}
+                  {adoptionRequest.fosterCare.postcode}{' '}
+                  {adoptionRequest.fosterCare.city}, France
                </p>
                <p>{adoptionRequest.phone}</p>
             </div>

@@ -29,7 +29,7 @@ const DashboardSettings = () => {
       if (result) {
          console.log("L'utilisateur a bien été supprimé.");
          setTextResponseModal(
-            "Votre compte a bien été supprimé. Vous allez être redirigé vers la page d'accueil"
+            "Votre compte a bien été supprimé. Vous allez être redirigé vers la page d'accueil."
          );
          setColor('#55B048');
          setTimeout(() => {

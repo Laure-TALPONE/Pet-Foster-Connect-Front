@@ -86,7 +86,7 @@ const SubcriptionAssociation = () => {
 
       if (result) {
          setTextResponseModal(
-            'Votre compte a bien été créé. Un mail de confirmation vous a été envoyé dans votre boîte mail.'
+            'Votre compte a bien été créé. Un mail de confirmation vous a été envoyé dans votre boîte mail. Veuillez confirmer votre mail pour pouvoir vous connecter.'
          );
          setColor('#55B048');
       }

@@ -13,7 +13,6 @@ type Props = {
 };
 
 const SectionInformations = ({ fosterFamily, user }: Props) => {
-   console.log(fosterFamily);
    const [civilityDisplay, setCivilityDisplay] = useState(false);
    const {
       register,

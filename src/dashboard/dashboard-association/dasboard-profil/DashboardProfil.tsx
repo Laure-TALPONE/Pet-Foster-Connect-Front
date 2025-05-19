@@ -122,7 +122,7 @@ const DashboardProfil = () => {
       setOpenModalResponse(true);
 
       if (resultUser && resultRole) {
-         setTextResponseModal('Modification du profil réussie.');
+         setTextResponseModal('Modifications du profil réussies.');
          setColor('#55B048');
       }
 
