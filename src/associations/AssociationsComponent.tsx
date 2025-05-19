@@ -7,7 +7,7 @@ type Props = {
 };
 
 const AssociationsComponent = ({ associations }: Props) => {
-   // console.log(associations);
+   console.log(associations);
 
    return (
       <section className="container">

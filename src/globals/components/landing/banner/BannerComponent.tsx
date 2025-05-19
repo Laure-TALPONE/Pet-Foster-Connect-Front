@@ -5,6 +5,8 @@ import { CaretDown } from '@phosphor-icons/react';
 import { departments } from '@/globals/constants/departments';
 import { useCallback, useMemo, useState } from 'react';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
+import sendRequest from '@/globals/hooks/sendRequest';
+import { useRouter } from 'next/navigation';
 
 type Props = {
    species: any;
@@ -13,8 +15,11 @@ type Props = {
 const BannerComponent = ({ species }: Props) => {
    const [animalsDisplay, setAnimalsDisplay] = useState(false);
    const [departmentsDisplay, setDepartmentsDisplay] = useState(false);
-   const [animalValue, setAnimalValue] = useState('');
+   const [specieValue, setSpecieValue] = useState('');
    const [localeValue, setLocaleValue] = useState('');
+   const router = useRouter();
+   // console.log(animalValue);
+   // console.log(localeValue);
 
    const handleOpenDropdown = (item: string) => {
       if (item === 'animals') {
@@ -29,7 +34,7 @@ const BannerComponent = ({ species }: Props) => {
    const handleSelectItem = useCallback((type: string, item: string | any) => {
       if (type === 'specie') {
          setAnimalsDisplay(false);
-         setAnimalValue(item.name);
+         setSpecieValue(item.name);
       }
 
       if (type === 'department') {
@@ -40,6 +45,12 @@ const BannerComponent = ({ species }: Props) => {
 
    const refDropdown1 = useOutsideClick(() => setAnimalsDisplay(false));
    const refDropdown2 = useOutsideClick(() => setDepartmentsDisplay(false));
+
+   const handleSubmitSearch = (specie: string, localisation: string) => {
+      const department = localisation.slice(0, 2);
+
+      router.push(`/nos-animaux?specie=${specie}&department=${department}`);
+   };
 
    const renderDropdownAnimals = useMemo(() => {
       if (!animalsDisplay) return;
@@ -103,7 +114,7 @@ const BannerComponent = ({ species }: Props) => {
                   onClick={() => handleOpenDropdown('animals')}
                   ref={refDropdown1}
                >
-                  <input type="text" readOnly value={animalValue} />
+                  <input type="text" readOnly value={specieValue} />
                   <span className="m-select__suffix">
                      <CaretDown weight="bold" />
                   </span>
@@ -121,7 +132,11 @@ const BannerComponent = ({ species }: Props) => {
                   </span>
                   {renderDropdownDepartments}
                </div>
-               <button type="button" className="m-button">
+               <button
+                  type="button"
+                  className="m-button"
+                  onClick={() => handleSubmitSearch(specieValue, localeValue)}
+               >
                   Rechercher
                </button>
             </div>

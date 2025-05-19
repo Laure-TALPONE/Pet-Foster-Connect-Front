@@ -4,9 +4,10 @@ import ListAnimals from './list-animals/ListAnimals';
 
 type Props = {
    animals?: any;
+   animalsFiltered?: any;
 };
 
-const AnimalsComponent = ({ animals }: Props) => {
+const AnimalsComponent = ({ animals, animalsFiltered }: Props) => {
    return (
       <section className="container">
          <div className={styles.animals}>
@@ -23,7 +24,10 @@ const AnimalsComponent = ({ animals }: Props) => {
                   foyer. Offrez-leur une seconde chance !
                </p>
             </div>
-            <ListAnimals listAnimals={animals} />
+            <ListAnimals
+               listAnimals={animals}
+               animalsFiltered={animalsFiltered}
+            />
          </div>
       </section>
    );
