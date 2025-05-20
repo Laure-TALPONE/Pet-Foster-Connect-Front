@@ -16,9 +16,7 @@ type Props = {
 
 const AnimalSingleComponent = ({ pet }: Props) => {
    const [modaleOpen, setModaleOpen] = useState(false);
-   // console.log(pet);
    const user = useUser().user;
-   console.log(user);
 
    const settings = {
       responsive: [

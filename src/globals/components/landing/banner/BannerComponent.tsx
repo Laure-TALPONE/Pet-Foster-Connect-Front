@@ -16,6 +16,7 @@ const BannerComponent = ({ species }: Props) => {
    const [animalsDisplay, setAnimalsDisplay] = useState(false);
    const [departmentsDisplay, setDepartmentsDisplay] = useState(false);
    const [specieValue, setSpecieValue] = useState('');
+   const [specieUuid, setSpecieUuid] = useState('');
    const [localeValue, setLocaleValue] = useState('');
    const router = useRouter();
    // console.log(animalValue);
@@ -35,6 +36,7 @@ const BannerComponent = ({ species }: Props) => {
       if (type === 'specie') {
          setAnimalsDisplay(false);
          setSpecieValue(item.name);
+         setSpecieUuid(item.uuid);
       }
 
       if (type === 'department') {
@@ -48,6 +50,8 @@ const BannerComponent = ({ species }: Props) => {
 
    const handleSubmitSearch = (specie: string, localisation: string) => {
       const department = localisation.slice(0, 2);
+
+      console.log(specie, department);
 
       router.push(`/nos-animaux?specie=${specie}&department=${department}`);
    };
@@ -135,7 +139,7 @@ const BannerComponent = ({ species }: Props) => {
                <button
                   type="button"
                   className="m-button"
-                  onClick={() => handleSubmitSearch(specieValue, localeValue)}
+                  onClick={() => handleSubmitSearch(specieUuid, localeValue)}
                >
                   Rechercher
                </button>

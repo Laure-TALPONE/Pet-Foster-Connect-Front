@@ -7,7 +7,7 @@ type Props = {
    animalsFiltered?: any;
 };
 
-const AnimalsComponent = ({ animals, animalsFiltered }: Props) => {
+const AnimalsComponent = ({ animals }: Props) => {
    return (
       <section className="container">
          <div className={styles.animals}>
@@ -24,10 +24,7 @@ const AnimalsComponent = ({ animals, animalsFiltered }: Props) => {
                   foyer. Offrez-leur une seconde chance !
                </p>
             </div>
-            <ListAnimals
-               listAnimals={animals}
-               animalsFiltered={animalsFiltered}
-            />
+            <ListAnimals listAnimals={animals} />
          </div>
       </section>
    );
