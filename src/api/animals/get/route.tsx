@@ -1,16 +1,23 @@
-import { NextRequest, NextResponse } from 'next/server';
-
-const fetchGetAllAnimals = async () => {
+const fetchGetAllAnimals = async (skip: any, take: any) => {
    try {
-      const response = await fetch('http://localhost/api/animals/all', {
-         method: 'GET',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-      });
+      const skipNumber = parseInt(skip);
+      const takeNumber = parseInt(take);
+
+      const response = await fetch(
+         `http://localhost/api/animals/all?skip=${skipNumber}&take=${takeNumber}`,
+         {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+         }
+      );
 
       if (!response.ok) {
+         console.error('Statut erreur:', response.status);
+         const errorText = await response.text();
+         // console.error('Erreur NestJS :', errorText);
          throw new Error('Erreur lors du fetch des animaux.');
       }
 

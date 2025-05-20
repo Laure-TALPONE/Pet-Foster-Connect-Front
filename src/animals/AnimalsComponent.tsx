@@ -4,7 +4,6 @@ import ListAnimals from './list-animals/ListAnimals';
 
 type Props = {
    animals?: any;
-   animalsFiltered?: any;
 };
 
 const AnimalsComponent = ({ animals }: Props) => {

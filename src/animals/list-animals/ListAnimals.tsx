@@ -1,9 +1,9 @@
 'use client';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import CardAnimal from '../card-animal/CardAnimal';
 import styles from './ListAnimals.module.scss';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import fetchGetAnimalsByFilters from '@/api/animals/getBySearchFilter/route';
 
 type Props = {
@@ -12,50 +12,39 @@ type Props = {
 };
 
 const ListAnimals = ({ listAnimals, association }: Props) => {
-   // https://nextjs.org/docs/app/api-reference/functions/use-search-params
+   // console.log(listAnimals);
    const searchParams = useSearchParams();
-   const specie = searchParams.get('specie');
-   const department = searchParams.get('department');
-   const [animalsFiltered, setAnimalsFiltered] = useState();
+   const skip = searchParams.get('skip');
+   const take = searchParams.get('take');
+   const router = useRouter();
 
-   useEffect(() => {
-      const fetchData = async () => {
-         if (specie && department) {
-            const animalsWithFilters = await fetchGetAnimalsByFilters(
-               specie,
-               department
-            );
-            setAnimalsFiltered(animalsWithFilters);
-         }
-      };
-
-      fetchData();
-   }, [specie, department]);
+   const handleViewMore = useCallback(() => {
+      if (skip) {
+         const nextSkip = parseInt(skip) + 9;
+         router.push(`?skip=${nextSkip}&take=${take}`);
+      }
+   }, []);
 
    const renderButtonViewMore = useMemo(() => {
-      if (listAnimals && listAnimals.length > 9) {
+      if (listAnimals && listAnimals.length === 9) {
          return (
             <div className={styles.viewMore}>
-               <button type="button" className="m-button">
+               <button
+                  type="button"
+                  className="m-button"
+                  onClick={handleViewMore}
+               >
                   Voire Plus
                </button>
             </div>
          );
       }
-   }, [listAnimals]);
+   }, [listAnimals, handleViewMore]);
 
    const renderAnimalsList = useMemo(() => {
       if (!listAnimals || listAnimals.length === 0) return;
 
-      let listAnimalsToDisplay;
-
-      if (specie && department) {
-         listAnimalsToDisplay = animalsFiltered;
-      } else {
-         listAnimalsToDisplay = listAnimals;
-      }
-
-      return listAnimalsToDisplay?.map((pet: any, index: number) => {
+      return listAnimals?.map((pet: any, index: number) => {
          return (
             <li key={index} className={styles.item}>
                <Link href={`/nos-animaux/${pet.uuid}`}>
@@ -64,7 +53,7 @@ const ListAnimals = ({ listAnimals, association }: Props) => {
             </li>
          );
       });
-   }, [listAnimals, association, animalsFiltered]);
+   }, [listAnimals, association]);
 
    return (
       <section className={styles.content}>

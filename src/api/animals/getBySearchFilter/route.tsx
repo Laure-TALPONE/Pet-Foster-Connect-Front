@@ -1,4 +1,4 @@
-const fetchGetAnimalsByFilters = async (specie: string, department: string) => {
+const fetchGetAnimalsByFilters = async (specie: any, department: any) => {
    try {
       const response = await fetch(
          `http://localhost/api/animals/search?specie=${specie}&department=${department}`,

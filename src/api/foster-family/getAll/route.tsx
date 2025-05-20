@@ -1,12 +1,18 @@
-const fetchGetAllFosterFamilies = async () => {
+const fetchGetAllFosterFamilies = async (skip: any, take: any) => {
    try {
-      const response = await fetch('http://localhost/api/foster/all', {
-         method: 'GET',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-      });
+      const skipNumber = parseInt(skip);
+      const takeNumber = parseInt(take);
+
+      const response = await fetch(
+         `http://localhost/api/foster/all?skip=${skipNumber}&take=${takeNumber}`,
+         {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+         }
+      );
 
       if (!response.ok) {
          throw new Error("Erreur lors du fetch des familles d'accueil.");

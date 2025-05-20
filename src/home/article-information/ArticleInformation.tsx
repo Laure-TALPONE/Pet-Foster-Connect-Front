@@ -46,7 +46,10 @@ const ArticleInformation = () => {
                      participez activement à leur bien-être et leur donnez une
                      seconde chance. Parce qu’ils méritent tous un foyer !
                   </p>
-                  <Link href={'/nos-animaux'} className="m-button">
+                  <Link
+                     href={'/nos-animaux?skip=0&take=9'}
+                     className="m-button"
+                  >
                      Découvrir nos animaux
                   </Link>
                </div>

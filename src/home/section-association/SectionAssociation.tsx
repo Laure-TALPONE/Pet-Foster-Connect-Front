@@ -26,7 +26,7 @@ const SectionAssociation = () => {
                      définitivement.
                   </p>
                </div>
-               <Link href={'/associations'} className="m-button">
+               <Link href={'/associations?skip=0&take=9'} className="m-button">
                   Découvrir nos associations
                </Link>
             </div>

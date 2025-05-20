@@ -83,32 +83,36 @@ const HeaderComponent = ({ token }: Props) => {
             </li>
             <li
                className={
-                  pathname === '/nos-animaux' ? styles.itemActive : styles.item
+                  pathname === '/nos-animaux?skip=0&take=9'
+                     ? styles.itemActive
+                     : styles.item
                }
             >
-               <Link href="/nos-animaux">
+               <Link href="/nos-animaux?skip=0&take=9">
                   <Cat weight="bold" />
                   <span>Nos animaux</span>
                </Link>
             </li>
             <li
                className={
-                  pathname === '/associations' ? styles.itemActive : styles.item
+                  pathname === '/associations?skip=0&take=9'
+                     ? styles.itemActive
+                     : styles.item
                }
             >
-               <Link href="/associations">
+               <Link href="/associations?skip=0&take=9">
                   <HandHeart weight="bold" />
                   <span>Nos associations</span>
                </Link>
             </li>
             <li
                className={
-                  pathname === '/familles-daccueil'
+                  pathname === '/familles-daccueil?skip=0&take=9'
                      ? styles.itemActive
                      : styles.item
                }
             >
-               <Link href="/familles-daccueil">
+               <Link href="/familles-daccueil?skip=0&take=9">
                   <Users weight="bold" />
                   <span>Nos familles d'accueil</span>
                </Link>

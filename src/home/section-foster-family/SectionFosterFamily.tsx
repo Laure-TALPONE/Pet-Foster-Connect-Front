@@ -38,7 +38,10 @@ const SectionFosterFamily = () => {
                      </span>
                   </p>
                </div>
-               <Link href={'/familles-daccueil'} className="m-button">
+               <Link
+                  href={'/familles-daccueil?skip=0&take=9'}
+                  className="m-button"
+               >
                   Découvrir nos familles d’accueil
                </Link>
             </div>
