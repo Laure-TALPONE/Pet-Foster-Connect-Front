@@ -31,7 +31,6 @@ const SubcriptionFamily = () => {
 
    const handleCloseModaleResponse = useCallback(() => {
       setOpenModalResponse(false);
-      setOpenModalLogin(true);
    }, []);
 
    const handleCloseModaleLogin = useCallback(() => {
@@ -148,7 +147,7 @@ const SubcriptionFamily = () => {
       <section className="container">
          <div className={styles.content}>
             {renderModalResponse}
-            {renderModalLogin}
+            {/* {renderModalLogin} */}
             <section className={styles.informations}>
                <div className={styles.infos}>
                   <h2 className={styles.title}>

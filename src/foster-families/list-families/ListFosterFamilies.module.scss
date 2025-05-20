@@ -9,7 +9,6 @@
 }
 
 .list {
-    max-width: calc(340px * 3 + 20px * 2);
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -18,7 +17,7 @@
     justify-content: center;
 
     @include tablet {
-        justify-content: start;
+        justify-content: space-around;
     }
 
     .item {

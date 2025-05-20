@@ -161,7 +161,6 @@ const SubcriptionAssociation = () => {
 
    const handleCloseModaleResponse = useCallback(() => {
       setOpenModalResponse(false);
-      setOpenModalLogin(true);
    }, []);
 
    const handleCloseModaleLogin = useCallback(() => {
@@ -196,7 +195,7 @@ const SubcriptionAssociation = () => {
       <section className="container">
          <div className={styles.content}>
             {renderModalResponse}
-            {renderModalLogin}
+            {/* {renderModalLogin} */}
             <section className={styles.informations}>
                <div className={styles.infos}>
                   <h2 className={styles.title}>Inscrivez votre association</h2>
