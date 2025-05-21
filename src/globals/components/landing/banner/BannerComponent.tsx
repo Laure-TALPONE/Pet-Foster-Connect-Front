@@ -51,8 +51,6 @@ const BannerComponent = ({ species }: Props) => {
    const handleSubmitSearch = (specie: string, localisation: string) => {
       const department = localisation.slice(0, 2);
 
-      console.log(specie, department);
-
       router.push(`/nos-animaux?specie=${specie}&department=${department}`);
    };
 

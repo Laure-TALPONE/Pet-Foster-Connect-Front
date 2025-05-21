@@ -16,6 +16,7 @@ const SectionMotivations = ({ onSendConsent, pet }: Props) => {
       watch,
       formState: { errors },
    } = useFormContext();
+   console.log(pet);
 
    const watchConsent = watch('consent');
 
@@ -45,8 +46,8 @@ const SectionMotivations = ({ onSendConsent, pet }: Props) => {
             <p>
                J’accepte que les informations personnelles fournies dans ce
                formulaire soient partagées avec
-               <span> L’association Pattes Solidaires</span> afin de traiter ma
-               demande d’adoption.
+               <span> L’association {pet.organization.name}</span> afin de
+               traiter ma demande d’adoption.
             </p>
          </div>
       </section>
