@@ -1,12 +1,11 @@
 'use client';
-import Image from 'next/image';
-import styles from './BannerComponent.module.scss';
-import { CaretDown } from '@phosphor-icons/react';
 import { departments } from '@/globals/constants/departments';
-import { useCallback, useMemo, useState } from 'react';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
-import sendRequest from '@/globals/hooks/sendRequest';
+import { CaretDown } from '@phosphor-icons/react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useCallback, useMemo, useState } from 'react';
+import styles from './BannerComponent.module.scss';
 
 type Props = {
    species: any;
@@ -116,7 +115,7 @@ const BannerComponent = ({ species }: Props) => {
                   onClick={() => handleOpenDropdown('animals')}
                   ref={refDropdown1}
                >
-                  <input type="text" readOnly value={specieValue} />
+                  <input type="text" readOnly value={specieValue} aria-label="Animal" />
                   <span className="m-select__suffix">
                      <CaretDown weight="bold" />
                   </span>
@@ -128,7 +127,7 @@ const BannerComponent = ({ species }: Props) => {
                   onClick={() => handleOpenDropdown('departments')}
                   ref={refDropdown2}
                >
-                  <input type="text" readOnly value={localeValue} />
+                  <input type="text" readOnly value={localeValue} aria-label="Lieu" />
                   <span className="m-select__suffix">
                      <CaretDown weight="bold" />
                   </span>

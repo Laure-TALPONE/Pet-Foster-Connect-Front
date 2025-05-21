@@ -1,14 +1,8 @@
-import { UserProvider } from '@/globals/utils/UserContext';
-import '../styles/globals.scss';
-import type { Metadata } from 'next';
-import { cookies } from 'next/headers';
 import fetchGetUser from '@/api/user/get/route';
+import { UserProvider } from '@/globals/utils/UserContext';
+import { cookies } from 'next/headers';
+import '../styles/globals.scss';
 
-export const metadata: Metadata = {
-   title: 'Pets Foster Connect',
-   description:
-      "L'application qui permet de mettre en relation des familles d’accueil pour les animaux et des associations de protection animale.",
-};
 
 export default async function RootLayout({
    children,
