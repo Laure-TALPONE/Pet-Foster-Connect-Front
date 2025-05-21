@@ -2,13 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const fetchGetAnimalById = async (id: string) => {
    try {
-      const response = await fetch(`http://localhost/api/animals/${id}`, {
-         method: 'GET',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-      });
+      const response = await fetch(
+         `${process.env.NEXT_PUBLIC_API_URL}/api/animals/${id}`,
+         {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+         }
+      );
 
       if (!response.ok) {
          throw new Error("Erreur lors du fetch de l'animal.");

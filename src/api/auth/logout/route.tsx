@@ -5,7 +5,7 @@ const fetchPostLogOut = async () => {
    try {
       const response = await fetch(
          // 'http://jeremyjacquette-server.eddi.cloud/api/logout',
-         'http://localhost/api/logout',
+         `${process.env.NEXT_PUBLIC_API_URL}/api/logout`,
          {
             method: 'POST',
             headers: {

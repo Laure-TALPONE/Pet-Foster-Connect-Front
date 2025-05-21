@@ -2,12 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const fetchGetAllSpecies = async () => {
    try {
-      const response = await fetch('http://localhost/api/species/all', {
-         method: 'GET',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-      });
+      const response = await fetch(
+         `${process.env.NEXT_PUBLIC_API_URL}/api/species/all`,
+         {
+            method: 'GET',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+         }
+      );
 
       if (!response.ok) {
          console.error('Statut erreur:', response.status);

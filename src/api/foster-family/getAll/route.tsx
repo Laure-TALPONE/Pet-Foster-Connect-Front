@@ -4,7 +4,7 @@ const fetchGetAllFosterFamilies = async (skip: any, take: any) => {
       const takeNumber = parseInt(take);
 
       const response = await fetch(
-         `http://localhost/api/foster/all?skip=${skipNumber}&take=${takeNumber}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/api/foster/all?skip=${skipNumber}&take=${takeNumber}`,
          {
             method: 'GET',
             credentials: 'include',

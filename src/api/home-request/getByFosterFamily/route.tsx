@@ -11,7 +11,7 @@ const fetchGetHomeRequestByFosterFamily = async (id: string) => {
       }
 
       const response = await fetch(
-         `http://localhost/api/adoption_requests/foster/${id}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/api/adoption_requests/foster/${id}`,
          {
             method: 'GET',
             credentials: 'include',

@@ -11,14 +11,17 @@ const fetchDeleteAnimal = async (id: string) => {
    }
 
    try {
-      const response = await fetch(`http://localhost/api/animals/${id}`, {
-         method: 'DELETE',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token?.value}`,
-         },
-      });
+      const response = await fetch(
+         `${process.env.NEXT_PUBLIC_API_URL}/api/animals/${id}`,
+         {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: `Bearer ${token?.value}`,
+            },
+         }
+      );
 
       const result = await response.json();
 

@@ -11,14 +11,17 @@ const fetchDeleteUser = async (id: string) => {
          throw new Error('Token JWT manquant');
       }
 
-      const response = await fetch(`http://localhost/api/${id}`, {
-         method: 'DELETE',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token?.value}`,
-         },
-      });
+      const response = await fetch(
+         `${process.env.NEXT_PUBLIC_API_URL}/api/${id}`,
+         {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: `Bearer ${token?.value}`,
+            },
+         }
+      );
 
       const result = await response.json();
 

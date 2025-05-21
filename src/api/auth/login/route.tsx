@@ -4,14 +4,17 @@ const fetchPostLogin = async (request: NextRequest) => {
    try {
       const data = await request.json();
 
-      const response = await fetch('http://localhost/api/login', {
-         method: 'POST',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-         body: JSON.stringify(data),
-      });
+      const response = await fetch(
+         `${process.env.NEXT_PUBLIC_API_URL}/api/login`,
+         {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+         }
+      );
 
       const result = await response.json();
 

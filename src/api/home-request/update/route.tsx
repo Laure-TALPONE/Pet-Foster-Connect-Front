@@ -17,7 +17,7 @@ const fetchUpdateAdoptionRequestStatus = async (
       const data = await request.json();
 
       const response = await fetch(
-         `http://localhost/api/adoption_requests/status/${id}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/api/adoption_requests/status/${id}`,
          {
             method: 'PATCH',
             credentials: 'include',

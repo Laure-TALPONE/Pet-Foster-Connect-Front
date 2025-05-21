@@ -12,7 +12,7 @@ const fetchGetAnimalsByAssociation = async (id: string) => {
 
    try {
       const response = await fetch(
-         `http://localhost/api/animals/organization/${id}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/api/animals/organization/${id}`,
          {
             method: 'GET',
             credentials: 'include',

@@ -14,7 +14,7 @@ const fetchCreateHomeRequest = async (request: NextRequest) => {
       const data = await request.json();
 
       const response = await fetch(
-         'http://localhost/api/adoption_requests/create',
+         `${process.env.NEXT_PUBLIC_API_URL}/api/adoption_requests/create`,
          {
             method: 'POST',
             credentials: 'include',

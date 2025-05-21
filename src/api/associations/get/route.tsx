@@ -4,7 +4,7 @@ const fetchGetAllAssociations = async (skip: any, take: any) => {
       const takeNumber = parseInt(take);
 
       const response = await fetch(
-         `http://localhost/api/organization/all?skip=${skipNumber}&take=${takeNumber}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/api/organization/all?skip=${skipNumber}&take=${takeNumber}`,
          {
             method: 'GET',
             credentials: 'include',

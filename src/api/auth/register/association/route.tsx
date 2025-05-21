@@ -5,7 +5,7 @@ const fetchPostRegisterAssociation = async (request: NextRequest) => {
       const data = await request.json();
 
       const response = await fetch(
-         'http://localhost/api/organization/register',
+         `${process.env.NEXT_PUBLIC_API_URL}/api/organization/register`,
          {
             method: 'POST',
             headers: {

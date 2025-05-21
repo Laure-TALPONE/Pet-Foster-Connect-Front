@@ -1,7 +1,7 @@
 const fetchGetAnimalsByFilters = async (specie: any, department: any) => {
    try {
       const response = await fetch(
-         `http://localhost/api/animals/search?specie=${specie}&department=${department}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/api/animals/search?specie=${specie}&department=${department}`,
          {
             method: 'GET',
             credentials: 'include',

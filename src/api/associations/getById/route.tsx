@@ -1,12 +1,15 @@
 const fetchGetAssociationById = async (id: string) => {
    try {
-      const response = await fetch(`http://localhost/api/organization/${id}`, {
-         method: 'GET',
-         credentials: 'include',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-      });
+      const response = await fetch(
+         `${process.env.NEXT_PUBLIC_API_URL}/api/organization/${id}`,
+         {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+         }
+      );
 
       if (!response.ok) {
          throw new Error("Erreur lors du fetch de l'association.");

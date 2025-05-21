@@ -4,7 +4,7 @@ const fetchGetAllAnimals = async (skip: any, take: any) => {
       const takeNumber = parseInt(take);
 
       const response = await fetch(
-         `http://localhost/api/animals/all?skip=${skipNumber}&take=${takeNumber}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/api/animals/all?skip=${skipNumber}&take=${takeNumber}`,
          {
             method: 'GET',
             credentials: 'include',

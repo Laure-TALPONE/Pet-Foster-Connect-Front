@@ -3,9 +3,18 @@ version: '3.8'
 services:
    frontend:
       image: node:20-alpine
+      build:
+         context: .
+         dockerfile: Dockerfile
       ports:
          - 3000:3000
       volumes:
          - ./:/frontend
       working_dir: /frontend
       command: npm run setup
+      networks:
+         - projet-02-pet-foster-connect-back_backend-network
+
+networks:
+   projet-02-pet-foster-connect-back_backend-network:
+      external: true

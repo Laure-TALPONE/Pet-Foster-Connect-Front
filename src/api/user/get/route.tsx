@@ -11,13 +11,16 @@ const fetchGetUser = async () => {
          throw new Error('Token JWT manquant');
       }
 
-      const response = await fetch(`http://localhost/api/me`, {
-         method: 'GET',
-         headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token?.value}`,
-         },
-      });
+      const response = await fetch(
+         `${process.env.NEXT_PUBLIC_API_URL}/api/me`,
+         {
+            method: 'GET',
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: `Bearer ${token?.value}`,
+            },
+         }
+      );
 
       if (!response.ok) {
          console.error('Statut erreur:', response.status);
