@@ -11,6 +11,7 @@ import SectionFosterFamily from './section-foster-family/SectionFosterFamily';
 import StepsAdoption from './steps-adoption/StepsAdoption';
 
 const HomeComponent = () => {
+   console.log('pouet');
    return (
       <div className={styles.content}>
          <ArticleFoster />
