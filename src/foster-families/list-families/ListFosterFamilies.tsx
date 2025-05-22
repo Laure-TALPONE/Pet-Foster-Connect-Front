@@ -24,7 +24,7 @@ const ListFosterFamilies = ({ fosterFamilies }: Props) => {
    }, []);
 
    const renderButtonViewMore = useMemo(() => {
-      if (fosterFamilies && fosterFamilies.length > 9) {
+      if (fosterFamilies && fosterFamilies.length === 9) {
          return (
             <div className={styles.viewMore}>
                <button

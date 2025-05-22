@@ -24,7 +24,7 @@ const ListAssociations = ({ associations }: Props) => {
    }, []);
 
    const renderButtonViewMore = useMemo(() => {
-      if (associations && associations.length > 9) {
+      if (associations && associations.length === 9) {
          return (
             <div className={styles.viewMore}>
                <button

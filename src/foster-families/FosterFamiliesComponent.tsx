@@ -10,16 +10,15 @@ type Props = {
 };
 
 const FosterFamiliesComponent = ({ fosterFamilies }: Props) => {
-         const [loading, setLoading] = useState(true);
-   
-      useEffect(() => {
-         const timer = setTimeout(() => {
-            setLoading(false);
-         }, 1500);
-   
-         return () => clearTimeout(timer);
-      }, []);
-   
+   const [loading, setLoading] = useState(true);
+
+   useEffect(() => {
+      const timer = setTimeout(() => {
+         setLoading(false);
+      }, 1500);
+
+      return () => clearTimeout(timer);
+   }, []);
 
    return (
       <section className="container">
@@ -36,7 +35,11 @@ const FosterFamiliesComponent = ({ fosterFamilies }: Props) => {
                   sans elles, rien ne serait possible.
                </p>
             </div>
-            {loading ? <Loading /> :  <ListFosterFamilies fosterFamilies={fosterFamilies} />}
+            {loading ? (
+               <Loading />
+            ) : (
+               <ListFosterFamilies fosterFamilies={fosterFamilies} />
+            )}
          </div>
       </section>
    );
