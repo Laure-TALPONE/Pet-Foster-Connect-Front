@@ -17,10 +17,12 @@
    flex-direction: column;
    gap: 30px;
    align-items: center;
+   width: 100%;
 
-   @include desktop {
+   @include tablet {
       flex-direction: row;
       gap: 70px;
+      justify-content: space-between;
    }
 
    .text {
@@ -42,10 +44,18 @@
    .picture {
       display: flex;
       align-items: center;
-      max-width: 504px;
-      max-height: 393px;
+      width: fit-content;
+      height: fit-content;
+      max-width: 174px;
+      max-height: 194px;
       flex-shrink: 0;
       overflow: hidden;
+      border-radius: 10px;
+      align-self: center;
+
+      @include tablet {
+         align-self: flex-start;
+      }
 
       img {
          width: 100%;
