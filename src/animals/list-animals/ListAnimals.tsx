@@ -25,7 +25,7 @@ const ListAnimals = ({ listAnimals, association }: Props) => {
    }, []);
 
    const renderButtonViewMore = useMemo(() => {
-      if (listAnimals && listAnimals.length === 9) {
+      if (listAnimals && listAnimals.length > 9) {
          return (
             <div className={styles.viewMore}>
                <button
@@ -33,7 +33,7 @@ const ListAnimals = ({ listAnimals, association }: Props) => {
                   className="m-button"
                   onClick={handleViewMore}
                >
-                  Voire Plus
+                  Voir Plus
                </button>
             </div>
          );
