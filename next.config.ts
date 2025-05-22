@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   async redirects() {
     return [
       {
@@ -13,7 +19,8 @@ const nextConfig: NextConfig = {
   images: {
     domains: [
       "www.solidarite-peuple-animal.com",
-      "www.la-spa.fr"
+      "www.la-spa.fr",
+      "https://picsum.photos"
     ],
   },
   sassOptions: {

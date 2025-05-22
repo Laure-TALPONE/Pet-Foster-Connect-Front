@@ -5,8 +5,7 @@ import { CaretDown } from '@phosphor-icons/react';
 import { departments } from '@/globals/constants/departments';
 import { useCallback, useMemo, useState } from 'react';
 import useOutsideClick from '@/globals/hooks/useOutsideClick';
-import sendRequest from '@/globals/hooks/sendRequest';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 type Props = {
    species: any;
@@ -19,8 +18,6 @@ const BannerComponent = ({ species }: Props) => {
    const [specieUuid, setSpecieUuid] = useState('');
    const [localeValue, setLocaleValue] = useState('');
    const router = useRouter();
-   // console.log(animalValue);
-   // console.log(localeValue);
 
    const handleOpenDropdown = (item: string) => {
       if (item === 'animals') {
@@ -51,7 +48,9 @@ const BannerComponent = ({ species }: Props) => {
    const handleSubmitSearch = (specie: string, localisation: string) => {
       const department = localisation.slice(0, 2);
 
-      router.push(`/nos-animaux?specie=${specie}&department=${department}`);
+      router.push(
+         `/nos-animaux?specie=${specie}&department=${department}&skip=0&take=9`
+      );
    };
 
    const renderDropdownAnimals = useMemo(() => {
