@@ -83,9 +83,7 @@ const HeaderComponent = ({ token }: Props) => {
             </li>
             <li
                className={
-                  pathname === '/nos-animaux?skip=0&take=9'
-                     ? styles.itemActive
-                     : styles.item
+                  pathname === '/nos-animaux' ? styles.itemActive : styles.item
                }
             >
                <Link href="/nos-animaux?skip=0&take=9">
@@ -95,9 +93,7 @@ const HeaderComponent = ({ token }: Props) => {
             </li>
             <li
                className={
-                  pathname === '/associations?skip=0&take=9'
-                     ? styles.itemActive
-                     : styles.item
+                  pathname === '/associations' ? styles.itemActive : styles.item
                }
             >
                <Link href="/associations?skip=0&take=9">
@@ -107,7 +103,7 @@ const HeaderComponent = ({ token }: Props) => {
             </li>
             <li
                className={
-                  pathname === '/familles-daccueil?skip=0&take=9'
+                  pathname === '/familles-daccueil'
                      ? styles.itemActive
                      : styles.item
                }

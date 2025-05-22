@@ -1,7 +1,15 @@
-const fetchGetAnimalsByFilters = async (specie: any, department: any) => {
+const fetchGetAnimalsByFilters = async (
+   specie: any,
+   department: any,
+   skip: any,
+   take: any
+) => {
    try {
+      const skipNumber = parseInt(skip);
+      const takeNumber = parseInt(take);
+
       const response = await fetch(
-         `${process.env.NEXT_PUBLIC_API_URL}/api/animals/search?specie=${specie}&department=${department}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/api/animals/search?specie=${specie}&department=${department}&skip=${skipNumber}&take=${takeNumber}`,
          {
             method: 'GET',
             credentials: 'include',
@@ -12,7 +20,8 @@ const fetchGetAnimalsByFilters = async (specie: any, department: any) => {
       );
 
       if (!response.ok) {
-         throw new Error("Erreur lors du fetch de l'animal.");
+         console.error('Statut erreur:', response.status);
+         throw new Error('Erreur lors du fetch des animaux.');
       }
 
       const result = await response.json();

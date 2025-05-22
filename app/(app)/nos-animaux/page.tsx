@@ -20,7 +20,12 @@ export default async function AnimalsPage({ searchParams }: Props) {
    let listAnimals;
 
    if (specie && department) {
-      listAnimals = await fetchGetAnimalsByFilters(specie, department);
+      listAnimals = await fetchGetAnimalsByFilters(
+         specie,
+         department,
+         skip,
+         take
+      );
    } else if (skip && take) {
       listAnimals = await fetchGetAllAnimals(skip, take);
    }

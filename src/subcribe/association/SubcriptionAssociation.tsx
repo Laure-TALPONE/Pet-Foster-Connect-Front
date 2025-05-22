@@ -1,5 +1,7 @@
 'use client';
 
+import styles from './SubcriptionAssociation.module.scss';
+
 import ModalComponent from '@/globals/components/modal/ModalComponent';
 import sendRequest from '@/globals/hooks/sendRequest';
 import ModalLoginComponent from '@/login/ModalLoginComponent';
@@ -9,13 +11,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import dayjs from 'dayjs';
-import ModalComponent from '@/globals/components/modal/ModalComponent';
-import ModalLoginComponent from '@/login/ModalLoginComponent';
-import sendRequest from '@/globals/hooks/sendRequest';
 import ModalRequestApi from '@/globals/components/modal-request-api/ModalRequestApi';
-
 
 const SubcriptionAssociation = () => {
    const {

@@ -4,7 +4,6 @@ import CardAnimal from '../card-animal/CardAnimal';
 import styles from './ListAnimals.module.scss';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import fetchGetAnimalsByFilters from '@/api/animals/getBySearchFilter/route';
 
 type Props = {
    listAnimals?: any;
@@ -26,7 +25,7 @@ const ListAnimals = ({ listAnimals, association }: Props) => {
    }, []);
 
    const renderButtonViewMore = useMemo(() => {
-      if (listAnimals && listAnimals.length === 9) {
+      if (listAnimals && listAnimals.length > 9) {
          return (
             <div className={styles.viewMore}>
                <button
@@ -34,7 +33,7 @@ const ListAnimals = ({ listAnimals, association }: Props) => {
                   className="m-button"
                   onClick={handleViewMore}
                >
-                  Voire Plus
+                  Voir Plus
                </button>
             </div>
          );
