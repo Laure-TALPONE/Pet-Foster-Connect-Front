@@ -1,4 +1,6 @@
 'use client';
+import Loading from '@/globals/components/loading/Loading';
+import { useEffect, useState } from 'react';
 import styles from './AssociationsComponent.module.scss';
 import ListAssociations from './list-associations/ListAssociations';
 
@@ -7,7 +9,16 @@ type Props = {
 };
 
 const AssociationsComponent = ({ associations }: Props) => {
-   // console.log(associations);
+      const [loading, setLoading] = useState(true);
+
+   useEffect(() => {
+      const timer = setTimeout(() => {
+         setLoading(false);
+      }, 1500);
+
+      return () => clearTimeout(timer);
+   }, []);
+
 
    return (
       <section className="container">
@@ -27,7 +38,7 @@ const AssociationsComponent = ({ associations }: Props) => {
                   changer une vie !
                </p>
             </div>
-            <ListAssociations associations={associations} />
+           {loading ? <Loading /> :  <ListAssociations associations={associations} />}
          </div>
       </section>
    );

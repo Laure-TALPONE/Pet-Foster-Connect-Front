@@ -1,5 +1,7 @@
 'use client';
 
+import Loading from '@/globals/components/loading/Loading';
+import { useEffect, useState } from 'react';
 import styles from './FosterFamiliesComponent.module.scss';
 import ListFosterFamilies from './list-families/ListFosterFamilies';
 
@@ -8,6 +10,17 @@ type Props = {
 };
 
 const FosterFamiliesComponent = ({ fosterFamilies }: Props) => {
+         const [loading, setLoading] = useState(true);
+   
+      useEffect(() => {
+         const timer = setTimeout(() => {
+            setLoading(false);
+         }, 1500);
+   
+         return () => clearTimeout(timer);
+      }, []);
+   
+
    return (
       <section className="container">
          <div className={styles.families}>
@@ -23,7 +36,7 @@ const FosterFamiliesComponent = ({ fosterFamilies }: Props) => {
                   sans elles, rien ne serait possible.
                </p>
             </div>
-            <ListFosterFamilies fosterFamilies={fosterFamilies} />
+            {loading ? <Loading /> :  <ListFosterFamilies fosterFamilies={fosterFamilies} />}
          </div>
       </section>
    );

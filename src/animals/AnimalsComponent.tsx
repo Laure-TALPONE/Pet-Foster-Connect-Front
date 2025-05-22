@@ -1,4 +1,6 @@
 'use client';
+import Loading from '@/globals/components/loading/Loading';
+import { useEffect, useState } from 'react';
 import styles from './AnimalsComponent.module.scss';
 import ListAnimals from './list-animals/ListAnimals';
 
@@ -7,6 +9,16 @@ type Props = {
 };
 
 const AnimalsComponent = ({ animals }: Props) => {
+      const [loading, setLoading] = useState(true);
+
+   useEffect(() => {
+      const timer = setTimeout(() => {
+         setLoading(false);
+      }, 1500);
+
+      return () => clearTimeout(timer);
+   }, []);
+
    return (
       <section className="container">
          <div className={styles.animals}>
@@ -23,7 +35,7 @@ const AnimalsComponent = ({ animals }: Props) => {
                   foyer. Offrez-leur une seconde chance !
                </p>
             </div>
-            <ListAnimals listAnimals={animals} />
+            {loading ? <Loading /> : <ListAnimals listAnimals={animals} />}
          </div>
       </section>
    );
