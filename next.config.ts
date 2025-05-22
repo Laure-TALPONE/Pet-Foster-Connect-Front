@@ -13,7 +13,8 @@ const nextConfig: NextConfig = {
   images: {
     domains: [
       "www.solidarite-peuple-animal.com",
-      "www.la-spa.fr"
+      "www.la-spa.fr",
+      "www.monimage.com"
     ],
   },
   sassOptions: {
