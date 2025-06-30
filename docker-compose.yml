@@ -2,13 +2,12 @@ version: '3.8'
 
 services:
    frontend:
-      image: node:20
+      build: .
       ports:
          - 3000:3000
       volumes:
-         - ./:/app
-      working_dir: /app
-      command: npm run setup
+         - .:/app
+         - /app/node_modules
       networks:
          - projet-02-pet-foster-connect-back_backend-network
 
