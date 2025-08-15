@@ -42,11 +42,11 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 ## Technos
 
-Front :
+### Front :
     - React
     - Framework Next 15
     - Sass
 
-Back :
+### Back :
     - NestJs
     - Postgres
