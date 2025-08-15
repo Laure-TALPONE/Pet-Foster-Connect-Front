@@ -1,4 +1,10 @@
-# L'application ***Pet Foster Connect*** est un projet de fin d'étude réalisé en équipe de 4 membres en un peu moins d'un mois.
+# Pet Foster Connect App
+
+L'application ***Pet Foster Connect*** est un projet de fin d'étude réalisé en équipe de 4 membres en un peu moins d'un mois.
+J'ai personnellement développé la partie front choisie en React NextJs.
+
+## CDC
+Ce projet a pour objectif de développer un système de connexion qui facilite la mise en relation entre les familles d'accueil et les associations de protection animale. Le système permettra aux associations de trouver rapidement des familles d'accueil disponibles pour héberger temporairement des animaux, tout en offrant aux familles la possibilité de gérer leurs disponibilités et préférences.
 
 ## Getting Started
 
@@ -20,7 +26,7 @@ Visit [http://localhost:3000](http://localhost:3000) with your browser to see th
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+https://pet-foster-connect-nu.vercel.app/
 
 
 ## Inspirations sites web
