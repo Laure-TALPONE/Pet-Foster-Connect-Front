@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# L'application ***Pet Foster Connect*** est un projet de fin d'étude réalisé en équipe de 4 membres en un peu moins d'un mois.
 
 ## Getting Started
 
